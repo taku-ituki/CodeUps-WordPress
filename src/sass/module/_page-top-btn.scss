@@ -1,0 +1,26 @@
+@use "global" as *;
+
+.page-top-btn {
+  justify-content: center;
+  align-items: center;
+  width: rem(48);
+  height: rem(48);
+  cursor: pointer;
+  background-color: $white;
+  border-radius: 50%;
+  /*デフォルトで非表示にする*/
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+  @include mq(md) {
+    width: rem(80);
+    height: rem(80);
+  }
+}
+
+/*このクラスが付与されると表示する*/
+.active {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s;
+}

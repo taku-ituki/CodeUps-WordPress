@@ -1,0 +1,169 @@
+@use "global" as *;
+.wp-pagenavi {
+  display: flex;
+  justify-content: center;
+}
+
+// ページナンバー位置調整
+.blog-container__pagenavi.wp-pagenavi {
+  margin-top: rem(35);
+  @include mq(md) {
+    margin-top: rem(75);
+  }
+}
+
+// ボタンのサイズ（限定的な使い方なら）
+.page {
+  width: rem(38); // サイズを指定
+  height: rem(38); // サイズを指定
+  font-family: $third-font-family;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: rem(1) solid $green;
+  border-radius: rem(1);
+  color: $green;
+  line-height: 1;
+  transition: 0.3s;
+  margin-left: rem(8);
+  @include mq(md) {
+    margin-left: rem(15);
+  }
+}
+
+.page.current {
+  cursor: pointer;
+}
+
+.page.current,
+.page.is-active {
+  font-family: $third-font-family;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: rem(1) solid $green;
+  border-radius: rem(1);
+  color: $white;
+  background-color: $green;
+  line-height: 1;
+  transition: 0.3s;
+  @include mq(md) {
+    margin-left: rem(40);
+  }
+}
+
+.page:hover {
+  color: $white;
+  background-color: $green;
+  transition: 0.3s;
+}
+
+.wp-pagenavi a,
+.wp-pagenavi span {
+  width: rem(38);
+  height: rem(38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; // これでpaddingやborderの影響を受けないようにする
+}
+
+.previouspostslink {
+  position: relative;
+  border: rem(1) solid $green;
+  transition: 0.3s;
+}
+
+.previouspostslink::before {
+  content: "";
+  width: rem(10);
+  height: rem(10);
+  border-top: solid rem(1) $green;
+  border-right: solid rem(1) $green;
+  position: absolute;
+  left: 55%; // 修正: 矢印を中央に配置
+  top: 50%; // 修正: 矢印を中央に配置
+  transform: translate(-50%, -50%) rotate(-135deg); // 修正: 中央に配置しつつ回転
+}
+
+.nextpostslink {
+  position: relative;
+  border: rem(1) solid $green;
+  margin-left: rem(16);
+  transition: 0.3s;
+  @include mq(md) {
+    margin-left: rem(40);
+  }
+}
+
+.nextpostslink::before {
+  content: "";
+  width: rem(10);
+  height: rem(10);
+  border-top: solid rem(1) $green;
+  border-right: solid rem(1) $green;
+  position: absolute;
+  left: 45%; // 修正: 矢印を中央に配置
+  top: 50%; // 修正: 矢印を中央に配置
+  transform: translate(-50%, -50%) rotate(45deg); // 修正: 中央に配置しつつ回転
+}
+
+// ホバー時、矢印の色変更
+.nextpostslink:hover {
+  background-color: $green;
+  transition: 0.3s;
+}
+.nextpostslink:hover::before {
+  transition: inherit;
+  border-color: $white;
+}
+
+.previouspostslink:hover {
+  background-color: $green;
+  transition: 0.3s;
+}
+
+.previouspostslink:hover::before {
+  transition: inherit;
+  border-color: $white;
+}
+
+.is-active {
+  font-family: $third-font-family;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: rem(38); // サイズを指定
+  height: rem(38); // サイズを指定
+  border: rem(1) solid $green;
+  border-radius: rem(1);
+  color: $white;
+  background-color: $green;
+  line-height: 1;
+  transition: 0.3s;
+  margin-left: rem(16);
+  @include mq(md) {
+    margin-left: rem(40);
+  }
+}
+
+// // // 各ページの「margin-top」調整 // // //
+
+// voiceページ余白
+.page-voice__pagenavi.wp-pagenavi{
+  @include mq(md){
+    margin-top:rem(72);
+  }
+}
+
+// キャンペーンページ余白
+.page-campaign__pagenavi.wp-pagenavi{
+  @include mq(md){
+    margin-top:rem(80);
+  }
+}
+
+//ブログページ・ブログ詳細ページ余白
+.blog-container__pagenavi.wp-pagenavi {
+ margin-top:rem(80);
+}

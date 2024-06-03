@@ -1,0 +1,123 @@
+@use "global" as *;
+
+.common-btn {
+  color: $white;
+  font-size: rem(14);
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding: rem(16) rem(38);
+  //   アニメーション時に文字が潜り込まないように設置
+  position: relative;
+  z-index: 1;
+  background-color: $green;
+  border: rem(1) solid $green;
+}
+
+/*影の設定*/
+.common-btn:before {
+  content: "";
+  /*絶対配置で影の位置を決める*/
+  position: absolute;
+  z-index: 0;
+  top: rem(4);
+  left: rem(4);
+  /*影の形状*/
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: rem(1) solid $green;
+}
+
+// 文字と矢印の横並び
+.common-btn__asset {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+// view more
+.common-btn__text {
+  text-transform: capitalize;
+}
+
+.common-btn__text span {
+  text-transform: lowercase;
+}
+
+// 矢印のサイズ
+.common-btn__img {
+  width: rem(40);
+  margin-left: rem(8);
+}
+
+.common-btn__img--after {
+  display: none;
+}
+
+// ホバー時のアニメーション
+
+.common-btn::after {
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.common-btn:hover {
+  color: $green;
+  .common-btn__img--before {
+    display: none;
+  }
+  .common-btn__img--after {
+    display: block;
+  }
+}
+
+.common-btn:hover::after {
+  transform: scale(1, 1);
+  .common-btn__img--before {
+    display: block;
+  }
+  .common-btn__img--after {
+    display: none;
+  }
+}
+
+// Contactページ
+
+// 404ページ
+.error__btn.common-btn {
+  color: $green;
+  background-color: $white;
+  border: rem(1) solid $white;
+  padding: rem(16) rem(42);
+}
+
+.error__btn.common-btn::before {
+  border: rem(1) solid $white;
+}
+
+.error__btn.common-btn::after {
+  background-color: $green;
+}
+
+.common-btn__text.common-btn__text--error span {
+  text-transform: uppercase;
+  margin-left: rem(5);
+}
+
+.error__btn.common-btn:hover {
+  color: $white;
+}
+
+.common-btn__img.common-btn__img--error {
+  margin-left: rem(15);
+}

@@ -1,0 +1,68 @@
+@use "global" as *;
+
+.section-title {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.section-title__en {
+  text-align: center;
+  font-weight: normal;
+  font-size: rem(32);
+  color: $black;
+  @include mq(md) {
+    font-size: rem(40);
+  }
+}
+
+.section-title__en::first-letter {
+  text-transform: uppercase;
+  color: $green;
+}
+
+.section-title__ja {
+  display: block;
+  font-size: rem(12);
+  color: $green;
+  font-family: $second-font-family;
+}
+
+// blog ここだけはPC版は白色にする
+.section-title__en.section-title__en--blog {
+  @include mq(md) {
+    color: $white;
+  }
+}
+
+.section-title__en.section-title__en--blog::first-letter {
+  @include mq(md) {
+    color: $white;
+  }
+}
+
+.section-title__ja.section-title__ja--blog {
+  @include mq(md) {
+    color: $white;
+  }
+}
+
+.section-title__ja.section-title__ja--blog::first-letter {
+  @include mq(md) {
+    color: $white;
+  }
+}
+
+// Contact
+.section-title__en.section-title__en--contact {
+  font-weight: normal;
+  line-height: 1;
+  font-size: rem(80);
+  margin-top: rem(33);
+  margin-left: rem(-10);
+  @include mq(md) {
+    margin-left: rem(0);
+    margin-top: rem(0);
+  }
+}
+
+

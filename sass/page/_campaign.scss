@@ -1,0 +1,84 @@
+@use "global" as *;
+.campaign {
+  overflow: hidden;
+}
+.campaign__inner {
+  position: relative;
+  padding-bottom: rem(10);
+  @include mq(md) {
+  }
+}
+.campaign__swiper {
+  margin-top: rem(26);
+  margin-right: calc(50% - 50vw);
+  padding-bottom: rem(5);
+  padding-left: rem(5);
+  overflow: hidden;
+  @include mq(md) {
+    margin-top: rem(38);
+  }
+}
+
+// swiper時のカードの高さを揃える設定（テキスト増加時）
+.campaign__card.swiper-slide {
+  height: auto;
+}
+
+.campaign__card.swiper-slide a {
+  height: 100%;
+}
+
+/* 前へ次への矢印カスタマイズ */
+.swiper-button-prev.campaign__swiper-button-prev,
+.swiper-button-next.campaign__swiper-button-next {
+  height: 0;
+  width: 0;
+  @include mq(md) {
+    height: rem(80);
+    width: rem(80);
+    position: absolute;
+    top: 4.5%;
+  }
+}
+
+.swiper-button-prev.campaign__swiper-button-prev {
+  left: 77%;
+}
+
+.swiper-button-next.campaign__swiper-button-next {
+  right: 2%;
+}
+
+/* 前へ次への矢印カスタマイズ */
+.swiper-button-prev.campaign__swiper-button-prev:after,
+.swiper-button-next.campaign__swiper-button-next:after {
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  height: rem(80);
+  margin: auto;
+  width: rem(80);
+}
+/* 前への矢印カスタマイズ */
+.swiper-button-prev.campaign__swiper-button-prev:after {
+  background-image: url("./../images/common/campaign-swiper-btn-prev.png");
+}
+/* 次への矢印カスタマイズ */
+.swiper-button-next.campaign__swiper-button-next:after {
+  background-image: url("./../images/common/campaign-swiper-btn-next.png");
+}
+/* 画像サイズ調整 */
+.swiper-slide img {
+  height: auto;
+  width: 100%;
+}
+
+// ボタンの左右中央寄せ
+.campaign__btn-wrap {
+  text-align: center;
+  margin-top: rem(35);
+  @include mq(md) {
+    margin-top: rem(75);
+  }
+}
+

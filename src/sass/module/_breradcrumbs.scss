@@ -1,0 +1,27 @@
+@use "global" as *;
+
+.breadcrumbs__inner {
+  display: flex;
+  gap: rem(8);
+}
+.breadcrumbs__inner > * {
+  display: inline-block;
+  /* 他の必要なスタイルを追加 */
+}
+
+.breadcrumbs__top a {
+  font-family: $second-font-family;
+  font-size: rem(14);
+}
+
+.breadcrumbs__page-title {
+  font-family: $second-font-family;
+  font-size: rem(14);
+  text-indent: -0.3em;
+}
+
+.breadcrumbs__current-page {
+  font-family: $second-font-family;
+  font-size: rem(14);
+}
+

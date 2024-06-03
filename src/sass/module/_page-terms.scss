@@ -1,0 +1,93 @@
+@use "global" as *;
+
+.page-page-common {
+  font-family: $second-font-family;
+  text-align: left;
+  position: relative;
+}
+
+// 画像配置
+.page-page-common::before {
+  content: "";
+  background: url("./../images/common/top-voice-fish.png") center center / cover no-repeat;
+  /*絶対配置で線の位置を決める*/
+  display: block;
+  position: absolute;
+  top: -1.2%;
+  left: calc(50% - (min(46vw, rem(620))));
+  /*線の形状*/
+  max-width: rem(120);
+  width: 100%;
+  height: rem(55);
+  z-index: -1;
+  @include mq(md) {
+    max-width: rem(300);
+    height: rem(138);
+    top: -7%;
+    left: calc(50% - (min(43vw, rem(620))));
+  }
+}
+
+.inner.page-page-common__inner {
+  @include mq(md) {
+    max-width: rem(840);
+    width: 100%;
+  }
+}
+
+.page-page-common__title {
+  font-weight: normal;
+  font-size: rem(24);
+  @include mq(md) {
+    font-size: rem(32);
+  }
+}
+
+.page-page-common__items {
+  margin-top: rem(40);
+  font-size: rem(16);
+  line-height: 2;
+}
+
+.page-page-common__item:nth-child(2) {
+  margin-top: rem(33);
+}
+
+.page-page-common__term {
+  margin-top: rem(31);
+}
+
+.page-page-common__description.page-page-common__description-page-page-common {
+  margin-top: rem(31);
+}
+
+.page-page-common__description-margin {
+  margin-top: rem(32);
+}
+
+.page-page-common__description-numbers {
+  counter-reset: number;
+}
+
+.page-page-common__description-number {
+  padding-left: rem(24);
+  text-indent: rem(-17);
+}
+
+.page-page-common__description-number br {
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.page-page-common__description-number::before {
+  content: counter(number) ".";
+  counter-increment: number;
+  padding-right: rem(5);
+}
+
+.page-page-common__description-end {
+  text-indent: 0.085em;
+  margin-top: rem(33);
+  line-height: 2;
+}

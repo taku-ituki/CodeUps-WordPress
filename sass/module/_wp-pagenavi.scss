@@ -1,0 +1,135 @@
+@use "global" as *;
+
+.wp-pagenavi {
+  display: flex;
+  justify-content: center;
+}
+
+.wp-pagenavi img {
+  width: rem(38);
+  height: rem(38);
+}
+
+.previouspostslink {
+  position: relative;
+  display: inline-block;
+  padding: rem(18) rem(18);
+  border: rem(1) solid $green;
+  transition: 0.3s;
+}
+
+.previouspostslink::before {
+  content: "";
+  width: rem(10);
+  height: rem(10);
+  border-top: solid rem(1) $green;
+  border-right: solid rem(1) $green;
+  position: absolute;
+  left: rem(15);
+  top: rem(13);
+  transform: rotate(-135deg);
+}
+
+.nextpostslink {
+  position: relative;
+  display: inline-block;
+  padding: rem(18) rem(18);
+  border: rem(1) solid $green;
+  margin-left: rem(16);
+  transition: 0.3s;
+  @include mq(md) {
+    margin-left: rem(40);
+  }
+}
+
+.nextpostslink::before {
+  content: "";
+  width: rem(10);
+  height: rem(10);
+  border-top: solid rem(1) $green;
+  border-right: solid rem(1) $green;
+  position: absolute;
+  left: rem(10);
+  top: rem(12);
+  transform: rotate(45deg);
+}
+
+// ホバー時、矢印の色変更
+.nextpostslink:hover {
+  background-color: $green;
+  transition: 0.3s;
+}
+.nextpostslink:hover::before {
+  transition: inherit;
+  border-color: $white;
+}
+
+.previouspostslink:hover {
+  background-color: $green;
+  transition: 0.3s;
+}
+
+.previouspostslink:hover::before {
+  transition: inherit;
+  border-color: $white;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent; /* 左側の矢印を作成 */
+    border-right: 5px solid transparent; /* 右側の矢印を作成 */
+    border-top: 5px solid $green; /* 上側の矢印を作成 */
+}
+
+.previouspostslink .arrow {
+    position: absolute;
+    left: 10px; /* 矢印の位置 */
+    top: 50%; /* 矢印の位置 */
+    transform: translateY(-50%); /* 矢印の位置を中央揃えにする */
+}
+
+.nextpostslink .arrow {
+    position: absolute;
+    right: 10px; /* 矢印の位置 */
+    top: 50%; /* 矢印の位置 */
+    transform: translateY(-50%); /* 矢印の位置を中央揃えにする */
+}
+
+.page {
+  font-family: $third-font-family;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: rem(10) rem(12);
+  border: rem(1) solid $green;
+  border-radius: rem(1);
+  color: $green;
+  line-height: 1;
+  transition: 0.3s;
+  margin-left: rem(8);
+  @include mq(md) {
+    margin-left: rem(15);
+  }
+}
+
+.page:hover {
+  color: $white;
+  background-color: $green;
+  transition: 0.3s;
+}
+
+.current {
+  font-family: $third-font-family;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: rem(10) rem(12);
+  border: rem(1) solid $green;
+  border-radius: rem(1);
+  color: $green;
+  line-height: 1;
+  transition: 0.3s;
+  background-color: $green;
+  color: $white;
+}

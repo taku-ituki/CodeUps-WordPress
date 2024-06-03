@@ -1,0 +1,191 @@
+@use "global" as *;
+
+.page-price {
+  position: relative;
+}
+
+.page-price__inner.inner {
+@include mq(md){
+  max-width:rem(740);
+  width:100%;
+}
+}
+
+// 画像
+.page-price::before {
+  content: "";
+  background: url("./../images/common/top-voice-fish.png") center center / cover no-repeat;
+  /*絶対配置で線の位置を決める*/
+  display: block;
+  position: absolute;
+  top: -2.2%;
+  left: calc(50% - (min(46vw, rem(620))));
+  /*線の形状*/
+  max-width: rem(120);
+  width: 100%;
+  height: rem(55);
+  z-index: -1;
+  @include mq(md) {
+    max-width: rem(300);
+    width: 100%;
+    height: rem(138);
+    top: -6.5%;
+  }
+}
+
+.page-price__list {
+  @include mq(md) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.page-price__list:not(:first-child) {
+  margin-top: rem(40);
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+
+
+// ①ブロック一式（②左側＋③右側）
+.page-price__items{
+  @include mq(md){
+    width: 71.5%;
+  }
+}
+
+// ②緑のタイトル部分（左側）
+.page-price__title {
+  font-family: $second-font-family;
+  color: $white;
+  background-color: $green;
+  font-size: rem(16);
+  font-weight: $bold;
+  line-height: 1.5;
+  text-align: center;
+  padding-top: rem(9);
+  padding-bottom: rem(7);
+  position: relative;
+  text-indent: 2em;
+  @include mq(md) {
+    align-items: center;
+    justify-content: center;
+    width:28.5%;
+    padding-top: rem(76);
+    text-indent: 0;
+  }
+}
+
+
+// ③プラン名＋料金の小ブロック部分（右側）
+.page-price__item {
+  display: flex;
+  align-items: center;
+  border-top: rem(1) solid $green;
+  border-left: rem(1) solid $green;
+  border-right: rem(1) solid $green;
+  font-family: $second-font-family;
+}
+
+.page-price__item:last-child {
+  border-bottom: rem(1) solid $green;
+}
+
+// // 最初と最後の値段表のタイトル余白調整
+.page-price__list:first-child,
+.page-price__list:last-child {
+  .page-price__title {
+    @include mq(md) {
+      padding-top: rem(42);
+    }
+  }
+}
+
+// クジラの画像
+.page-price__title::after {
+  content: "";
+  background: url("./../images/common/price-whale.png") center center / cover no-repeat;
+  /*絶対配置で線の位置を決める*/
+  display: block;
+  position: absolute;
+  top: 20%;
+ left: 29%;
+  /*線の形状*/
+  width: rem(24);
+  height: rem(24);
+  z-index: 30;
+  @include mq(md) {
+    width: rem(64);
+    height: rem(64);
+    top: 45%;
+    left: 40%;
+  }
+}
+
+// クジラ画像　料金表縦３個の位置
+.page-price__title.page-price__title--license::after{
+  @include mq(md){
+ top: 45%;
+  }
+}
+
+.page-price__title.page-price__title--fun::after{
+  left: 27%;
+  @include mq(md){
+    left: 40%;
+  }
+}
+
+.page-price__title.page-price__title--special::after{
+  left: 22%;
+  @include mq(md){
+    top: 45%;
+    left: 40%;
+     }
+}
+
+
+// プラン名
+.page-price__plan {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: rem(16);
+  line-height: 1.5;
+  padding-top: rem(17);
+  padding-bottom: rem(17);
+  border-right: rem(1) solid $green;
+  height: inherit;
+  @include mq(md) {
+    width: 70%;
+    justify-content: left;
+    padding-left: rem(8);
+    text-align: left;
+    padding-top: rem(17);
+    padding-bottom: rem(17);
+  }
+}
+
+.page-price__plan br {
+  @include mq(md) {
+    display: none;
+  }
+}
+
+// 料金部分
+.page-price__price {
+  display: flex;
+  width: 28.8%;
+  justify-content: right;
+  padding-right: rem(16);
+  align-items: center;
+  font-size: rem(16);
+  line-height: 1.5;
+  height: inherit;
+  @include mq(md) {
+    width: 32%;
+  }
+}
