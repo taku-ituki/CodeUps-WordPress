@@ -8,7 +8,7 @@
                     <picture class="swiper-slide">
                         <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-turtle-sp.jpg"
                             media="(max-width: 767px)" />
-                       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-turtle-pc.jpg"
+                        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-turtle-pc.jpg"
                             alt="turtle" />
                     </picture>
                     <div class="swiper-slide">
@@ -16,7 +16,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-diving-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-diving-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-diving-pc.jpg"
                                 alt="turtle" />
                         </picture>
                     </div>
@@ -25,7 +25,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-boat-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-boat-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-boat-pc.jpg"
                                 alt="boat" />
                         </picture>
                     </div>
@@ -34,7 +34,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-beach-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-beach-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-beach-pc.jpg"
                                 alt="beach" />
                         </picture>
                     </div>
@@ -46,163 +46,63 @@
             <span class="fv__title-sub">into the ocean</span>
         </h2>
     </section>
-
     <!-- Campaign -->
-    <section class="campaign campaign-layout">
-        <!-- セクションタイトル -->
-        <div class="campaign__inner inner">
-            <div class="campaign__title section-title">
-                <h2 class="section-title__en">Campaign</h2>
-                <p class="section-title__ja">キャンペーン</p>
+    <section class="page-campaign page-campaign-layout">
+        <div class="page-campaign__inner inner">
+            <!-- カテゴリー -->
+            <div class="page-campaign__category category">
+                <ul class="category__list">
+                    <li class="category__menu category__menu--current"><a href="#">ALL</a></li>
+                    <li class="category__menu"><a href="#">ライセンス講習</a></li>
+                    <li class="category__menu"><a href="#">ファンダイビング</a></li>
+                    <li class="category__menu"><a href="#">体験ダイビング</a></li>
+                </ul>
             </div>
-            <div class="campaign__swiper swiper js-campaign-swiper">
-                <div class="campaign__swiper-wrapper swiper-wrapper">
-                    <div class="campaign__card campaign-card swiper-slide">
+            <div class="page-campaign__cards campaign-cards js-campaign-swiper swiper-container">
+                <div class="swiper-wrapper">
+                    <?php
+                $slideItems = SCF::get('swiper-group');
+                if (!$slideItems) {
+                    echo '<div>フィールドグループ "swiper-group" が見つかりません</div>';
+                } else {
+                    foreach ($slideItems as $item) {
+                        // デバッグ情報を出力
+                        echo '<pre>';
+                        print_r($item);
+                        echo '</pre>';
+                        $imgurl = wp_get_attachment_image_src($item['slider_img'], 'large');
+                        if ($imgurl) {
+                            ?>
+                    <div class="swiper-slide">
                         <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card1.jpg"
-                                alt="campaign-card-fish" />
-                        </div>
-                        <div class="campaign-card__text-wrapper">
-                            <div class="campaign-card__color-title">ライセンス講習</div>
-                            <div class="campaign-card__title">ライセンス取得</div>
-                        </div>
-                        <div class="campaign-card__price-wrapper">
-                            <div class="campaign-card__text">全部コミコミ(お一人様)</div>
-                            <div class="campaign-card__price-block">
-                                <div class="campaign-card__price-before">¥56,000</div>
-                                <div class="campaign-card__price-after">¥46,000</div>
-                            </div>
+                            <img src="<?php echo esc_url($imgurl[0]); ?>" alt="">
                         </div>
                     </div>
-                    <div class="campaign__card campaign-card swiper-slide">
-                        <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-boat.jpg"
-                                alt="campaign-card-boat" />
-                        </div>
-                        <div class="campaign-card__text-wrapper">
-                            <div class="campaign-card__color-title">体験ダイビング</div>
-                            <div class="campaign-card__title">貸切体験ダイビング</div>
-                        </div>
-                        <div class="campaign-card__price-wrapper">
-                            <div class="campaign-card__text">全部コミコミ(お一人様)</div>
-                            <div class="campaign-card__price-block">
-                                <div class="campaign-card__price-before">¥24,000</div>
-                                <div class="campaign-card__price-after">¥18,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="campaign__card campaign-card swiper-slide">
-                        <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-jellyfish.jpg"
-                                alt="campaign-card-jellyfish" />
-                        </div>
-                        <div class="campaign-card__text-wrapper">
-                            <div class="campaign-card__color-title">体験ダイビング</div>
-                            <div class="campaign-card__title">ナイトダイビング</div>
-                        </div>
-                        <div class="campaign-card__price-wrapper">
-                            <div class="campaign-card__text">全部コミコミ(お一人様)</div>
-                            <div class="campaign-card__price-block">
-                                <div class="campaign-card__price-before">¥10,000</div>
-                                <div class="campaign-card__price-after">¥8,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="campaign__card campaign-card swiper-slide">
-                        <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-diving.jpg"
-                                alt="campaign-card-diving" />
-                        </div>
-                        <div class="campaign-card__text-wrapper">
-                            <div class="campaign-card__color-title">ファンダイビング</div>
-                            <div class="campaign-card__title">貸切ファンダイビング</div>
-                        </div>
-                        <div class="campaign-card__price-wrapper">
-                            <div class="campaign-card__text">全部コミコミ(お一人様)</div>
-                            <div class="campaign-card__price-block">
-                                <div class="campaign-card__price-before">¥20,000</div>
-                                <div class="campaign-card__price-after">¥16,000</div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        } else {
+                            echo '<div>画像が見つかりません</div>';
+                        }
+                    }
+                }
+                ?>
                 </div>
+                <!-- ページネーション -->
+                <div class="swiper-pagination"></div>
+                <!-- ナビゲーションボタン -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <!-- スクロールバー -->
+                <div class="swiper-scrollbar"></div>
             </div>
-            <!-- ナビゲーションボタンの div 要素（省略可能） -->
-            <div class="campaign__swiper-button-prev swiper-button-prev"></div>
-            <div class="campaign__swiper-button-next swiper-button-next"></div>
-            <!-- common　ボタン -->
-            <div class="campaign__btn-wrap">
-                <a class="common-btn" href="campaign.html">
+            <!-- common ボタン -->
+            <div class="page-campaign__btn-wrap">
+                <a class="common-btn" href="information.html">
                     <span>view more</span>
                 </a>
             </div>
         </div>
     </section>
-    <!-- About us -->
-    <section class="about about-layout">
-        <div class="about__inner inner">
-            <!-- セクションタイトル -->
-            <div class="about__title section-title">
-                <h2 class="section-title__en">about us</h2>
-                <p class="section-title__ja">私たちについて</p>
-            </div>
-            <div class="about__body">
-                <div class="about__img-block">
-                    <div class="about__img-left"><img
-                            src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/shisa.jpg"
-                            alt="top-about-left" />
-                    </div>
-                    <div class="about__img-right"><img
-                            src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-fish.jpg"
-                            alt="top-about-right" /></div>
-                </div>
-                <div class="about__text-block">
-                    <p class="about__text-en">Dive into<br />the Ocean</p>
-                    <div class="about__text-ja">
-                        <p class="about__text">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-                        </p>
-                        <!-- common　ボタン -->
-                        <div class="about__btn-wrap">
-                            <a class="common-btn" href="aboutus.php">
-                                <span>view more</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- information -->
-    <section class="information information-layout">
-        <div class="information__inner inner">
-            <!-- セクションタイトル -->
-            <div class="information__title section-title">
-                <h2 class="section-title__en">information</h2>
-                <p class="section-title__ja">ダイビング情報</p>
-            </div>
-            <div class="information__item-block">
-                <div class="information__img js-color">
-                   <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-information-img.jpg"
-                        alt="top-information-ocean" />
-                </div>
-                <div class="information__text-block">
-                    <div class="information__text-title">ライセンス講習</div>
-                    <p class="information__text">
-                        当店はダイビングライセンス（Cカード）世界最大の教育機関PADIの「正規店」として店舗登録されています。<br />
-                        正規登録店として、安心安全に初めての方でも安心安全にライセンス取得をサポート致します。
-                    </p>
-                    <!-- common　ボタン -->
-                    <div class="page-campaign__btn-wrap">
-                        <a class="common-btn" href="information.html">
-                            <span>view more</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- ブログ -->
     <section class="blog blog-layout">
         <div class="blog__inner inner">
@@ -214,7 +114,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-coral.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-coral.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -230,7 +130,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -246,7 +146,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -288,7 +188,7 @@
                                 <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
                             </div>
                             <div class="voice-card__img js-color">
-                               <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-woman.jpg"
+                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-woman.jpg"
                                     alt="top-voice-women" />
                             </div>
                         </div>
@@ -311,7 +211,7 @@
                                 <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
                             </div>
                             <div class="voice-card__img js-color">
-                               <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-men.jpg"
+                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-men.jpg"
                                     alt="top-voice-men" />
                             </div>
                         </div>
@@ -345,7 +245,7 @@
                         <source
                             srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//top-price-sp.jpg"
                             media="(max-width: 767px)" />
-                       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-pc.jpg"
+                        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-pc.jpg"
                             alt="top-price-coral" />
                     </picture>
                 </figure>
