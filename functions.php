@@ -3,15 +3,15 @@
 function my_script_init() {  
     wp_deregister_script('jquery'); 
     wp_enqueue_style('swiper-style', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css', array(), '8.4.7');
-    wp_enqueue_style( 'NotoSansJP', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"' );
+    wp_enqueue_style( 'NotoSansJP', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap' );
     wp_enqueue_style( 'Noto+Serif+JP', 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap' );
     wp_enqueue_style( 'Goto', 'https://fonts.googleapis.com/css2?family=Gotu&display=swap' );
     wp_enqueue_style( 'Lato', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap' );
-    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.js', array(), '3.6.0');
-    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), '8.4.7');
-    wp_enqueue_script('jquery-animation', get_template_directory_uri() . '/dist/assets/js/jquery.inview-master/jquery.inview.min.js', array('jquery'));
-    wp_enqueue_script('custom-script', get_template_directory_uri() . '/dist/assets/js/script.js', array('jquery'),'1.0.1');
-    wp_enqueue_style('custom-style', get_template_directory_uri() . '/dist/assets/css/style.css', array() ,'1.0.1');
+    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.js', array(), '3.6.0', true);
+    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), '8.4.7', true);
+    wp_enqueue_script('jquery-animation', get_template_directory_uri() . '/dist/assets/js/jquery.inview-master/jquery.inview.min.js', array('jquery'), null, true);
+    wp_enqueue_script('custom-script', get_template_directory_uri() . '/dist/assets/js/script.js', array('jquery'), '1.0.1', true);
+    wp_enqueue_style('custom-style', get_template_directory_uri() . '/dist/assets/css/style.css', array(), '1.0.1');
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
 
@@ -31,7 +31,7 @@ function my_setup() {
         )
     );
 }
-add_action( 'after_setup_theme', 'my_setup' );
+add_action('after_setup_theme', 'my_setup');
 
 // 自動挿入される<p>タグを無効化
 add_action('init', function() {
@@ -45,11 +45,6 @@ add_filter('bcn_display', function($breadcrumb) {
 
 // Contact Form 7 の <p> タグを無効にする
 add_filter('wpcf7_autop_or_not', '__return_false');
-
-// wpautop を投稿コンテンツから削除
-add_action('init', function() {
-    remove_filter('the_content', 'wpautop');
-});
 
 // カスタム送信ボタンショートコードの作成
 function custom_submit_button_shortcode() {
@@ -71,12 +66,3 @@ function custom_wpcf7_form_elements($content) {
     return $content;
 }
 add_filter('wpcf7_form_elements', 'custom_wpcf7_form_elements');
-
-// 特定のページテンプレートで wpautop を無効にする
-function remove_wpautop_on_specific_pages() {
-    if (is_page_template('page-no-auto-para.php')) {
-        remove_filter('the_content', 'wpautop');
-    }
-}
-add_action('template_redirect', 'remove_wpautop_on_specific_pages');
-?>

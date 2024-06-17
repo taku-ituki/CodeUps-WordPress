@@ -47,56 +47,57 @@
         </h2>
     </section>
     <!-- Campaign -->
-    <section class="page-campaign page-campaign-layout">
-        <div class="page-campaign__inner inner">
-            <!-- カテゴリー -->
-            <div class="page-campaign__category category">
-                <ul class="category__list">
-                    <li class="category__menu category__menu--current"><a href="#">ALL</a></li>
-                    <li class="category__menu"><a href="#">ライセンス講習</a></li>
-                    <li class="category__menu"><a href="#">ファンダイビング</a></li>
-                    <li class="category__menu"><a href="#">体験ダイビング</a></li>
-                </ul>
+    <section class="campaign campaign-layout">
+        <!-- セクションタイトル -->
+        <div class="campaign__inner inner">
+            <div class="campaign__title section-title">
+                <h2 class="section-title__en">Campaign</h2>
+                <p class="section-title__ja">キャンペーン</p>
             </div>
-            <div class="page-campaign__cards campaign-cards js-campaign-swiper swiper-container">
-                <div class="swiper-wrapper">
+            <div class="campaign__swiper swiper js-campaign-swiper">
+                <div class="campaign__swiper-wrapper swiper-wrapper">
                     <?php
-                $slideItems = SCF::get('swiper-group');
-                if (!$slideItems) {
-                    echo '<div>フィールドグループ "swiper-group" が見つかりません</div>';
-                } else {
-                    foreach ($slideItems as $item) {
-                        // デバッグ情報を出力
-                        echo '<pre>';
-                        print_r($item);
-                        echo '</pre>';
-                        $imgurl = wp_get_attachment_image_src($item['slider_img'], 'large');
-                        if ($imgurl) {
-                            ?>
-                    <div class="swiper-slide">
+                // WP_Queryを使用してカスタム投稿タイプ 'campaign-swiper' の投稿を取得
+                $args = array(
+                    'post_type' => 'campaign-swiper', // CPT UIで作成したカスタム投稿タイプのスラッグ
+                    'posts_per_page' => -1 // 取得する投稿数（-1で全ての投稿を取得）
+                );
+                $query = new WP_Query($args);
+                if ($query->have_posts()) :
+                    while ($query->have_posts()) : $query->the_post();
+                        // SCFを使用してカスタムフィールドグループ 'swiper-group' を取得
+                        $scf_group = SCF::get('swiper-group', get_the_ID());
+                        foreach ($scf_group as $item):
+                            $imgurl = wp_get_attachment_image_src($item['slide_img'], 'large');
+                ?>
+                    <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
                             <img src="<?php echo esc_url($imgurl[0]); ?>" alt="">
                         </div>
+                        <div class="campaign-card__text-wrapper">
+                            <div class="campaign-card__color-title"><?php echo esc_html($item['slide_color_title']); ?>
+                            </div>
+                            <div class="campaign-card__title"><?php echo esc_html($item['slide_title']); ?></div>
+                        </div>
+                        <div class="campaign-card__price-wrapper">
+                            <div class="campaign-card__text"><?php echo esc_html($item['slide_text']); ?></div>
+                            <div class="campaign-card__price-block">
+                                <div class="campaign-card__price-before">
+                                    <?php echo esc_html($item['slide_price_before']); ?></div>
+                                <div class="campaign-card__price-after">
+                                    <?php echo esc_html($item['slide_price_after']); ?></div>
+                            </div>
+                        </div>
                     </div>
-                    <?php
-                        } else {
-                            echo '<div>画像が見つかりません</div>';
-                        }
-                    }
-                }
-                ?>
+                    <?php endforeach; endwhile; wp_reset_postdata(); endif; ?>
                 </div>
-                <!-- ページネーション -->
-                <div class="swiper-pagination"></div>
-                <!-- ナビゲーションボタン -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <!-- スクロールバー -->
-                <div class="swiper-scrollbar"></div>
             </div>
+            <!-- ナビゲーションボタンの div 要素（省略可能） -->
+            <div class="campaign__swiper-button-prev swiper-button-prev"></div>
+            <div class="campaign__swiper-button-next swiper-button-next"></div>
             <!-- common ボタン -->
-            <div class="page-campaign__btn-wrap">
-                <a class="common-btn" href="information.html">
+            <div class="campaign__btn-wrap">
+                <a class="common-btn" href="campaign.html">
                     <span>view more</span>
                 </a>
             </div>
