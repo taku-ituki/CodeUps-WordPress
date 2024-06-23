@@ -8,14 +8,17 @@
         </header>
         <div class="entry-content">
             <div class="campaign-image">
-                <?php if (has_post_thumbnail()) : ?>
+                <?php 
+                    $image = get_field('campaign_card_thumbnail'); 
+                    if (!empty($image)): ?>
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                <?php else: ?>
                 <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
                     alt="<?php the_title_attribute(); ?>のアイキャッチ画像" />
                 <?php endif; ?>
             </div>
             <div class="campaign-details">
                 <p><?php the_content(); ?></p>
-
                 <div class="campaign-meta">
                     <p>価格: ¥<?php the_field('price_before'); ?> → ¥<?php the_field('price_after'); ?></p>
                     <p>カテゴリ: <?php
@@ -33,5 +36,4 @@
     <p>キャンペーンが見つかりませんでした。</p>
     <?php endif; ?>
 </main>
-
 <?php get_footer(); ?>

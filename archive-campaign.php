@@ -11,13 +11,21 @@
             </ul>
         </div>
         <div class="page-campaign__cards campaign-cards">
-            <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
+            <?php 
+                $args = [
+                    "post_type" => "campaign",
+                    "posts_per_page" => 4, // 1ページあたりのカードの数を4に設定
+                    "paged" => (get_query_var('paged')) ? get_query_var('paged') : 1 // ページネーションの設定
+                ];
+                $the_query = new WP_Query($args);
+            ?>
+            <?php if ($the_query->have_posts()) : ?>
+            <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <div class="page-campaign__card campaign-card">
                 <div class="campaign-card__img">
                     <?php 
-                            $image = get_field('campaign-card-thumbnail'); 
-                            if( !empty($image) ): ?>
+                        $image = get_field('campaign_card_thumbnail'); 
+                        if( !empty($image) ): ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php else: ?>
                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
@@ -27,19 +35,19 @@
                 <div class="campaign-card__text-wrapper campaign-card__text-wrapper--page">
                     <div class="campaign-card__color-title">
                         <?php
-                         $term = get_field('category_green'); // タクソノミーフィールドの値を取得
-                         if ($term) {
-                         // タームの詳細を取得
-                         $term_obj = get_term($term);
-                         if (!is_wp_error($term_obj) && $term_obj) {
-                              echo esc_html($term_obj->name); // ターム名を表示
-                              } else {
-                              echo 'No term found';
-                              }
-                                   } else {
-                                     echo 'No category selected';
-                                   }
-                             ?>
+                            $term = get_field('category_green'); // タクソノミーフィールドの値を取得
+                            if ($term) {
+                                // タームの詳細を取得
+                                $term_obj = get_term($term);
+                                if (!is_wp_error($term_obj) && $term_obj) {
+                                    echo esc_html($term_obj->name); // ターム名を表示
+                                } else {
+                                    echo 'No term found';
+                                }
+                            } else {
+                                echo 'No category selected';
+                            }
+                            ?>
                     </div>
                     <h2 class="campaign-card__title campaign-card__title--page">
                         <?php the_field('campaign_price_title'); ?></h2>
@@ -60,7 +68,7 @@
                 </div>
                 <div class="page-campaign__btn-wrap">
                     <a class="common-btn" href="<?php the_permalink(); ?>">
-                        <span>view more</span>
+                        <span>contact us</span>
                     </a>
                 </div>
             </div>
@@ -75,7 +83,7 @@
             <?php
                 // Pagination code here (if using a pagination plugin like WP-PageNavi)
                 if (function_exists('wp_pagenavi')) {
-                    wp_pagenavi();
+                    wp_pagenavi(['query' => $the_query]);
                 }
             ?>
         </div>

@@ -5,9 +5,10 @@
             <div class="fv__swiper swiper js-fv-swiper">
                 <div class="swiper-wrapper">
                     <picture class="swiper-slide">
-                        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//fv-turtle-sp.jpg"
+                        <source
+                            srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//fv-turtle-sp.jpg"
                             media="(max-width: 767px)" />
-                       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-turtle-pc.jpg"
+                        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-turtle-pc.jpg"
                             alt="turtle" />
                     </picture>
                     <div class="swiper-slide">
@@ -15,7 +16,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-diving-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-diving-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-diving-pc.jpg"
                                 alt="turtle" />
                         </picture>
                     </div>
@@ -24,7 +25,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-boat-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-boat-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-boat-pc.jpg"
                                 alt="boat" />
                         </picture>
                     </div>
@@ -33,7 +34,7 @@
                             <source
                                 srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//fv-beach-sp.jpg"
                                 media="(max-width: 767px)" />
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-beach-pc.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/fv-beach-pc.jpg"
                                 alt="beach" />
                         </picture>
                     </div>
@@ -58,7 +59,7 @@
                 <div class="campaign__swiper-wrapper swiper-wrapper">
                     <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card1.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card1.jpg"
                                 alt="campaign-card-fish" />
                         </div>
                         <div class="campaign-card__text-wrapper">
@@ -75,7 +76,7 @@
                     </div>
                     <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-boat.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-boat.jpg"
                                 alt="campaign-card-boat" />
                         </div>
                         <div class="campaign-card__text-wrapper">
@@ -92,7 +93,7 @@
                     </div>
                     <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-jellyfish.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-jellyfish.jpg"
                                 alt="campaign-card-jellyfish" />
                         </div>
                         <div class="campaign-card__text-wrapper">
@@ -109,7 +110,7 @@
                     </div>
                     <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-diving.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-diving.jpg"
                                 alt="campaign-card-diving" />
                         </div>
                         <div class="campaign-card__text-wrapper">
@@ -183,7 +184,7 @@
             </div>
             <div class="information__item-block">
                 <div class="information__img js-color">
-                   <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-information-img.jpg"
+                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-information-img.jpg"
                         alt="top-information-ocean" />
                 </div>
                 <div class="information__text-block">
@@ -213,7 +214,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-coral.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-coral.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -229,7 +230,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -245,7 +246,7 @@
                 <div class="blog-cards__card blog-card">
                     <a href="blog-detail.html">
                         <div class="blog-card__img">
-                           <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
                                 alt="blog-card-coral" />
                         </div>
                         <div class="blog-card__title-block">
@@ -287,7 +288,7 @@
                                 <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
                             </div>
                             <div class="voice-card__img js-color">
-                               <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-woman.jpg"
+                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-woman.jpg"
                                     alt="top-voice-women" />
                             </div>
                         </div>
@@ -310,7 +311,7 @@
                                 <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
                             </div>
                             <div class="voice-card__img js-color">
-                               <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-men.jpg"
+                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-men.jpg"
                                     alt="top-voice-men" />
                             </div>
                         </div>
@@ -341,9 +342,10 @@
             <div class="price__contents">
                 <figure class="price__img-block">
                     <picture class="price__content js-color">
-                        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//top-price-sp.jpg"
+                        <source
+                            srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//top-price-sp.jpg"
                             media="(max-width: 767px)" />
-                       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-pc.jpg"
+                        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-pc.jpg"
                             alt="top-price-coral" />
                     </picture>
                 </figure>
@@ -508,7 +510,7 @@
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- ダイビング情報 -->
                     <li class="common-nav__item common-nav__item--head">
-                      <a href="<?php echo esc_url(home_url("/information")) ?>">ダイビング情報</a>
+                        <a href="<?php echo esc_url(home_url("/information")) ?>">ダイビング情報</a>
                     </li>
                     <li class="common-nav__item">
                         <a href="#">ライセンス講習</a>
@@ -532,7 +534,7 @@
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- お客様の声 -->
                     <li class="common-nav__item common-nav__item--head">
-                       <a href="<?php echo esc_url(home_url("/voice")) ?>">お客様の声</a>
+                        <a href="<?php echo esc_url(home_url("/voice")) ?>">お客様の声</a>
                     </li>
                     <!-- 料金一覧 -->
                     <li class="common-nav__item common-nav__item--head">

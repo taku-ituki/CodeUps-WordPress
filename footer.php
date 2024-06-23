@@ -30,7 +30,7 @@
                  <div class="contact__text">ご予約・お問い合わせはコチラ</div>
                  <div class="contact__btn-wrap">
                      <a class="common-btn" href="<?php echo esc_url(home_url("/contact")) ?>">
-                         <span>view more</span>
+                         <span>contact us</span>
                      </a>
                  </div>
              </li>

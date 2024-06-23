@@ -57,9 +57,6 @@
   width: fit-content;
   padding: rem(9) rem(12);
   border: rem(1) solid $green;
-  @include mq(md) {
-    padding: rem(9) rem(16) rem(11);
-  }
 }
 
 .campaign-card__title {

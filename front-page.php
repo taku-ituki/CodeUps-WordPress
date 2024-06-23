@@ -56,40 +56,59 @@
             </div>
             <div class="campaign__swiper swiper js-campaign-swiper">
                 <div class="campaign__swiper-wrapper swiper-wrapper">
-                    <?php
-                // WP_Queryを使用してカスタム投稿タイプ 'campaign-swiper' の投稿を取得
-                $args = array(
-                    'post_type' => 'campaign-swiper', // CPT UIで作成したカスタム投稿タイプのスラッグ
-                    'posts_per_page' => -1 // 取得する投稿数（-1で全ての投稿を取得）
-                );
-                $query = new WP_Query($args);
-                if ($query->have_posts()) :
-                    while ($query->have_posts()) : $query->the_post();
-                        // SCFを使用してカスタムフィールドグループ 'swiper-group' を取得
-                        $scf_group = SCF::get('swiper-group', get_the_ID());
-                        foreach ($scf_group as $item):
-                            $imgurl = wp_get_attachment_image_src($item['slide_img'], 'large');
+                    <?php 
+                $args = [
+                    "post_type" => "campaign",
+                    "posts_per_page" => -1, // 全てのキャンペーン投稿を取得
+                ];
+                $the_query = new WP_Query($args);
                 ?>
+                    <?php if ($the_query->have_posts()) : ?>
+                    <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                     <div class="campaign__card campaign-card swiper-slide">
                         <div class="campaign-card__img">
-                            <img src="<?php echo esc_url($imgurl[0]); ?>" alt="">
+                            <?php 
+                        $image = get_field('campaign_card_thumbnail'); 
+                        if( !empty($image) ): ?>
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                alt="<?php echo esc_attr($image['alt']); ?>" />
+                            <?php else: ?>
+                            <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
+                                alt="<?php the_title_attribute(); ?>のアイキャッチ画像" />
+                            <?php endif; ?>
                         </div>
                         <div class="campaign-card__text-wrapper">
-                            <div class="campaign-card__color-title"><?php echo esc_html($item['slide_color_title']); ?>
+                            <div class="campaign-card__color-title">
+                                <?php
+                            $term = get_field('category_green'); // タクソノミーフィールドの値を取得
+                            if ($term) {
+                                // タームの詳細を取得
+                                $term_obj = get_term($term);
+                                if (!is_wp_error($term_obj) && $term_obj) {
+                                    echo esc_html($term_obj->name); // ターム名を表示
+                                } else {
+                                    echo 'No term found';
+                                }
+                            } else {
+                                echo 'No category selected';
+                            }
+                            ?>
                             </div>
-                            <div class="campaign-card__title"><?php echo esc_html($item['slide_title']); ?></div>
+                            <div class="campaign-card__title"><?php the_field('campaign_price_title'); ?></div>
                         </div>
                         <div class="campaign-card__price-wrapper">
-                            <div class="campaign-card__text"><?php echo esc_html($item['slide_text']); ?></div>
+                            <div class="campaign-card__text"><?php the_field('campaign_price_column'); ?></div>
                             <div class="campaign-card__price-block">
-                                <div class="campaign-card__price-before">
-                                    <?php echo esc_html($item['slide_price_before']); ?></div>
-                                <div class="campaign-card__price-after">
-                                    <?php echo esc_html($item['slide_price_after']); ?></div>
+                                <div class="campaign-card__price-before">¥<?php the_field('price_before'); ?></div>
+                                <div class="campaign-card__price-after">¥<?php the_field('price_after'); ?></div>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach; endwhile; wp_reset_postdata(); endif; ?>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                    <?php else : ?>
+                    <p>キャンペーンが見つかりませんでした。</p>
+                    <?php endif; ?>
                 </div>
             </div>
             <!-- ナビゲーションボタンの div 要素（省略可能） -->
@@ -103,7 +122,6 @@
             </div>
         </div>
     </section>
-
     <!-- ブログ -->
     <section class="blog blog-layout">
         <div class="blog__inner inner">
