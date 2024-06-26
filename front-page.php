@@ -58,7 +58,7 @@
                 <div class="campaign__swiper-wrapper swiper-wrapper">
                     <?php 
                 $args = [
-                    "post_type" => "campaign",
+                    "post_type" => "campaign_list",
                     "posts_per_page" => -1, // 全てのキャンペーン投稿を取得
                 ];
                 $the_query = new WP_Query($args);

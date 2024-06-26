@@ -35,7 +35,7 @@
             <nav class="header__nav">
                 <ul class="header__nav-items">
                     <li class="header__nav-item">
-                        <a href="<?php echo esc_url(home_url("/campaign")) ?>">
+                        <a href="<?php echo esc_url(home_url("/campaign_list")) ?>">
                             <div class="header__nav-text">campaign<span>キャンペーン</span></div>
                         </a>
                     </li>
