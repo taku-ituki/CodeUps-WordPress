@@ -24,49 +24,52 @@
         <div class="page-campaign__category category">
             <ul class="category__list">
                 <li
-                    class="category__menu <?php if (!is_tax('campaign_list_category')) echo 'category__menu--current'; ?>">
+                    class="category__menu <?php if (!isset($_GET['campaign_list_category'])) echo 'category__menu--current'; ?>">
                     <a href="<?php echo get_post_type_archive_link('campaign_list'); ?>">ALL</a>
                 </li>
                 <?php
-        $terms = get_terms(array(
-            'taxonomy' => 'campaign_list_category',
-            'hide_empty' => false,
-        ));
-        if (!is_wp_error($terms) && !empty($terms)) :
-            foreach ($terms as $term) : ?>
+                $terms = get_terms(array(
+                    'taxonomy' => 'campaign_list_category',
+                    'hide_empty' => false,
+                ));
+                if (!is_wp_error($terms) && !empty($terms)) :
+                    foreach ($terms as $term) : ?>
                 <li
-                    class="category__menu <?php if (is_tax('campaign_list_category', $term->slug)) echo 'category__menu--current'; ?>">
-                    <a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a>
+                    class="category__menu <?php if (isset($_GET['campaign_list_category']) && $_GET['campaign_list_category'] == $term->slug) echo 'category__menu--current'; ?>">
+                    <a
+                        href="<?php echo esc_url(add_query_arg('campaign_list_category', $term->slug, get_post_type_archive_link('campaign_list'))); ?>">
+                        <?php echo esc_html($term->name); ?>
+                    </a>
                 </li>
                 <?php endforeach;
-        endif; ?>
+                endif; ?>
             </ul>
         </div>
         <div class="page-campaign__cards campaign-cards">
             <?php
-    $tax_query = array();
-    if (isset($_GET['campaign_list_category']) && !empty($_GET['campaign_list_category'])) {
-        $tax_query[] = array(
-            'taxonomy' => 'campaign_list_category',
-            'field' => 'slug',
-            'terms' => sanitize_text_field($_GET['campaign_list_category']),
-        );
-    }
-    $args = array(
-        'post_type' => 'campaign_list',
-        'posts_per_page' => 4,
-        'paged' => (get_query_var('paged')) ? get_query_var('paged') : 1,
-        'tax_query' => $tax_query,
-    );
-    $the_query = new WP_Query($args);
-    ?>
+            $tax_query = array();
+            if (isset($_GET['campaign_list_category']) && !empty($_GET['campaign_list_category'])) {
+                $tax_query[] = array(
+                    'taxonomy' => 'campaign_list_category',
+                    'field' => 'slug',
+                    'terms' => sanitize_text_field($_GET['campaign_list_category']),
+                );
+            }
+            $args = array(
+                'post_type' => 'campaign_list',
+                'posts_per_page' => 4,
+                'paged' => (get_query_var('paged')) ? get_query_var('paged') : 1,
+                'tax_query' => $tax_query,
+            );
+            $the_query = new WP_Query($args);
+            ?>
             <?php if ($the_query->have_posts()) : ?>
             <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <div class="page-campaign__card campaign-card">
                 <div class="campaign-card__img">
                     <?php
-                    $image = get_field('campaign_card_thumbnail');
-                    if (!empty($image)) : ?>
+                            $image = get_field('campaign_card_thumbnail');
+                            if (!empty($image)) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php else : ?>
                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
@@ -76,13 +79,13 @@
                 <div class="campaign-card__text-wrapper campaign-card__text-wrapper--page">
                     <div class="campaign-card__color-title">
                         <?php
-                        $term = get_field('category_green');
-                        if ($term) :
-                            echo esc_html($term->name);
-                        else :
-                            echo 'No category selected';
-                        endif;
-                        ?>
+                                $term = get_field('category_green'); // フィールド名を指定
+                                if ($term) :
+                                    echo esc_html($term->name);
+                                else :
+                                    echo 'No category selected';
+                                endif;
+                                ?>
                     </div>
                     <h2 class="campaign-card__title campaign-card__title--page">
                         <?php the_field('campaign_price_title'); ?>
@@ -118,10 +121,10 @@
         <!-- ページナビ -->
         <div class="page-campaign__pagenavi wp-pagenavi">
             <?php
-    if (function_exists('wp_pagenavi')) {
-        wp_pagenavi(['query' => $the_query]);
-    }
-    ?>
+            if (function_exists('wp_pagenavi')) {
+                wp_pagenavi(['query' => $the_query]);
+            }
+            ?>
         </div>
     </div>
 </section>

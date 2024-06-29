@@ -2,7 +2,7 @@
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
     <picture class="sub-fv__img">
-        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//about-mv-sp.jpg"
+        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-mv-sp.jpg"
             media="(max-width: 767px)" />
         <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img-mv-pc.jpg" alt="シーサー" />
     </picture>
@@ -40,13 +40,13 @@
         </div>
     </div>
 </section>
-<!-- Galley -->
+<!-- Gallery -->
 <?php
 // SCFを使ってフィールドデータを取得
 $image_fields = array(
-    'gallery_image_1',
-    'gallery_image_2',
-    'gallery_image_3'
+    'gallery_img1',
+    'allery_img2',
+    'gallery_img3'
     // 追加した画像フィールド名をここに追加
 );
 
