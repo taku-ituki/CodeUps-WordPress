@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
     <picture class="sub-fv__img">
@@ -8,12 +9,14 @@
     </picture>
     <h1 class="sub-fv__title"><span>a</span>bout us</h1>
 </section>
+
 <!-- パンくずリスト -->
 <div class="breadcrumbs breadcrumbs-blog-layout">
     <div class="breadcrumbs__inner inner">
         <?php get_template_part('parts/breadcrumbs') ?>
     </div>
 </div>
+
 <!-- About us -->
 <section class="about about-layout-page">
     <div class="about__inner inner">
@@ -40,51 +43,59 @@
         </div>
     </div>
 </section>
-<!-- Gallery -->
-<?php
-// SCFを使ってフィールドデータを取得
-$image_fields = array(
-    'gallery_img1',
-    'allery_img2',
-    'gallery_img3'
-    // 追加した画像フィールド名をここに追加
-);
 
-$images = array();
-foreach ( $image_fields as $field ) {
-    $image = SCF::get($field);
-    if ($image) {
-        $images[] = wp_get_attachment_image_src($image, 'full');
-    }
-}
-
-if ( $images ) : ?>
+<!-- Galley -->
 <section class="gallery gallery-layout">
     <div class="gallery__inner inner">
+        <!-- セクションタイトル -->
         <div class="gallery__title section-title">
             <h2 class="section-title__en">gallery</h2>
             <p class="section-title__ja">フォト</p>
         </div>
+
+        <!-- ギャラリー画像リスト -->
         <ul class="gallery__img-list">
-            <?php 
-            $modal_id = 1; // モーダルのIDを初期化
-            foreach ( $images as $image ) : ?>
-            <li class="gallery__item js-modal-open" data-target="modal<?php echo $modal_id; ?>">
-                <img src="<?php echo esc_url($image[0]); ?>" alt="gallery image" />
+            <?php
+            // SCFからリピーターフィールドを取得
+            $gallery_images = SCF::get('gallery-images', get_the_ID());
+            if (!empty($gallery_images)) :
+                $modal_index = 1; // モーダルのインデックスを初期化
+                foreach ($gallery_images as $fields) :
+                    $img_url = wp_get_attachment_url($fields['gallery-image']); // 画像URLを取得
+                    $alt_text = esc_attr($fields['gallery-image-alt']); // altテキストを取得
+            ?>
+            <li class="gallery__item js-modal-open" data-target="modal<?php echo $modal_index; ?>">
+                <img src="<?php echo $img_url; ?>" alt="<?php echo $alt_text; ?>" />
             </li>
-            <?php $modal_id++; endforeach; ?>
+            <?php
+                    $modal_index++; // モーダルのインデックスをインクリメント
+                endforeach;
+            endif;
+            ?>
         </ul>
-        <?php 
-        $modal_id = 1; // モーダルのIDを再度初期化
-        foreach ( $images as $image ) : ?>
-        <div id="modal<?php echo $modal_id; ?>" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content">
-                <img src="<?php echo esc_url($image[0]); ?>" alt="gallery image" />
+
+        <!-- モーダルを開くと表示される画像 -->
+        <?php
+        $modal_images = SCF::get('modal-images', get_the_ID());
+        if (!empty($modal_images)) :
+            $modal_index = 1; // モーダルのインデックスを初期化
+            foreach ($modal_images as $fields) :
+                $img_url = wp_get_attachment_url($fields['modal-image']); // 画像URLを取得
+                $alt_text = esc_attr($fields['modal-image-alt']); // altテキストを取得
+        ?>
+        <div id="modal<?php echo $modal_index; ?>" class="gallery__modal js-modal">
+            <div class="gallery__modal-bg js-modal-close"></div>
+            <div
+                class="gallery__modal-content<?php echo $modal_index % 2 == 1 ? ' gallery__modal-content--long' : ''; ?>">
+                <img src="<?php echo $img_url; ?>" alt="<?php echo $alt_text; ?>" />
             </div>
         </div>
-        <?php $modal_id++; endforeach; ?>
+        <?php
+                $modal_index++; // モーダルのインデックスをインクリメント
+            endforeach;
+        endif;
+        ?>
     </div>
 </section>
-<?php endif; ?>
+
 <?php get_footer(); ?>

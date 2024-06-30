@@ -2,7 +2,7 @@
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
     <picture class="sub-fv__img">
-        <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/common/page-campaign-sp.jpg"
+        <source src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/common/page-campaign-sp.jpg"
             media="(max-width: 767px)" />
         <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/common/page-campaign-img-pc.jpg"
             alt="fish" />
@@ -23,8 +23,7 @@
         <!-- カテゴリー -->
         <div class="page-campaign__category category">
             <ul class="category__list">
-                <li
-                    class="category__menu <?php if (!isset($_GET['campaign_list_category'])) echo 'category__menu--current'; ?>">
+                <li class="category__menu <?php if (!is_tax()) echo 'category__menu--current'; ?>">
                     <a href="<?php echo get_post_type_archive_link('campaign_list'); ?>">ALL</a>
                 </li>
                 <?php
@@ -35,9 +34,8 @@
                 if (!is_wp_error($terms) && !empty($terms)) :
                     foreach ($terms as $term) : ?>
                 <li
-                    class="category__menu <?php if (isset($_GET['campaign_list_category']) && $_GET['campaign_list_category'] == $term->slug) echo 'category__menu--current'; ?>">
-                    <a
-                        href="<?php echo esc_url(add_query_arg('campaign_list_category', $term->slug, get_post_type_archive_link('campaign_list'))); ?>">
+                    class="category__menu <?php if (is_tax('campaign_list_category', $term->slug)) echo 'category__menu--current'; ?>">
+                    <a href="<?php echo esc_url(get_term_link($term)); ?>">
                         <?php echo esc_html($term->name); ?>
                     </a>
                 </li>
@@ -47,17 +45,17 @@
         </div>
         <div class="page-campaign__cards campaign-cards">
             <?php
-            if (have_posts()) : 
+            if (have_posts()) :
                 while (have_posts()) : the_post();
-                    $term = get_field('category_green'); // ACFのタクソノミー選択フィールドを取得
+                    $terms = get_field('category_green'); // ACFのタクソノミー選択フィールドを取得
                     // ALLの場合やタームが一致する場合
-                    if (!$term || !isset($_GET['campaign_list_category']) || $_GET['campaign_list_category'] == $term->slug) :
+                    if (!$terms || in_array(get_queried_object()->term_id, wp_list_pluck($terms, 'term_id'))) :
             ?>
             <div class="page-campaign__card campaign-card">
                 <div class="campaign-card__img">
                     <?php
-                            $image = get_field('campaign_card_thumbnail');
-                            if (!empty($image)) : ?>
+                                $image = get_field('campaign_card_thumbnail');
+                                if (!empty($image)) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php else : ?>
                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
@@ -66,7 +64,13 @@
                 </div>
                 <div class="campaign-card__text-wrapper campaign-card__text-wrapper--page">
                     <div class="campaign-card__color-title">
-                        <?php echo esc_html($term ? $term->name : 'No category'); ?>
+                        <?php 
+                                    if ($terms) {
+                                        foreach ($terms as $term) {
+                                            echo esc_html($term->name) . ' ';
+                                        }
+                                    }
+                                    ?>
                     </div>
                     <h2 class="campaign-card__title campaign-card__title--page">
                         <?php the_field('campaign_price_title'); ?>
@@ -95,8 +99,8 @@
             </div>
             <?php
                     endif;
-                endwhile; 
-            else : 
+                endwhile;
+            else :
             ?>
             <p>キャンペーンが見つかりませんでした。</p>
             <?php endif; ?>
