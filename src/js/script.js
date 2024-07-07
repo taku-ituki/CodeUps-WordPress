@@ -158,27 +158,6 @@ jQuery(function ($) {
     });
   });
 
-  // Aboutモーダル
-  // Aboutモーダル+画像開いているときはスクロールを止める
-  // JavaScriptの部分
-  $(function () {
-    $(".js-modal-open").each(function () {
-      $(this).on("click", function () {
-        var target = $(this).data("target");
-        var modal = document.getElementById(target);
-        $(modal).fadeIn();
-        $("body").addClass("no-scroll");  // スクロールを無効にするクラスを追加
-        return false;
-      });
-    });
-  
-    $(".js-modal-close").on("click", function () {
-      $(".js-modal").fadeOut();
-      $("body").removeClass("no-scroll");  // スクロールを無効にするクラスを削除
-      return false;
-    });
-  });
-
   $(function () {
     var scrollPosition;
   

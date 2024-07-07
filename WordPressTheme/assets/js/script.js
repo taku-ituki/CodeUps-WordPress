@@ -171,60 +171,50 @@ jQuery(function ($) {
     });
   });
 
-  // Aboutモーダル
-  // Aboutモーダル+画像開いているときはスクロールを止める
-  // JavaScriptの部分
-  $(function () {
-    $(".js-modal-open").each(function () {
-      $(this).on("click", function () {
-        var target = $(this).data("target");
-        var modal = document.getElementById(target);
-        $(modal).fadeIn();
-        $("body").addClass("no-scroll"); // スクロールを無効にするクラスを追加
-        return false;
-      });
-    });
-    $(".js-modal-close").on("click", function () {
-      $(".js-modal").fadeOut();
-      $("body").removeClass("no-scroll"); // スクロールを無効にするクラスを削除
-      return false;
-    });
-  });
-  $(function () {
+  jQuery(document).ready(function ($) {
     var scrollPosition;
-    $(".js-modal-open").each(function () {
-      $(this).on("click", function () {
-        var target = $(this).data("target");
-        var modal = document.getElementById(target);
-        $(modal).fadeIn();
+
+    // モーダルを開くイベントデリゲーション
+    $(document).on("click", ".js-modal-open", function () {
+        var targetIndex = $(this).data("index");
+        var imgSrc = $(this).find("img").attr("src");
+        var imgAlt = $(this).find("img").attr("alt");
+
+        var modal = $(".js-modal");
+        modal.find("img").attr("src", imgSrc).attr("alt", imgAlt);
+        modal.fadeIn();
 
         // 現在のスクロール位置を保存
         scrollPosition = $(window).scrollTop();
 
         // スクロールを無効に
         $('body').css({
-          position: 'fixed',
-          top: -scrollPosition + 'px',
-          width: '100%'
-        });
+            position: 'fixed',
+            top: -scrollPosition + 'px',
+            width: '100%'
+        }).addClass('no-scroll');
+
         return false;
-      });
     });
-    $(".js-modal-close").on("click", function () {
-      $(".js-modal").fadeOut();
 
-      // スクロールを再有効化
-      $('body').css({
-        position: '',
-        top: '',
-        width: ''
-      });
+    // モーダルを閉じるイベントデリゲーション
+    $(document).on("click", ".js-modal-close", function () {
+        $(".js-modal").fadeOut();
 
-      // 元のスクロール位置に戻る
-      $(window).scrollTop(scrollPosition);
-      return false;
+        // スクロールを再有効化
+        $('body').css({
+            position: '',
+            top: '',
+            width: ''
+        }).removeClass('no-scroll');
+
+        // 元のスクロール位置に戻る
+        $(window).scrollTop(scrollPosition);
+
+        return false;
     });
-  });
+});
+
 
   // js-info-content-tabの処理
   $(function () {

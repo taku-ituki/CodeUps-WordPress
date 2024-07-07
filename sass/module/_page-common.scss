@@ -31,16 +31,16 @@
 }
 
 .page-common__description-number {
-  padding-left: rem(23);
-  text-indent: rem(-17);
+  padding-left: rem(20);
+  text-indent: rem(-20);
 }
 
 .page-common__description-number::before {
   content: counter(number) ".";
   counter-increment: number;
-  padding-right: rem(5);
+  padding-right: 0;
 }
-
+  
 .page-common__description-text {
   text-indent: rem(-5);
 }

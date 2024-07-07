@@ -4,7 +4,7 @@
     <picture class="sub-fv__img">
         <source srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//price-sp.jpg"
             media="(max-width: 767px)" />
-       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-pc.jpg" alt="diving" />
+        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/price-pc.jpg" alt="diving" />
     </picture>
     <h1 class="sub-fv__title"><span>p</span>rice</h1>
 </section>
@@ -17,89 +17,55 @@
 <section class="page-price page-price-layout">
     <div class="page-price__inner inner">
         <ul class="page-price__list-wrap">
-            <!-- ライセンス講習 -->
+            <?php
+            // カスタム投稿タイプ 'price-list' のクエリ
+            $args = array(
+                'post_type' => 'price-list', // ここをカスタム投稿タイプのスラッグに変更してください
+                'posts_per_page' => -1,
+            );
+            $custom_query = new WP_Query($args);
+
+            if ($custom_query->have_posts()) :
+                while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
             <li class="page-price__list">
-                <h2 class="page-price__title">ライセンス講習</h2>
+                <h2 class="page-price__title"><?php the_title(); ?></h2>
                 <div class="page-price__items">
+                    <?php if ($plan_1 = get_field('price_plan_1')) : ?>
                     <dl class="page-price__item">
-                        <dt class="page-price__plan">オープンウォーター<br />ダイバーコース</dt>
-                        <dd class="page-price__price">¥50,000</dd>
+                        <dt class="page-price__plan"><?php echo $plan_1; ?></dt>
+                        <dd class="page-price__price"><?php the_field('price_price_1'); ?></dd>
                     </dl>
+                    <?php endif; ?>
+
+                    <?php if ($plan_2 = get_field('price_plan_2')) : ?>
                     <dl class="page-price__item">
-                        <dt class="page-price__plan">アドバンスド<br />オープンウォーターコース</dt>
-                        <dd class="page-price__price">¥60,000</dd>
+                        <dt class="page-price__plan"><?php echo $plan_2; ?></dt>
+                        <dd class="page-price__price"><?php the_field('price_price_2'); ?></dd>
                     </dl>
+                    <?php endif; ?>
+
+                    <?php if ($plan_3 = get_field('price_plan_3')) : ?>
                     <dl class="page-price__item">
-                        <dt class="page-price__plan">レスキュー＋EFRコース</dt>
-                        <dd class="page-price__price">¥70,000</dd>
+                        <dt class="page-price__plan"><?php echo $plan_3; ?></dt>
+                        <dd class="page-price__price"><?php the_field('price_price_3'); ?></dd>
                     </dl>
+                    <?php endif; ?>
+
+                    <?php if ($plan_4 = get_field('price_plan_4')) : ?>
+                    <dl class="page-price__item">
+                        <dt class="page-price__plan"><?php echo $plan_4; ?></dt>
+                        <dd class="page-price__price"><?php the_field('price_price_4'); ?></dd>
+                    </dl>
+                    <?php endif; ?>
                 </div>
             </li>
-            <!-- 体験ダイビング -->
-            <li class="page-price__list">
-                <h2 class="page-price__title">体験ダイビング</h2>
-                <div class="page-price__items">
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ビーチ体験ダイビング<br />(半日)</dt>
-                        <dd class="page-price__price">¥7,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ビーチ体験ダイビング <br />(1日)</dt>
-                        <dd class="page-price__price">¥14,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ボート体験ダイビング <br />(半日)</dt>
-                        <dd class="page-price__price">¥10,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">
-                            ボート体験ダイビング<br />
-                            (1日)
-                        </dt>
-                        <dd class="page-price__price">¥18,000</dd>
-                    </dl>
-                </div>
-            </li>
-            <!-- ファンダイビング -->
-            <li class="page-price__list">
-                <h2 class="page-price__title page-price__title--fun">ファンダイビング</h2>
-                <div class="page-price__items">
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ビーチダイビング<br />(2ダイブ)</dt>
-                        <dd class="page-price__price">¥14,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ボートダイビング<br />(2ダイブ)</dt>
-                        <dd class="page-price__price">¥18,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">スペシャルダイビング<br />(2ダイブ)</dt>
-                        <dd class="page-price__price">¥24,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ナイトダイビング<br />(1ダイブ)</dt>
-                        <dd class="page-price__price">¥10,000</dd>
-                    </dl>
-                </div>
-            </li>
-            <!-- スペシャルダイビング -->
-            <li class="page-price__list">
-                <h2 class="page-price__title page-price__title--sp">スペシャルダイビング</h2>
-                <div class="page-price__items">
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">貸切ダイビング<br />(2ダイブ)</dt>
-                        <dd class="page-price__price">¥24,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">1日ダイビング<br />(3ダイブ)</dt>
-                        <dd class="page-price__price">¥32,000</dd>
-                    </dl>
-                    <dl class="page-price__item">
-                        <dt class="page-price__plan">ナイトダイビング<br />(2ダイブ)</dt>
-                        <dd class="page-price__price">¥14,000</dd>
-                    </dl>
-                </div>
-            </li>
+            <?php endwhile;
+                wp_reset_postdata();
+            else : ?>
+            <p>投稿が見つかりませんでした。</p>
+            <?php endif; ?>
         </ul>
     </div>
-</section><?php get_footer(); ?>
+</section>
+
+<?php get_footer(); ?>
