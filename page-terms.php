@@ -2,9 +2,9 @@
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
     <picture class="sub-fv__img">
-        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common/sp-sitemap.jpg"
+        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/sp-sitemap.jpg"
             media="(max-width: 767px)" />
-       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/pc-sitemap.jpg" alt="ocean" />
+        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/pc-sitemap.jpg" alt="ocean" />
     </picture>
     <h1 class="sub-fv__title-wrapper">
         <div class="sub-fv__title sub-fv__title--page-common">terms<span>of</span><span>s</span>ervice</div>

@@ -170,51 +170,41 @@ jQuery(function ($) {
       });
     });
   });
-
-  jQuery(document).ready(function ($) {
+  $(function () {
     var scrollPosition;
-
-    // モーダルを開くイベントデリゲーション
-    $(document).on("click", ".js-modal-open", function () {
-        var targetIndex = $(this).data("index");
-        var imgSrc = $(this).find("img").attr("src");
-        var imgAlt = $(this).find("img").attr("alt");
-
-        var modal = $(".js-modal");
-        modal.find("img").attr("src", imgSrc).attr("alt", imgAlt);
-        modal.fadeIn();
+    $(".js-modal-open").each(function () {
+      $(this).on("click", function () {
+        var target = $(this).data("target");
+        var modal = document.getElementById(target);
+        $(modal).fadeIn();
 
         // 現在のスクロール位置を保存
         scrollPosition = $(window).scrollTop();
 
         // スクロールを無効に
         $('body').css({
-            position: 'fixed',
-            top: -scrollPosition + 'px',
-            width: '100%'
-        }).addClass('no-scroll');
-
+          position: 'fixed',
+          top: -scrollPosition + 'px',
+          width: '100%'
+        });
         return false;
+      });
     });
+    $(".js-modal-close").on("click", function () {
+      $(".js-modal").fadeOut();
 
-    // モーダルを閉じるイベントデリゲーション
-    $(document).on("click", ".js-modal-close", function () {
-        $(".js-modal").fadeOut();
+      // スクロールを再有効化
+      $('body').css({
+        position: '',
+        top: '',
+        width: ''
+      });
 
-        // スクロールを再有効化
-        $('body').css({
-            position: '',
-            top: '',
-            width: ''
-        }).removeClass('no-scroll');
-
-        // 元のスクロール位置に戻る
-        $(window).scrollTop(scrollPosition);
-
-        return false;
+      // 元のスクロール位置に戻る
+      $(window).scrollTop(scrollPosition);
+      return false;
     });
-});
-
+  });
 
   // js-info-content-tabの処理
   $(function () {

@@ -112,25 +112,27 @@ const cssSass = () => {
 
 // 画像圧縮
 const imgImagemin = () => {
-  // 変更があった画像のみ処理対象にし、複数の保存先に対応する
-  return src(srcPath.img)
-    .pipe(changed(destPath.img)) // 最初の変更検出
-    .pipe(
-      imagemin(
-        [
-          imageminMozjpeg({ quality: 80 }),
-          imageminPngquant(),
-          imageminSvgo({ plugins: [{ removeViewbox: false }] }),
-        ],
-        { verbose: true }
-      )
-    )
-    .pipe(dest(destPath.img)) // 最初の保存先
-    .pipe(changed(destWpPath.img)) // WordPress用のパスで再び変更を検出
-    .pipe(dest(destWpPath.img)) // WordPress用の保存先
-    .pipe(webp()) // webpに変換
-    .pipe(dest(destPath.img)) // webpを保存
-    .pipe(dest(destWpPath.img)); // WordPress用のパスにwebpを保存
+// 変更があった画像のみ処理対象にし、複数の保存先に対応する
+return src(srcPath.img)
+.pipe(changed(destPath.img)) // 最初の保存先で変更を検出
+.pipe(
+imagemin(
+[
+imageminMozjpeg({ quality: 80 }), // JPEG画像の圧縮
+imageminPngquant(), // PNG画像の圧縮
+imageminSvgo({ plugins: [{ removeViewbox: false }] }), // SVG画像の圧縮
+],
+{ verbose: true }
+)
+)
+.pipe(dest(destPath.img)) // 最初の保存先に保存
+.pipe(webp()) // webpに変換
+.pipe(dest(destPath.img)) // webpを最初の保存先に保存
+.pipe(src(srcPath.img)) // 再度画像ソースを読み込み
+.pipe(changed(destWpPath.img)) // WordPress用の保存先で変更を検出
+.pipe(dest(destWpPath.img)) // WordPress用の保存先に保存
+.pipe(webp()) // webpに変換
+.pipe(dest(destWpPath.img)); // webpをWordPress用の保存先に保存
 };
 
 

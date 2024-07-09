@@ -2270,14 +2270,13 @@ footer {
 }
 
 .page-common__description-number {
-	padding-left: 1.4375rem;
-	text-indent: -1.0625rem;
+	padding-left: 1.25rem;
+	text-indent: -1.25rem;
 }
 
 .page-common__description-number::before {
 	content: counter(number) ".";
 	counter-increment: number;
-	padding-right: 0.3125rem;
 }
 
 .page-common__description-text {

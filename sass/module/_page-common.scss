@@ -38,9 +38,8 @@
 .page-common__description-number::before {
   content: counter(number) ".";
   counter-increment: number;
-  padding-right: 0;
 }
-  
+
 .page-common__description-text {
   text-indent: rem(-5);
 }

@@ -2,9 +2,9 @@
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
     <picture class="sub-fv__img">
-        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common//mv-information-sp.jpg"
+        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common//mv-information-sp.jpg"
             media="(max-width: 767px)" />
-       <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/mv-information-pc.jpg" alt="diving" />
+        <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/mv-information-pc.jpg" alt="diving" />
     </picture>
     <h1 class="sub-fv__title"><span>i</span>nformation</h1>
 </section>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                   <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-license.jpg"
+                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-license.jpg"
                         alt="diving-img" />
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</div>
                 </div>
                 <div class="info-content__card-img">
-                   <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-fundiving.jpg"
+                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-fundiving.jpg"
                         alt="diving-img" />
                 </div>
             </div>
@@ -57,7 +57,7 @@
                         沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</div>
                 </div>
                 <div class="info-content__card-img">
-                   <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-experience.jpg"
+                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-experience.jpg"
                         alt="diving-img" />
                 </div>
             </div>
