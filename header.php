@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li class="header__nav-item">
-                        <a href="<?php echo esc_url(home_url("/voice")) ?>">
+                        <a href="<?php echo esc_url(home_url("/voice_list")) ?>">
                             <div class="header__nav-text">voice<span>お客様の声</span></div>
                         </a>
                     </li>
@@ -127,7 +127,7 @@
                         <ul class="common-nav__flex-list">
                             <!-- お客様の声 -->
                             <li class="common-nav__item common-nav__item--head">
-                                <a href="<?php echo esc_url(home_url("/voice")) ?>">お客様の声</a>
+                                <a href="<?php echo esc_url(home_url("/voice_list")) ?>">お客様の声</a>
                             </li>
                             <!-- 料金一覧 -->
                             <li class="common-nav__item common-nav__item--head">

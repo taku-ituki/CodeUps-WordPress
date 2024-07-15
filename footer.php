@@ -115,7 +115,7 @@
                  <ul class="common-nav__flex-list common-nav__flex-list--footer">
                      <!-- お客様の声 -->
                      <li class="common-nav__item common-nav__item--head">
-                         <a href="<?php echo esc_url(home_url("/voice")) ?>">お客様の声</a>
+                         <a href="<?php echo esc_url(home_url("/voice_list")) ?>">お客様の声</a>
                      </li>
                      <!-- 料金一覧 -->
                      <li class="common-nav__item common-nav__item--head">

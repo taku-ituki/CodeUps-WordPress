@@ -83,7 +83,6 @@
 .page-page-common__description-number::before {
   content: counter(number) ".";
   counter-increment: number;
-  padding-right: rem(5);
 }
 
 .page-page-common__description-end {
