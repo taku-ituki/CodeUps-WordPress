@@ -51,66 +51,39 @@
         <ul class="gallery__img-list">
             <!-- 表示される画像 （画像を押すとモーダルが開く）-->
             <?php
-    // SCFからリピーターフィールドを取得
-    $gallery_images = SCF::get('gallery-images', get_the_ID());
-    if (!empty($gallery_images)) :
-        $modal_index = 1; // モーダルのインデックスを初期化
-        foreach ($gallery_images as $fields) :
-            $img_url = wp_get_attachment_url($fields['gallery-image']); // 画像URLを取得
-            $alt_text = esc_attr($fields['gallery-image-alt']); // altテキストを取得
-    ?>
+                $gallery_images = SCF::get('gallery-images', get_the_ID());
+                if (!empty($gallery_images)) :
+                    $modal_index = 1;
+                    foreach ($gallery_images as $fields) :
+                        $img_url = wp_get_attachment_url($fields['gallery-image']);
+                        $alt_text = esc_attr($fields['gallery-image-alt']);
+            ?>
             <li class="gallery__item js-modal-open" data-target="modal<?php echo $modal_index; ?>">
                 <img src="<?php echo $img_url; ?>" alt="<?php echo $alt_text; ?>" />
             </li>
             <?php
-            $modal_index++; // モーダルのインデックスをインクリメント
-        endforeach;
-    endif;
-    ?>
+                        $modal_index++;
+                    endforeach;
+                endif;
+            ?>
         </ul>
         <!-- モーダルを開くと表示される画像 -->
-        <div id="modal01" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content galley__modal-content--long">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img-coral.jpg"
-                    alt="coral" />
-            </div>
-        </div>
-        <div id="modal02" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img-boat.jpg"
-                    alt="boat" />
-            </div>
-        </div>
-        <div id="modal03" class="galley__modal js-modal">
+        <?php
+            $modal_index = 1;
+            foreach ($gallery_images as $fields) :
+                $img_url = wp_get_attachment_url($fields['gallery-image']);
+                $alt_text = esc_attr($fields['gallery-image-alt']);
+        ?>
+        <div id="modal<?php echo $modal_index; ?>" class="galley__modal js-modal">
             <div class="galley__modal-bg js-modal-close"></div>
             <div class="galley__modal-content">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img-fish.jpg"
-                    alt="fish" />
+                <img src="<?php echo $img_url; ?>" alt="<?php echo $alt_text; ?>" />
             </div>
         </div>
-        <div id="modal04" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img2-fish.jpg"
-                    alt="coral" />
-            </div>
-        </div>
-        <div id="modal05" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img2-fish2.jpg"
-                    alt="fish" />
-            </div>
-        </div>
-        <div id="modal06" class="galley__modal js-modal">
-            <div class="galley__modal-bg js-modal-close"></div>
-            <div class="galley__modal-content galley__modal-content--long">
-                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img2-fish&coral.jpg"
-                    alt="coral&fish" />
-            </div>
-        </div>
+        <?php
+                $modal_index++;
+            endforeach;
+        ?>
     </div>
 </section>
 <?php get_footer(); ?>

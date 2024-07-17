@@ -3175,7 +3175,7 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	margin-top: 2.1875rem;
 }
 
-.page {
+.wp-pagenavi .page {
 	align-items: center;
 	border: 0.0625rem solid #408f95;
 	border-radius: 0.0625rem;
@@ -3190,12 +3190,17 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	width: 2.375rem;
 }
 
-.page.current {
+.wp-pagenavi span {
+	height: 2.375rem;
+	width: 2.375rem;
+}
+
+.wp-pagenavi .current {
 	cursor: pointer;
 }
 
-.page.current,
-.page.is-active {
+.wp-pagenavi .current,
+.wp-pagenavi .is-active {
 	align-items: center;
 	background-color: #408f95;
 	border: 0.0625rem solid #408f95;
@@ -3208,77 +3213,53 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	transition: 0.3s;
 }
 
-.page:hover {
+.wp-pagenavi .page:hover {
 	background-color: #408f95;
 	color: #fff;
 	transition: 0.3s;
 }
 
-.wp-pagenavi a,
-.wp-pagenavi span {
-	align-items: center;
-	box-sizing: border-box;
-	display: flex;
-	height: 2.375rem;
-	justify-content: center;
-	width: 2.375rem;
-}
-
-.previouspostslink {
+.wp-pagenavi .previouspostslink,
+.wp-pagenavi .nextpostslink {
 	border: 0.0625rem solid #408f95;
 	position: relative;
 	transition: 0.3s;
+}
+
+.wp-pagenavi .previouspostslink::before,
+.wp-pagenavi .nextpostslink::before {
+	border-right: solid 0.0625rem #408f95;
+	border-top: solid 0.0625rem #408f95;
+	content: "";
+	height: 0.625rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0.625rem;
 }
 
 .previouspostslink::before {
-	border-right: solid 0.0625rem #408f95;
-	border-top: solid 0.0625rem #408f95;
-	content: "";
-	height: 0.625rem;
 	left: 55%;
-	position: absolute;
-	top: 50%;
 	transform: translate(-50%, -50%) rotate(-135deg);
-	width: 0.625rem;
-}
-
-.nextpostslink {
-	border: 0.0625rem solid #408f95;
-	margin-left: 1rem;
-	position: relative;
-	transition: 0.3s;
 }
 
 .nextpostslink::before {
-	border-right: solid 0.0625rem #408f95;
-	border-top: solid 0.0625rem #408f95;
-	content: "";
-	height: 0.625rem;
 	left: 45%;
-	position: absolute;
-	top: 50%;
 	transform: translate(-50%, -50%) rotate(45deg);
-	width: 0.625rem;
 }
 
+.nextpostslink {
+	margin-left: 1rem;
+}
+
+.previouspostslink:hover,
 .nextpostslink:hover {
 	background-color: #408f95;
-	transition: 0.3s;
 }
 
+.previouspostslink:hover::before,
 .nextpostslink:hover::before {
 	border-color: #fff;
-	transition: inherit;
-}
-
-.previouspostslink:hover {
-	background-color: #408f95;
-	transition: 0.3s;
-}
-
-.previouspostslink:hover::before {
-	border-color: #fff;
-	transition: inherit;
 }
 
 .is-active {
@@ -4692,13 +4673,13 @@ footer {
 	margin-top: 4.6875rem;
 }
 
-.page {
+.wp-pagenavi .page {
 	margin-left: 0.9375rem;
 }
 
-.page.current,
-.page.is-active {
-	margin-left: 2.5rem;
+.wp-pagenavi .current,
+.wp-pagenavi .is-active {
+	margin-left: 0.75rem;
 }
 
 .nextpostslink {
@@ -4706,7 +4687,7 @@ footer {
 }
 
 .is-active {
-	margin-left: 2.5rem;
+	margin-left: 0.75rem;
 }
 
 .page-voice__pagenavi.wp-pagenavi {

@@ -54,6 +54,7 @@
                     <?php wp_pagenavi(); ?>
                 </div>
             </div>
+            <!-- サイドバー -->
             <?php get_sidebar(); ?>
         </div>
 </section>

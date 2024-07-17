@@ -158,6 +158,7 @@ jQuery(function ($) {
     });
   });
 
+  //ギャラリー　モーダル
   $(function () {
     var scrollPosition;
   

@@ -170,6 +170,8 @@ jQuery(function ($) {
       });
     });
   });
+
+  //ギャラリー　モーダル
   $(function () {
     var scrollPosition;
     $(".js-modal-open").each(function () {

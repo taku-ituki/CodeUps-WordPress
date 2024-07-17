@@ -12,8 +12,9 @@
   }
 }
 
-// ボタンのサイズ（限定的な使い方なら）
-.page {
+// ボタンのサイズ
+.wp-pagenavi .page
+ {
   width: rem(38); // サイズを指定
   height: rem(38); // サイズを指定
   font-family: $third-font-family;
@@ -31,12 +32,18 @@
   }
 }
 
-.page.current {
+//現在ページのボタンのサイズも指定
+.wp-pagenavi span{
+  width: rem(38); // サイズを指定
+  height: rem(38); // サイズを指定
+}
+
+.wp-pagenavi .current {
   cursor: pointer;
 }
 
-.page.current,
-.page.is-active {
+.wp-pagenavi .current,
+.wp-pagenavi .is-active {
   font-family: $third-font-family;
   display: flex;
   justify-content: center;
@@ -48,83 +55,71 @@
   line-height: 1;
   transition: 0.3s;
   @include mq(md) {
-    margin-left: rem(40);
+    margin-left: rem(12);
   }
 }
 
-.page:hover {
+.wp-pagenavi .page:hover{
   color: $white;
   background-color: $green;
   transition: 0.3s;
 }
 
-.wp-pagenavi a,
-.wp-pagenavi span {
-  width: rem(38);
-  height: rem(38);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box; // これでpaddingやborderの影響を受けないようにする
-}
+// .wp-pagenavi .page {
+//   color: $green;
+//   width: rem(38);
+//   height: rem(38);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: rem(1) solid $green;
+// }
 
-.previouspostslink {
+.wp-pagenavi .previouspostslink,
+.wp-pagenavi .nextpostslink {
   position: relative;
   border: rem(1) solid $green;
   transition: 0.3s;
 }
 
-.previouspostslink::before {
+
+.wp-pagenavi .previouspostslink::before,
+.wp-pagenavi .nextpostslink::before {
   content: "";
   width: rem(10);
   height: rem(10);
   border-top: solid rem(1) $green;
   border-right: solid rem(1) $green;
   position: absolute;
-  left: 55%; // 修正: 矢印を中央に配置
-  top: 50%; // 修正: 矢印を中央に配置
-  transform: translate(-50%, -50%) rotate(-135deg); // 修正: 中央に配置しつつ回転
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.previouspostslink::before {
+  left: 55%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.nextpostslink::before {
+  left: 45%;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .nextpostslink {
-  position: relative;
-  border: rem(1) solid $green;
   margin-left: rem(16);
-  transition: 0.3s;
   @include mq(md) {
     margin-left: rem(40);
   }
 }
 
-.nextpostslink::before {
-  content: "";
-  width: rem(10);
-  height: rem(10);
-  border-top: solid rem(1) $green;
-  border-right: solid rem(1) $green;
-  position: absolute;
-  left: 45%; // 修正: 矢印を中央に配置
-  top: 50%; // 修正: 矢印を中央に配置
-  transform: translate(-50%, -50%) rotate(45deg); // 修正: 中央に配置しつつ回転
-}
-
 // ホバー時、矢印の色変更
+.previouspostslink:hover,
 .nextpostslink:hover {
   background-color: $green;
-  transition: 0.3s;
 }
+
+.previouspostslink:hover::before,
 .nextpostslink:hover::before {
-  transition: inherit;
-  border-color: $white;
-}
-
-.previouspostslink:hover {
-  background-color: $green;
-  transition: 0.3s;
-}
-
-.previouspostslink:hover::before {
-  transition: inherit;
   border-color: $white;
 }
 
@@ -143,7 +138,7 @@
   transition: 0.3s;
   margin-left: rem(16);
   @include mq(md) {
-    margin-left: rem(40);
+    margin-left: rem(12);
   }
 }
 
