@@ -3222,8 +3222,11 @@ textarea { /* フォーカスした際の青い枠線を消す */
 .wp-pagenavi .previouspostslink,
 .wp-pagenavi .nextpostslink {
 	border: 0.0625rem solid #408f95;
+	color: transparent;
+	height: 2.375rem;
 	position: relative;
 	transition: 0.3s;
+	width: 2.375rem;
 }
 
 .wp-pagenavi .previouspostslink::before,
@@ -3234,7 +3237,6 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	height: 0.625rem;
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
 	width: 0.625rem;
 }
 

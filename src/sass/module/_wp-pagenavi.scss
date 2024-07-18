@@ -80,6 +80,10 @@
   position: relative;
   border: rem(1) solid $green;
   transition: 0.3s;
+  //管理画面で入力した「前へのテキスト」「後ろへのテキスト」文字を透明化させ、擬似要素のみ反映させる
+  color: transparent;
+  width: rem(38);
+  height: rem(38);
 }
 
 
@@ -92,7 +96,7 @@
   border-right: solid rem(1) $green;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
 }
 
 .previouspostslink::before {
