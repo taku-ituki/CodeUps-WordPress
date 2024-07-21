@@ -598,32 +598,40 @@ a {
 	margin-top: 4.9375rem;
 }
 
-.blog-container__reviews-card {
+.voice-card.blog-container__reviews-card {
+	box-shadow: none;
+	padding: 0;
+}
+
+.voice-card.blog-container__reviews-card:not(:first-child) {
 	margin-top: 1.5625rem;
 }
 
-.blog-container__reviews-img {
+.voice-card__img.voice-card__img--reviews {
 	aspect-ratio: 294/218;
+	max-width: 100%;
 }
 
-.blog-container__reviews-img img {
+.voice-card__img.voice-card__img--reviews img {
 	-o-object-fit: cover;
 	height: 100%;
 	object-fit: cover;
 	width: 100%;
 }
 
-.blog-container__reviews-texts {
+.voice-card__text {
 	margin-top: 0.9375rem;
 }
 
-.blog-container__reviews-date {
+.voice-card__age.voice-card__age--reviews {
 	font-family: "Noto Sans JP", "sans-serif";
 	font-size: 0.75rem;
 	line-height: 1.5;
+	padding-top: 0rem;
 }
 
-.blog-container__reviews-text {
+.voice-card__main-title.voice-card__main-title--reviews {
+	border: none;
 	font-family: "Noto Sans JP", "sans-serif";
 	font-size: 1.5rem;
 	font-weight: 500;
@@ -3227,6 +3235,10 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	position: relative;
 	transition: 0.3s;
 	width: 2.375rem;
+}
+
+.wp-pagenavi .previouspostslink {
+	margin-right: 1.75rem;
 }
 
 .wp-pagenavi .previouspostslink::before,

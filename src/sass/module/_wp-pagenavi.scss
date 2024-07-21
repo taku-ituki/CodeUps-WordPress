@@ -65,16 +65,6 @@
   transition: 0.3s;
 }
 
-// .wp-pagenavi .page {
-//   color: $green;
-//   width: rem(38);
-//   height: rem(38);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border: rem(1) solid $green;
-// }
-
 .wp-pagenavi .previouspostslink,
 .wp-pagenavi .nextpostslink {
   position: relative;
@@ -86,6 +76,9 @@
   height: rem(38);
 }
 
+.wp-pagenavi .previouspostslink{
+  margin-right: rem(28);
+}
 
 .wp-pagenavi .previouspostslink::before,
 .wp-pagenavi .nextpostslink::before {

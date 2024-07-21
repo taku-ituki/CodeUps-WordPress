@@ -46,59 +46,104 @@
          <!-- 口コミ -->
          <div class="blog-container__reviews">
              <h2 class="blog-container__title blog-container__title--reviews">口コミ</h2>
-             <div class="blog-container__reviews-card">
-                 <div class="blog-container__reviews-img">
-                     <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/reviewd-img.jpg"
-                         alt="men&women" />
+             <?php
+    $reviews_args = array(
+        'post_type'      => 'voice_list',  // 口コミのカスタム投稿タイプのスラッグ
+        'post_status'    => 'publish',     // 公開済みの投稿
+        'posts_per_page' => 1,             // 表示する投稿数
+        'orderby'        => 'date',        // 日付順
+        'order'          => 'DESC',        // 降順
+    );
+    $reviews_query = new WP_Query($reviews_args);
+    if ($reviews_query->have_posts()) :
+        while ($reviews_query->have_posts()) : $reviews_query->the_post();
+            $term = get_field('voice_card_category'); // ACFのタクソノミー選択フィールドを取得
+    ?>
+             <div class="blog-container__reviews-card voice-card">
+                 <div class="blog-container__reviews-img voice-card__img voice-card__img--reviews">
+                     <?php
+            $image = get_field('voice_card_thumbnail');
+            if (!empty($image)) : ?>
+                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                     <?php else : ?>
+                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
+                         alt="<?php the_title_attribute(); ?>のアイキャッチ画像" />
+                     <?php endif; ?>
                  </div>
-                 <div class="blog-container__reviews-texts">
-                     <time class="blog-container__reviews-date" datetime="2023-11-17">30代(カップル)</time>
-                     <h3 class="blog-container__reviews-text">ここにタイトルが入ります。ここにタイトル</h3>
+                 <div class="voice-card__text">
+                     <div class="voice-card__age voice-card__age--reviews"><?php the_field('voice_card__age'); ?></div>
+                     <h3 class="voice-card__main-title voice-card__main-title--reviews">
+                         <?php the_field('voice_title'); ?>
+                     </h3>
                  </div>
              </div>
+             <?php
+        endwhile;
+    else :
+    ?>
+             <p>お客様の声が見つかりませんでした。</p>
+             <?php
+    endif;
+    wp_reset_postdata();
+    ?>
              <!-- common　ボタン -->
              <div class="blog-container__btn-wrap blog-container__btn-wrap--reviews">
-                 <a class="blog-container__btn common-btn" href="<?php echo esc_url(home_url("/blog")) ?>">
+                 <a class="blog-container__btn common-btn"
+                     href="<?php echo get_post_type_archive_link('voice_list'); ?>">
                      <span>view more</span>
                  </a>
              </div>
          </div>
+
          <!-- キャンペーン -->
          <div class="blog-container__campaign">
              <h2 class="blog-container__title">キャンペーン</h2>
              <div class="blog-container__campaign-cards campaign-cards">
+                 <?php
+        $campaign_args = array(
+            'post_type'      => 'campaign_list', // キャンペーンのカスタム投稿タイプのスラッグ
+            'post_status'    => 'publish',       // 公開済みの投稿
+            'posts_per_page' => 2,               // 表示する投稿数
+            'orderby'        => 'date',          // 日付順
+            'order'          => 'DESC',          // 降順
+        );
+        $campaign_query = new WP_Query($campaign_args);
+        if ($campaign_query->have_posts()) :
+            while ($campaign_query->have_posts()) : $campaign_query->the_post();
+                $term = get_field('category_green'); // ACFのタクソノミー選択フィールドを取得
+        ?>
                  <div class="blog-container__campaign-card campaign-card">
                      <div class="campaign-card__img campaign-card__img--blog-container">
-                         <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-test.jpg"
-                             alt="campaign-card-fish" />
+                         <?php
+                $image = get_field('campaign_card_thumbnail');
+                if (!empty($image)) : ?>
+                         <img src="<?php echo esc_url($image['url']); ?>"
+                             alt="<?php echo esc_attr($image['alt']); ?>" />
+                         <?php else : ?>
+                         <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
+                             alt="<?php the_title_attribute(); ?>のアイキャッチ画像" />
+                         <?php endif; ?>
                      </div>
                      <div class="campaign-card__text-wrapper campaign-card__text-wrapper--blog">
-                         <h2 class="campaign-card__title">ライセンス取得</h2>
+                         <h2 class="campaign-card__title"><?php the_field('campaign_price_title'); ?></h2>
                      </div>
                      <div class="campaign-card__price-wrapper">
                          <div class="campaign-card__text">全部コミコミ(お一人様)</div>
                          <div class="campaign-card__price-block">
-                             <div class="campaign-card__price-before">¥56,000</div>
-                             <div class="campaign-card__price-after">¥46,000</div>
+                             <div class="campaign-card__price-before">¥<?php the_field('price_before'); ?></div>
+                             <div class="campaign-card__price-after">¥<?php the_field('price_after'); ?></div>
                          </div>
                      </div>
                  </div>
-                 <div class="blog-container__campaign-card campaign-card">
-                     <div class="campaign-card__img campaign-card__img--blog-container">
-                         <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/campaign-card-boat.jpg"
-                             alt="campaign-card-boat" />
-                     </div>
-                     <div class="campaign-card__text-wrapper campaign-card__text-wrapper--blog">
-                         <h2 class="campaign-card__title">貸切体験ダイビング</h2>
-                     </div>
-                     <div class="campaign-card__price-wrapper">
-                         <div class="campaign-card__text">全部コミコミ(お一人様)</div>
-                         <div class="campaign-card__price-block">
-                             <div class="campaign-card__price-before">¥24,000</div>
-                             <div class="campaign-card__price-after">¥18,000</div>
-                         </div>
-                     </div>
-                 </div>
+                 <?php
+            endwhile;
+        else :
+        ?>
+                 <p>キャンペーンが見つかりませんでした。</p>
+                 <?php
+        endif;
+        wp_reset_postdata();
+        ?>
              </div>
          </div>
          <!-- common　ボタン -->
