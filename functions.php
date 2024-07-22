@@ -95,3 +95,69 @@ function change_post_menu_label() {
    add_action( 'admin_menu', 'change_post_menu_label' );
 
    
+   
+// 閲覧数をカウントする設定（サイドバー）
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    } else {
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+// 閲覧数取得
+function getPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+
+    if ($count == '') { // カウントがなければ0をセット
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+
+    return $count . ' Views';
+}
+
+// 管理画面に閲覧数項目を追加する
+function add_views_column($columns) {
+    $columns['views'] = '閲覧数';
+    return $columns;
+}
+add_filter('manage_posts_columns', 'add_views_column'); // 投稿ページに追加
+
+// 管理画面にページビュー数を表示する
+function add_views_column_data($column, $post_id) {
+    if ($column === 'views') {
+        echo getPostViews($post_id); // 閲覧数を取得する
+    }
+}
+add_action('manage_posts_custom_column', 'add_views_column_data', 10, 2); // 投稿ページに追加
+
+// 閲覧数項目を並び替え可能にする
+function add_sortable_views_column($columns) {
+    $columns['views'] = 'views';
+    return $columns;
+}
+add_filter('manage_edit-post_sortable_columns', 'add_sortable_views_column'); // 投稿ページに追加
+
+// 閲覧数クリックで並び替えを実行
+function sort_views_column($query) {
+    if (!is_admin()) {
+        return;
+    }
+
+    $orderby = $query->get('orderby');
+    if ($orderby === 'views') {
+        $query->set('meta_key', 'post_views_count');
+        $query->set('orderby', 'meta_value_num');
+    }
+}
+add_action('pre_get_posts', 'sort_views_column');

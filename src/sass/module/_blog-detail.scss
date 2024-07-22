@@ -1,5 +1,4 @@
 @use "global" as *;
-
 // 画像配置
 .blog-detail::before {
   content: "";
@@ -20,6 +19,10 @@
     top: -2.8%;
     left: calc(50% - (min(48.062vw, rem(620))));
   }
+}
+
+.blog-detail__inner.inner{
+  display: flex;
 }
 
 

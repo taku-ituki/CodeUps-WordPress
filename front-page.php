@@ -122,6 +122,71 @@
             </div>
         </div>
     </section>
+    <!-- About us -->
+    <section class="about about-layout">
+        <div class="about__inner inner">
+            <!-- セクションタイトル -->
+            <div class="about__title section-title">
+                <h2 class="section-title__en">about us</h2>
+                <p class="section-title__ja">私たちについて</p>
+            </div>
+            <div class="about__body">
+                <div class="about__img-block">
+                    <div class="about__img-left"><img
+                            src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/shisa.jpg"
+                            alt="top-about-left" />
+                    </div>
+                    <div class="about__img-right"><img
+                            src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-fish.jpg"
+                            alt="top-about-right" /></div>
+                </div>
+                <div class="about__text-block">
+                    <p class="about__text-en">Dive into<br />the Ocean</p>
+                    <div class="about__text-ja">
+                        <p class="about__text">
+                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
+                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+                        </p>
+                        <!-- common　ボタン -->
+                        <div class="about__btn-wrap">
+                            <a class="common-btn" href="aboutus.html">
+                                <span>view more</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- information -->
+    <section class="information information-layout">
+        <div class="information__inner inner">
+            <!-- セクションタイトル -->
+            <div class="information__title section-title">
+                <h2 class="section-title__en">information</h2>
+                <p class="section-title__ja">ダイビング情報</p>
+            </div>
+            <div class="information__item-block">
+                <div class="information__img js-color">
+                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-information-img.jpg"
+                        alt="top-information-ocean" />
+                </div>
+                <div class="information__text-block">
+                    <div class="information__text-title">ライセンス講習</div>
+                    <p class="information__text">
+                        当店はダイビングライセンス（Cカード）世界最大の教育機関PADIの「正規店」として店舗登録されています。<br />
+                        正規登録店として、安心安全に初めての方でも安心安全にライセンス取得をサポート致します。
+                    </p>
+                    <!-- common　ボタン -->
+                    <div class="page-campaign__btn-wrap">
+                        <a class="common-btn" href="<?php echo esc_url(home_url("/information?tab=1")) ?>">
+                            <span>view more</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ブログ -->
     <section class="blog blog-layout">
         <div class="blog__inner inner">

@@ -353,3 +353,9 @@ padding-top: rem(0);
   top: 30%;
   transform: scale(0.5) rotate(90deg);
 }
+
+//記事詳細
+//wordpress管理画面のCSS
+.wp-block-image.size-full{
+  margin-top:rem(40);
+}

@@ -1,48 +1,48 @@
  <!-- サイドメニュー -->
  <div class="blog-container__side blog-container">
      <div class="blog-container__inner inner">
-         <!-- 人気記事 -->
          <div class="blog-container__article">
              <h2 class="blog-container__title blog-container__title--article">人気記事</h2>
              <div class="blog-container__article-cards">
+                 <?php
+        $popular_args = array(
+            'post_type'       => 'post',              // 投稿タイプを指定
+            'meta_key'        => 'post_views_count',  // 閲覧数を指定
+            'orderby'         => 'meta_value_num',    // ソートの基準を閲覧数に
+            'order'           => 'DESC',              // 降順（閲覧数が多い順）でソート
+            'post_status'     => 'publish',           // 投稿ステータスは公開済み
+            'posts_per_page'  => 3,                   // 投稿表示件数は3件
+        );
+        $popular_query = new WP_Query($popular_args);
+        if ($popular_query->have_posts()) :
+            while ($popular_query->have_posts()) : $popular_query->the_post(); ?>
                  <div class="blog-container__article-card">
-                     <a href="#">
+                     <a href="<?php the_permalink(); ?>">
                          <div class="blog-container__article-img">
-                             <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/about-img2-fish.jpg"
-                                 alt="yellow-fish" />
+                             <?php if (has_post_thumbnail()) : ?>
+                             <img src="<?php echo esc_url(get_the_post_thumbnail_url($post, 'post-thumbnail')); ?>"
+                                 alt="<?php the_title_attribute(); ?>">
+                             <?php else : ?>
+                             <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/default-thumbnail.jpg"
+                                 alt="default-thumbnail">
+                             <?php endif; ?>
                          </div>
                          <div class="blog-container__article-texts">
-                             <time class="blog-container__article-date" datetime="2023-11-17">2023.11/17</time>
-                             <h3 class="blog-container__article-title">ライセンス取得</h3>
+                             <time class="blog-container__article-date"
+                                 datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m/d'); ?></time>
+                             <h3 class="blog-container__article-title"><?php the_title(); ?></h3>
                          </div>
                      </a>
                  </div>
-                 <div class="blog-container__article-card">
-                     <a href="#">
-                         <div class="blog-container__article-img">
-                             <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
-                                 alt="turtle" />
-                         </div>
-                         <div class="blog-container__article-texts">
-                             <time class="blog-container__article-date" datetime="2023-11-17">2023.11/17</time>
-                             <h3 class="blog-container__article-title">ウミガメと泳ぐ</h3>
-                         </div>
-                     </a>
-                 </div>
-                 <div class="blog-container__article-card">
-                     <a href="#">
-                         <div class="blog-container__article-img">
-                             <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
-                                 alt="clown-fish" />
-                         </div>
-                         <div class="blog-container__article-texts">
-                             <time class="blog-container__article-date" datetime="2023-11-17">2023.11/17</time>
-                             <h3 class="blog-container__article-title">カクレクマノミ</h3>
-                         </div>
-                     </a>
-                 </div>
+                 <?php endwhile; 
+            wp_reset_postdata(); 
+        else : ?>
+                 <p class="popular__nodata">現在、人気記事はありません</p>
+                 <?php endif; ?>
              </div>
          </div>
+
+
          <!-- 口コミ -->
          <div class="blog-container__reviews">
              <h2 class="blog-container__title blog-container__title--reviews">口コミ</h2>
