@@ -148,7 +148,7 @@
          </div>
          <!-- common　ボタン -->
          <div class="blog-container__btn-wrap blog-container__btn-wrap--campaign">
-             <a class="blog-container__btn common-btn" href="campaign.html">
+             <a class="blog-container__btn common-btn" href="<?php echo esc_url(home_url("/campaign_list")) ?>">
                  <span>view more</span>
              </a>
          </div>

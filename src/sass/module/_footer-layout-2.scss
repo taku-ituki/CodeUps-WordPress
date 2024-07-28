@@ -1,0 +1,8 @@
+@use "global" as *;
+.footer-layout-2{
+  margin-top:rem(145);
+  border: rem(1) solid $green;
+  @include mq(md){
+    margin-top: rem(120);
+  }
+}

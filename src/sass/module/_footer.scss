@@ -87,10 +87,11 @@ footer {
   }
 }
 
-// 404ページ
 
-.footer.footer-404 {
+.thanks-page .footer {
   padding-bottom: rem(190);
+  margin-top: 0;
+  border: rem(1) solid $green;
   @include mq(md) {
     padding-bottom: rem(122);
   }

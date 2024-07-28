@@ -1622,6 +1622,11 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 	padding: 1.1875rem 1.1875rem;
 }
 
+.footer-layout-2 {
+	border: 0.0625rem solid #408f95;
+	margin-top: 9.0625rem;
+}
+
 footer {
 	background-color: #408f95;
 	padding-bottom: 5rem;
@@ -1667,7 +1672,9 @@ footer {
 	text-align: center;
 }
 
-.footer.footer-404 {
+.thanks-page .footer {
+	border: 0.0625rem solid #408f95;
+	margin-top: 0;
 	padding-bottom: 11.875rem;
 }
 
@@ -2596,6 +2603,14 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	color: #fff;
 }
 
+.page-contact .wpcf7-list-item {
+	width: 96.7%;
+}
+
+.contact.contact-none {
+	display: none;
+}
+
 .page-price {
 	position: relative;
 }
@@ -3311,7 +3326,7 @@ textarea { /* フォーカスした際の青い枠線を消す */
 .wrap {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	min-height: 70vh;
 }
 
 main {
@@ -3975,6 +3990,10 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 	padding: 2.3125rem 2.3125rem 1rem 2.8125rem;
 }
 
+.footer-layout-2 {
+	margin-top: 7.5rem;
+}
+
 footer {
 	padding-top: 5rem;
 }
@@ -4017,7 +4036,7 @@ footer {
 	padding: 0;
 }
 
-.footer.footer-404 {
+.thanks-page .footer {
 	padding-bottom: 7.625rem;
 }
 
@@ -4718,6 +4737,10 @@ footer {
 
 .page-campaign__pagenavi.wp-pagenavi {
 	margin-top: 5rem;
+}
+
+.wrap {
+	min-height: 80vh;
 }
 
 }

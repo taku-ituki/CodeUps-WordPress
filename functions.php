@@ -161,3 +161,25 @@ function sort_views_column($query) {
     }
 }
 add_action('pre_get_posts', 'sort_views_column');
+
+//お問い合わせの選択肢を動的に生成
+function dynamic_field_values ( $tag, $unused ) {
+    if ( $tag['name'] != 'campaign_list_select' )  // Contact Form 7内に記入するフィールド名（独自のフォームタグ名）
+        return $tag;
+    $args = array (
+        'posts_per_page' => -1, // 全件取得（制限が必要な場合は数値を指定）
+        'post_type'      => 'campaign_list', // カスタム投稿タイプ名（投稿タイプスラッグ）
+        'orderby'        => 'title', // タイトルでソート
+        'order'          => 'ASC', // 昇順
+    );
+    $custom_posts = get_posts($args);
+    if ( ! $custom_posts )
+        return $tag;
+    foreach ( $custom_posts as $custom_post ) {
+        $tag['raw_values'][] = $custom_post->post_title;
+        $tag['values'][] = $custom_post->post_title;
+        $tag['labels'][] = $custom_post->post_title;
+    }
+    return $tag;
+}
+add_filter( 'wpcf7_form_tag', 'dynamic_field_values', 30, 2); 
