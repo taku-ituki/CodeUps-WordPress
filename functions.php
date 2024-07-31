@@ -183,3 +183,6 @@ function dynamic_field_values ( $tag, $unused ) {
     return $tag;
 }
 add_filter( 'wpcf7_form_tag', 'dynamic_field_values', 30, 2); 
+
+//wordpressのバージョン隠す（攻撃のリスク軽減）
+remove_action('wp_head','wp_generator');
