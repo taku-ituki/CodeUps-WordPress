@@ -115,8 +115,9 @@
             <div class="campaign__swiper-button-prev swiper-button-prev"></div>
             <div class="campaign__swiper-button-next swiper-button-next"></div>
             <!-- common ボタン -->
+
             <div class="campaign__btn-wrap">
-                <a class="common-btn" href="campaign.html">
+                <a class="common-btn" href="<?php echo esc_url(home_url("/campaign_list")) ?>">
                     <span>view more</span>
                 </a>
             </div>
@@ -149,7 +150,7 @@
                         </p>
                         <!-- common　ボタン -->
                         <div class="about__btn-wrap">
-                            <a class="common-btn" href="aboutus.html">
+                            <a class="common-btn" href="<?php echo esc_url(home_url("/aboutus")) ?>">
                                 <span>view more</span>
                             </a>
                         </div>
@@ -309,7 +310,7 @@
             </div>
             <!-- common　ボタン -->
             <div class="voice__btn-wrap">
-                <a class="common-btn" href="voice.html">
+                <a class="common-btn" href="<?php echo esc_url(home_url("/voice_list")) ?>">
                     <span>view more</span>
                 </a>
             </div>

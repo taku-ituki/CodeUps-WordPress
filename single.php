@@ -26,15 +26,14 @@
                 <!-- 管理画面で編集 -->
                 <time datetime="<?php the_time('Y.m.d'); ?>"><?php the_time('Y.m.d'); ?></time>
                 <h1><?php the_title(); ?></h1>
-                <div class="blog-container__cards blog-container__cards--detail">
-                    <div class="blog-container__card blog-container__card--detail">
-                        <div class="blog-container__img">
+                <div>
+                    <div>
+                        <div>
                             <img src="<?php echo the_post_thumbnail_url('full'); ?>"
                                 alt="<?php the_title(); ?>のアイキャッチ画像" />
                         </div>
                         <p><?php the_content(); ?></p>
                     </div>
-
                 </div>
                 <ul>
                     <li>リスト1</li>

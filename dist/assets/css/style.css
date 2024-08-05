@@ -913,6 +913,7 @@ a {
 .breadcrumbs__top a {
 	font-family: "Noto Sans JP", "sans-serif";
 	font-size: 0.875rem;
+	text-transform: uppercase;
 }
 
 .breadcrumbs__page-title {
