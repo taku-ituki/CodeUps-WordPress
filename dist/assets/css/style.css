@@ -3660,14 +3660,13 @@ html {
 }
 
 .blog-container__main-container.blog-container__main-container--detail ul {
-	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2.5rem;
 	max-width: 42.25rem;
 }
 
 .blog-container__main-container.blog-container__main-container--detail li::before {
-	left: -2%;
+	left: -0.3%;
 }
 
 .blog {

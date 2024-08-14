@@ -80,7 +80,7 @@
   width: 100%;
   margin-top: rem(22);
   @include mq(md) {
-    margin-left: auto;
+    // margin-left: auto;
     margin-right: auto;
     max-width: rem(676);
     margin-top: rem(40);
@@ -110,7 +110,7 @@
   background-image: url(./../images/common/blog-star-fish.png);
   background-size: cover;
   @include mq(md) {
-    left: -2%;
+    left: -0.3%;
   }
 }
 

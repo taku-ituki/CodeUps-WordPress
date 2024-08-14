@@ -22,16 +22,44 @@
 <!-- Campaign -->
 <section class="page-campaign page-campaign-layout">
     <div class="page-campaign__inner inner">
+        <!-- カテゴリー -->
+        <div class="page-campaign__category category">
+            <ul class="category__list">
+                <li
+                    class="category__menu <?php if (!isset($_GET['campaign_list_category'])) echo 'category__menu--current'; ?>">
+                    <a href="<?php echo get_post_type_archive_link('campaign_list'); ?>">ALL</a>
+                </li>
+                <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'campaign_list_category',
+                    'hide_empty' => false,
+                ));
+                if (!is_wp_error($terms) && !empty($terms)) :
+                    foreach ($terms as $term) : ?>
+                <li
+                    class="category__menu <?php if (isset($_GET['campaign_list_category']) && $_GET['campaign_list_category'] == $term->slug) echo 'category__menu--current'; ?>">
+                    <a
+                        href="<?php echo esc_url(add_query_arg('campaign_list_category', $term->slug, get_post_type_archive_link('campaign_list'))); ?>">
+                        <?php echo esc_html($term->name); ?>
+                    </a>
+                </li>
+                <?php endforeach;
+                endif; ?>
+            </ul>
+        </div>
         <div class="page-campaign__cards campaign-cards">
             <?php
-            if (have_posts()) :
+            if (have_posts()) : 
                 while (have_posts()) : the_post();
+                    $term = get_field('category_green'); // ACFのタクソノミー選択フィールドを取得
+                    // ALLの場合やタームが一致する場合
+                    if (!$term || !isset($_GET['campaign_list_category']) || $_GET['campaign_list_category'] == $term->slug) :
             ?>
             <div class="page-campaign__card campaign-card">
                 <div class="campaign-card__img">
                     <?php
-                    $image = get_field('campaign_card_thumbnail');
-                    if (!empty($image)) : ?>
+                            $image = get_field('campaign_card_thumbnail');
+                            if (!empty($image)) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php else : ?>
                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
@@ -40,10 +68,7 @@
                 </div>
                 <div class="campaign-card__text-wrapper campaign-card__text-wrapper--page">
                     <div class="campaign-card__color-title">
-                        <?php
-                        $term = get_field('category_green');
-                        echo esc_html($term ? $term->name : 'No category');
-                        ?>
+                        <?php echo esc_html($term ? $term->name : 'No category'); ?>
                     </div>
                     <h2 class="campaign-card__title campaign-card__title--page">
                         <?php the_field('campaign_price_title'); ?>
@@ -71,16 +96,20 @@
                 </div>
             </div>
             <?php
-                endwhile;
-            else :
+                    endif;
+                endwhile; 
+            else : 
             ?>
             <p>キャンペーンが見つかりませんでした。</p>
             <?php endif; ?>
         </div>
-
         <!-- ページナビ -->
         <div class="page-campaign__pagenavi wp-pagenavi">
-            <?php if (function_exists('wp_pagenavi')) wp_pagenavi(); ?>
+            <?php
+            if (function_exists('wp_pagenavi')) {
+                wp_pagenavi();
+            }
+            ?>
         </div>
     </div>
 </section>
