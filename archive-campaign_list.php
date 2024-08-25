@@ -13,9 +13,7 @@
 <!-- パンくずリスト -->
 <div class="breadcrumbs breadcrumbs-blog-layout">
     <div class="breadcrumbs__inner inner">
-        <span class="breadcrumbs__top"><a href="<?php echo home_url(); ?>">TOP</a></span>
-        >
-        <span class="breadcrumbs__page-title">キャンペーン</span>
+        <?php get_template_part('parts/breadcrumbs') ?>
     </div>
 </div>
 

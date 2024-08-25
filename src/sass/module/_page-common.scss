@@ -43,3 +43,9 @@
 .page-common__description-text {
   text-indent: rem(-5);
 }
+
+
+//サイトマップページ「プライバシーポリシー」改行
+.sitemap .common-nav__item.common-nav__item--head span{
+  display: inline-block;
+}

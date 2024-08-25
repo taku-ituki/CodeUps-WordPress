@@ -70,6 +70,8 @@ textarea {
   // 縦方向中央よせ
   display: flex;
   align-items: center;
+
+  width: 100%;
   /*↓↓選択されているときの色*/
   &:focus {
     border: rem(1) solid $green;
@@ -189,7 +191,7 @@ textarea {
   border-width: 9px 5px 0 5px;
   border-color: $green transparent transparent transparent;
   @include mq(md) {
-    top: 32%;
+    top: 11px;
     left: 96%;
   }
 }
@@ -344,59 +346,63 @@ textarea {
   width: 100%;
 }
 
-// エラー時（⇩WordPressでエラー時に切り替え）
-
-.page-contact__error-text {
-  color: #c94800;
-  font-weight: normal;
-}
-
-// エラーページ
-.inner .page-contact__error-text {
-  font-size: rem(14);
-  max-width: rem(240);
-  width: 100%;
-  margin-top: rem(46);
-  letter-spacing: -0.1em;
-  text-indent: 0.3em;
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: 0.02em;
-  @include mq(md) {
-    max-width: rem(700);
-    width: 100%;
-    margin-top: rem(40);
-    text-align: center;
-    text-indent: 0;
-    letter-spacing: 0;
-    padding-left: rem(10);
-  }
-}
-.page-contact__error-text span {
-  display: block;
-  padding-left: rem(15);
-  @include mq(md) {
-    display: inline-block;
-    padding-left: 0;
-  }
-}
-
-.page-contact__form-error {
-  border: 1px solid #c94800;
-  background: rgba(201, 72, 0, 0.2);
-}
-
-.page-contact__form-error::placeholder {
-  color: $white;
-}
-
-
 //contactform7 の調整用
 //「お問い合わせ項目」チェックボックスブロック幅調整
 .page-contact .wpcf7-list-item{
   width:96.7%;
 }
 
+.page-contact .wpcf7-list-item{
+  margin-left:rem(0);
+}
+
 .contact.contact-none{
   display: none;
+}
+
+
+
+// デフォルトのエラーメッセージを削除（ページ最下部に出るやつ）
+.wpcf7 form.invalid .wpcf7-response-output{
+  display: none;
+}
+
+
+// デフォルトのエラーメッセージを削除（各項目に出るやつ）
+.wpcf7-not-valid-tip {
+  display: none;
+}
+  
+
+//トップのエラーメッセージ「※必須項目が入力されていません。入力してください。」。JSファイルで動作管理してます
+.page-contact__error-text {
+  display: none; // 初期状態では非表示
+  color: #c94800;
+  font-size:rem(14);
+  text-align: center;
+}
+
+//エラーメッセージ改行（SPのみ）
+.page-contact__error-text span{
+  display: inline-block;
+  @include mq(md){
+    display: block;
+  }
+}
+
+/* 送信ボタンを押したときのみエラースタイルが適用されるようにする JSファイルで管理しています */
+.has-validation-errors .wpcf7-text.wpcf7-not-valid,
+.has-validation-errors .wpcf7-email.wpcf7-not-valid,
+.has-validation-errors .wpcf7-tel.wpcf7-not-valid,
+.has-validation-errors .wpcf7-textarea.wpcf7-not-valid {
+  background: rgba(201, 72, 0, 0.2); /* エラー時の背景色 */
+  color: $black; /* エラー時の文字色 */
+  border: 1px solid #c94800; /* エラー時のボーダー色 */
+}
+
+.has-validation-errors .wpcf7-text.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-email.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-tel.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-textarea.wpcf7-not-valid::placeholder {
+  color: $white;
 }

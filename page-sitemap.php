@@ -98,7 +98,7 @@ get_header();
                     </li>
                     <!-- プライバシーポリシー -->
                     <li class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url('/privacy')); ?>">プライバシーポリシー</a>
+                        <a href="<?php echo esc_url(home_url('/privacy')); ?>">プライバシー<span>ポリシー</span></a>
                     </li>
                     <!-- 利用規約 -->
                     <li class="common-nav__item common-nav__item--head">

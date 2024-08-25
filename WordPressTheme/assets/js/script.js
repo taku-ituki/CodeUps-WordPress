@@ -391,9 +391,12 @@ document.querySelector(".js-hamburger").addEventListener("click", function () {
     openDrawer();
   }
 });
-
-// オーバーレイをクリックしてドロワーを閉じる
-overlay.addEventListener("click", closeDrawer);
+if (overlay) {
+  // オーバーレイをクリックしてドロワーを閉じる
+  overlay.addEventListener("click", closeDrawer);
+} else {
+  console.warn('Overlay element not found.');
+}
 
 // ドロワーメニュー内のスクロールを制御する
 drawer.addEventListener("scroll", function (event) {
@@ -449,4 +452,28 @@ $(function () {
       $('.js-loader').fadeOut('slow');
     }, 5000);
   }
+});
+
+// エラーメッセージをエラー時のみ表示させる（「※必須項目が入力されていません。入力してください。」の部分）
+document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('wpcf7invalid', function (event) {
+    // エラーが発生した際に実行される処理
+    var errorElement = document.querySelector('.page-contact__error-text');
+    if (errorElement) {
+      errorElement.style.display = 'block';
+    }
+  }, false);
+});
+document.addEventListener('DOMContentLoaded', function () {
+  // フォームの送信が失敗したときにエラーメッセージを表示
+  document.addEventListener('wpcf7invalid', function (event) {
+    var form = event.target; // フォーム全体を取得
+    form.classList.add('has-validation-errors'); // エラー時のクラスをフォームに追加
+  }, false);
+
+  // フォームの送信が成功したときにエラーメッセージをリセット
+  document.addEventListener('wpcf7mailsent', function (event) {
+    var form = event.target; // フォーム全体を取得
+    form.classList.remove('has-validation-errors'); // 成功時にエラークラスを削除
+  }, false);
 });

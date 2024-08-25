@@ -14,9 +14,7 @@
 <!-- パンくずリスト -->
 <div class="breadcrumbs breadcrumbs-blog-layout">
     <div class="breadcrumbs__inner inner">
-        <span class="breadcrumbs__top"><a href="<?php echo esc_url(home_url("/about")) ?>">top</a></span>
-        &gt;
-        <span class="breadcrumbs__page-title">お客様の声</span>
+        <?php get_template_part('parts/breadcrumbs') ?>
     </div>
 </div>
 

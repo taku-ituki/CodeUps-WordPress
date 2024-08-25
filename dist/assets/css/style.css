@@ -211,7 +211,13 @@ a {
 	margin-top: 2.8125rem;
 }
 
+.footer-layout-2 {
+	border: 0.0625rem solid #408f95;
+	margin-top: 9.0625rem;
+}
+
 .footer-layout-404 {
+	border: 0.03125rem solid #408f95;
 	padding-top: 5.625rem;
 }
 
@@ -904,6 +910,10 @@ a {
 .breadcrumbs__inner {
 	display: flex;
 	gap: 0.5rem;
+}
+
+.breadcrumbs__inner.inner {
+	padding-left: 0.625rem;
 }
 
 .breadcrumbs__inner > * {
@@ -1623,11 +1633,6 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 	padding: 1.1875rem 1.1875rem;
 }
 
-.footer-layout-2 {
-	border: 0.0625rem solid #408f95;
-	margin-top: 9.0625rem;
-}
-
 footer {
 	background-color: #408f95;
 	padding-bottom: 5rem;
@@ -2307,6 +2312,10 @@ footer {
 	text-indent: -0.3125rem;
 }
 
+.sitemap .common-nav__item.common-nav__item--head span {
+	display: inline-block;
+}
+
 .page-contact {
 	position: relative;
 }
@@ -2356,7 +2365,8 @@ textarea {
 	border-radius: 0;
 	display: flex;
 	font-family: inherit; /*↓カスタム */
-	padding: 0.625rem 0.9375rem 0.25rem 0.9375rem; /*↓↓選択されているときの色*/
+	padding: 0.625rem 0.9375rem 0.25rem 0.9375rem;
+	width: 100%; /*↓↓選択されているときの色*/
 }
 
 [type=text]:focus,
@@ -2569,47 +2579,60 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	width: 100%;
 }
 
-.page-contact__error-text {
-	color: #c94800;
-	font-weight: normal;
-}
-
-.inner .page-contact__error-text {
-	font-size: 0.875rem;
-	letter-spacing: -0.1em;
-	letter-spacing: 0.02em;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 2.875rem;
-	max-width: 15rem;
-	text-indent: 0.3em;
-	width: 100%;
-}
-
-.page-contact__error-text span {
-	display: block;
-	padding-left: 0.9375rem;
-}
-
-.page-contact__form-error {
-	background: rgba(201, 72, 0, 0.2);
-	border: 1px solid #c94800;
-}
-
-.page-contact__form-error::-moz-placeholder {
-	color: #fff;
-}
-
-.page-contact__form-error::placeholder {
-	color: #fff;
-}
-
 .page-contact .wpcf7-list-item {
 	width: 96.7%;
 }
 
+.page-contact .wpcf7-list-item {
+	margin-left: 0rem;
+}
+
 .contact.contact-none {
 	display: none;
+}
+
+.wpcf7 form.invalid .wpcf7-response-output {
+	display: none;
+}
+
+.wpcf7-not-valid-tip {
+	display: none;
+}
+
+.page-contact__error-text {
+	color: #c94800;
+	display: none;
+	font-size: 0.875rem;
+	text-align: center;
+}
+
+.page-contact__error-text span {
+	display: inline-block;
+}
+
+/* 送信ボタンを押したときのみエラースタイルが適用されるようにする JSファイルで管理しています */
+
+.has-validation-errors .wpcf7-text.wpcf7-not-valid,
+.has-validation-errors .wpcf7-email.wpcf7-not-valid,
+.has-validation-errors .wpcf7-tel.wpcf7-not-valid,
+.has-validation-errors .wpcf7-textarea.wpcf7-not-valid {
+	background: rgba(201, 72, 0, 0.2); /* エラー時の背景色 */
+	border: 1px solid #c94800; /* エラー時のボーダー色 */
+	color: #0d2936; /* エラー時の文字色 */
+}
+
+.has-validation-errors .wpcf7-text.wpcf7-not-valid::-moz-placeholder,
+.has-validation-errors .wpcf7-email.wpcf7-not-valid::-moz-placeholder,
+.has-validation-errors .wpcf7-tel.wpcf7-not-valid::-moz-placeholder,
+.has-validation-errors .wpcf7-textarea.wpcf7-not-valid::-moz-placeholder {
+	color: #fff;
+}
+
+.has-validation-errors .wpcf7-text.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-email.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-tel.wpcf7-not-valid::placeholder,
+.has-validation-errors .wpcf7-textarea.wpcf7-not-valid::placeholder {
+	color: #fff;
 }
 
 .page-price {
@@ -3322,6 +3345,7 @@ textarea { /* フォーカスした際の青い枠線を消す */
 
 .wrap-404 {
 	background-color: #408f95;
+	border: 0.03125rem solid #408f95;
 }
 
 .wrap {
@@ -3394,6 +3418,10 @@ html {
 
 .faq-layout {
 	margin-top: 9.125rem;
+}
+
+.footer-layout-2 {
+	margin-top: 7.5rem;
 }
 
 .footer-layout-contact {
@@ -3990,10 +4018,6 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 	padding: 2.3125rem 2.3125rem 1rem 2.8125rem;
 }
 
-.footer-layout-2 {
-	margin-top: 7.5rem;
-}
-
 footer {
 	padding-top: 5rem;
 }
@@ -4271,7 +4295,7 @@ footer {
 
 .page-contact__triangle::before {
 	left: 96%;
-	top: 32%;
+	top: 11px;
 }
 
 .page-contact__inner dl {
@@ -4319,19 +4343,8 @@ footer {
 	margin-top: 2.375rem;
 }
 
-.inner .page-contact__error-text {
-	letter-spacing: 0;
-	margin-top: 2.5rem;
-	max-width: 43.75rem;
-	padding-left: 0.625rem;
-	text-align: center;
-	text-indent: 0;
-	width: 100%;
-}
-
 .page-contact__error-text span {
-	display: inline-block;
-	padding-left: 0;
+	display: block;
 }
 
 .page-price__inner.inner {

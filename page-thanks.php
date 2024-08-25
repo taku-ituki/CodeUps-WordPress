@@ -12,11 +12,7 @@
     <!-- パンくずリスト -->
     <div class=" breadcrumbs breadcrumbs-blog-layout">
         <div class="breadcrumbs__inner inner">
-            <span class="breadcrumbs__top"><a href="index.html">TOP</a></span>
-            >
-            <span class="breadcrumbs__page-title"><a href="contact.html">お問い合わせ</a></span>
-            >
-            <div class="breadcrumbs__current-page"><span>送信完了</span></div>
+            <?php get_template_part('parts/breadcrumbs') ?>
         </div>
     </div>
     <!-- 送信完了セクション -->

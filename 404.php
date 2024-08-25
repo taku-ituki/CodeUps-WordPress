@@ -3,7 +3,7 @@
     <!-- パンくずリスト -->
     <div class="breadcrumbs breadcrumbs-404">
         <div class="breadcrumbs__inner inner">
-            <span class="breadcrumbs__top"><a href="index.html">TOP</a></span>
+            <span class="breadcrumbs__top"><a href="<?php echo home_url(); ?>">TOP</a></span>
             >
             <span class="breadcrumbs__page-title">404</span>
         </div>
