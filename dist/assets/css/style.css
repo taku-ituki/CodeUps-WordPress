@@ -2503,6 +2503,7 @@ textarea {
 
 .page-contact__inner dl:first-of-type {
 	border: none;
+	margin-top: 2.5rem;
 }
 
 /* 最初以外の<dl>要素に適用するスタイル */
@@ -4364,10 +4365,6 @@ footer {
 
 .page-contact__btn-wrap {
 	margin-top: 2.375rem;
-}
-
-.page-contact__error-text span {
-	display: block;
 }
 
 .page-price__inner.inner {

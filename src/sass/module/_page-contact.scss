@@ -217,6 +217,7 @@ textarea {
 
 /* 最初の<dl>要素だけに適用するスタイル */
 .page-contact__inner dl:first-of-type {
+  margin-top:rem(40);
   border: none;
 }
 
@@ -240,6 +241,9 @@ textarea {
     }
   }
 }
+
+
+
 
 .page-contact__inner dl:last-child {
   border-bottom: dotted rem(1) $green;
@@ -392,9 +396,6 @@ textarea {
 //エラーメッセージ改行
 .page-contact__error-text span{
   display: inline-block;
-  @include mq(md){
-    display: block;
-  }
 }
 
 /* 送信ボタンを押したときのみエラースタイルが適用されるようにする JSファイルで管理しています */
