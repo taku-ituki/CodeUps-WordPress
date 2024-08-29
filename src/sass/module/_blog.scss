@@ -53,10 +53,11 @@
   }
 }
 
-.blog-container__card {
+.blog-container__card.blog-card {
   margin-left: auto;
   margin-right: auto;
 }
+
 
 .blog-container__card:not(:first-child) {
   margin-top: rem(40);

@@ -3,10 +3,14 @@
 .breadcrumbs__inner {
   display: flex;
   gap: rem(8);
+ font-family: $second-font-family;
 }
 
 .breadcrumbs__inner.inner{
-  padding-left: rem(10);
+  padding-left: rem(8);
+  @include mq(md){
+    padding-left: rem(10);
+  }
 }
 .breadcrumbs__inner > * {
   display: inline-block;

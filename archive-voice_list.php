@@ -25,20 +25,20 @@
         <div class="page-voice__category category">
             <ul class="category__list">
                 <li
-                    class="category__menu <?php if (!isset($_GET['voice_category_list'])) echo 'category__menu--current'; ?>">
+                    class="category__menu <?php if (!isset($_GET['voice_list_category'])) echo 'category__menu--current'; ?>">
                     <a href="<?php echo get_post_type_archive_link('voice_list'); ?>">ALL</a>
                 </li>
                 <?php
                 $terms = get_terms(array(
-                    'taxonomy' => 'voice_category_list',
+                    'taxonomy' => 'voice_list_category',
                     'hide_empty' => false,
                 ));
                 if (!is_wp_error($terms) && !empty($terms)) :
                     foreach ($terms as $term) : ?>
                 <li
-                    class="category__menu <?php if (isset($_GET['voice_category_list']) && $_GET['voice_category_list'] == $term->slug) echo 'category__menu--current'; ?>">
+                    class="category__menu <?php if (isset($_GET['voice_list_category']) && $_GET['voice_category_list'] == $term->slug) echo 'category__menu--current'; ?>">
                     <a
-                        href="<?php echo esc_url(add_query_arg('voice_category_list', $term->slug, get_post_type_archive_link('voice_list'))); ?>">
+                        href="<?php echo esc_url(add_query_arg('voice_list_category', $term->slug, get_post_type_archive_link('voice_list'))); ?>">
                         <?php echo esc_html($term->name); ?>
                     </a>
                 </li>
@@ -54,7 +54,7 @@
                 while (have_posts()) : the_post();
                     $term = get_field('voice_card_category'); // ACFのタクソノミー選択フィールドを取得
                     // ALLの場合やタームが一致する場合
-                    if (!$term || !isset($_GET['voice_category_list']) || $_GET['voice_category_list'] == $term->slug) :
+                    if (!$term || !isset($_GET['voice_list_category']) || $_GET['voice_list_category'] == $term->slug) :
             ?>
             <div class="voice-card">
                 <div class="voice-card__top">

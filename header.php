@@ -3,20 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="robots" content="noindex" />
     <title>CodeUps</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="noindex" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <link rel="”icon”" href="#" />
+    <link rel="icon" href="#" />
     <?php wp_head(); ?>
 </head>
 
@@ -90,16 +80,19 @@
                         <ul class="common-nav__flex-list">
                             <!-- キャンペーン -->
                             <li class="common-nav__item common-nav__item--head">
-                                <a href="campaign.html">キャンペーン</a>
+                                <a href="<?php echo esc_url(home_url("/campaign_list")) ?>">キャンペーン</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="#">ライセンス取得</a>
+                                <a
+                                    href="http://localhost:10008/campaign_list/?campaign_list_category=license">ライセンス講習</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="#">貸切体験ダイビング</a>
+                                <a
+                                    href="http://localhost:10008/campaign_list/?campaign_list_category=fun-diving">貸切体験ダイビング</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="#">ナイトダイビング</a>
+                                <a
+                                    href="http://localhost:10008/campaign_list/?campaign_list_category=experience">ナイトダイビング</a>
                             </li>
                             <!-- 私たちについて -->
                             <li class="common-nav__item common-nav__item--head">

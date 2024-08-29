@@ -206,14 +206,22 @@ textarea {
 }
 
 .page-contact__inner dl {
-  width: 100;
+  width: 100%;
+  border: none;
   @include mq(md) {
     display: flex;
     justify-content: space-between;
   }
 }
 
-.page-contact__inner dl:not(:first-child) {
+
+/* 最初の<dl>要素だけに適用するスタイル */
+.page-contact__inner dl:first-of-type {
+  border: none;
+}
+
+/* 最初以外の<dl>要素に適用するスタイル */
+.page-contact__inner dl:not(:first-of-type) {
   margin-top: rem(21);
   padding-top: rem(24);
   border-top: dotted rem(1) $green;
@@ -222,7 +230,6 @@ textarea {
     padding-top: rem(39);
   }
 }
-
 // キャンペーン項目以降のの余白の調整
 .page-contact__inner dl:not(:first-child).page-contact__form-campaign-wrap {
   @include mq(md) {
@@ -382,7 +389,7 @@ textarea {
   text-align: center;
 }
 
-//エラーメッセージ改行（SPのみ）
+//エラーメッセージ改行
 .page-contact__error-text span{
   display: inline-block;
   @include mq(md){

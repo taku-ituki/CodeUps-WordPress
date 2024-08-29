@@ -487,9 +487,9 @@ a {
 	left: calc(50% - min(48.062vw, 38.75rem)); /*線の形状*/
 	max-width: 7.5rem;
 	position: absolute;
-	top: 41.5%;
+	top: 6.9%;
 	width: 100%;
-	z-index: -1;
+	z-index: 1;
 }
 
 .blog-container.blog-container__side::before {
@@ -884,7 +884,7 @@ a {
 	margin-top: 1.6875rem;
 }
 
-.blog-container__card {
+.blog-container__card.blog-card {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -909,11 +909,12 @@ a {
 
 .breadcrumbs__inner {
 	display: flex;
+	font-family: "Noto Sans JP", "sans-serif";
 	gap: 0.5rem;
 }
 
 .breadcrumbs__inner.inner {
-	padding-left: 0.625rem;
+	padding-left: 0.5rem;
 }
 
 .breadcrumbs__inner > * {
@@ -1631,6 +1632,11 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 .faq__accordion-box { /*はじめは表示*/
 	background: #fff;
 	padding: 1.1875rem 1.1875rem;
+}
+
+.faq__accordion-title-text {
+	max-width: 16.875rem;
+	width: 100%;
 }
 
 footer {
@@ -2489,10 +2495,19 @@ textarea {
 }
 
 .page-contact__inner dl {
-	width: 100;
+	border: none;
+	width: 100%;
 }
 
-.page-contact__inner dl:not(:first-child) {
+/* 最初の<dl>要素だけに適用するスタイル */
+
+.page-contact__inner dl:first-of-type {
+	border: none;
+}
+
+/* 最初以外の<dl>要素に適用するスタイル */
+
+.page-contact__inner dl:not(:first-of-type) {
 	border-top: dotted 0.0625rem #408f95;
 	margin-top: 1.3125rem;
 	padding-top: 1.5rem;
@@ -3743,6 +3758,10 @@ html {
 	padding-top: 6.25rem;
 }
 
+.breadcrumbs__inner.inner {
+	padding-left: 0.625rem;
+}
+
 .campaign-card__img {
 	aspect-ratio: 333/223;
 }
@@ -4016,6 +4035,10 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 	border: 0.0625rem solid #408f95;
 	margin-top: 1rem;
 	padding: 2.3125rem 2.3125rem 1rem 2.8125rem;
+}
+
+.faq__accordion-title-text {
+	max-width: none;
 }
 
 footer {
@@ -4303,7 +4326,7 @@ footer {
 	justify-content: space-between;
 }
 
-.page-contact__inner dl:not(:first-child) {
+.page-contact__inner dl:not(:first-of-type) {
 	margin-top: 2.5rem;
 	padding-top: 2.4375rem;
 }

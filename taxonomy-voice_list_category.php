@@ -1,4 +1,4 @@
-<!-- taxonomy-voice_category_list.php -->
+<!-- taxonomy-voice_list_category.php -->
 <?php get_header(); ?>
 <!-- メインビュー -->
 <section class="sub-fv sub-fv-layout">
@@ -25,20 +25,19 @@
         <!-- カテゴリーリスト -->
         <div class="page-voice__category category">
             <ul class="category__list">
-                <li
-                    class="category__menu <?php if (!isset($_GET['voice_category_list'])) echo 'category__menu--current'; ?>">
-                    <a href="<?php echo generate_voice_category_link(); ?>">ALL</a>
+                <li class="category__menu <?php if (!is_tax()) echo 'category__menu--current'; ?>">
+                    <a href="<?php echo get_post_type_voice_list_link('voice_list'); ?>">ALL</a>
                 </li>
                 <?php
                 $terms = get_terms(array(
-                    'taxonomy' => 'voice_category_list',
+                    'taxonomy' => 'voice_list_category',
                     'hide_empty' => false,
                 ));
                 if (!is_wp_error($terms) && !empty($terms)) :
                     foreach ($terms as $term) : ?>
                 <li
-                    class="category__menu <?php if (isset($_GET['voice_category_list']) && $_GET['voice_category_list'] == $term->slug) echo 'category__menu--current'; ?>">
-                    <a href="<?php echo generate_voice_category_link($term->slug); ?>">
+                    class="category__menu <?php if (is_tax('voice_list_category', $term->slug)) echo 'category__menu--current'; ?>">
+                    <a href="<?php echo esc_url(get_term_link($term)); ?>">
                         <?php echo esc_html($term->name); ?>
                     </a>
                 </li>
@@ -46,14 +45,14 @@
                 endif; ?>
             </ul>
         </div>
-
         <!-- Voiceカード -->
         <div class="page-voice__cards voice-cards">
             <?php
             if (have_posts()) :
                 while (have_posts()) : the_post();
-                    $term = get_field('voice_card_category');
-                    if ($term && isset($_GET['voice_category_list']) && $_GET['voice_category_list'] == $term->slug) :
+                    $terms = get_field('voice_card_category'); // ACFのタクソノミー選択フィールドを取得
+                    // ALLの場合やタームが一致する場合
+                    if (!$terms || in_array(get_queried_object()->term_id, wp_list_pluck($terms, 'term_id'))) :
             ?>
             <div class="voice-card">
                 <div class="voice-card__top">
@@ -91,10 +90,10 @@
         </div>
     </div>
 </section>
- <!-- ページネーション -->
- <div class="wp-pagenavi page-voice__pagenavi">
-            <?php wp_pagenavi(); ?>
-        </div>
-    </div>
+<!-- ページネーション -->
+<div class="wp-pagenavi page-voice__pagenavi">
+    <?php wp_pagenavi(); ?>
+</div>
+</div>
 </section>
 <?php get_footer(); ?>

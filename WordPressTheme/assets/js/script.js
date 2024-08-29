@@ -477,3 +477,22 @@ document.addEventListener('DOMContentLoaded', function () {
     form.classList.remove('has-validation-errors'); // 成功時にエラークラスを削除
   }, false);
 });
+
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href').substring(1); // '#price-license-diving-link' から 'price-license-diving-link' を取得
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+          // スクロールして要素を画面中央に配置
+          window.scrollTo({
+              top: targetElement.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2 - targetElement.clientHeight / 2),
+              behavior: 'smooth'
+          });
+      }
+  });
+});

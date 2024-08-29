@@ -327,8 +327,7 @@
             <div class="price__contents">
                 <figure class="price__img-block">
                     <picture class="price__content js-color">
-                        <source
-                            srcset="<?php echo get_theme_file_uri(); ?>/dist/dist/assets/images/common/top-price-sp.jpg"
+                        <source srcset="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-sp.jpg"
                             media="(max-width: 767px)" />
                         <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-price-pc.jpg"
                             alt="top-price-coral" />

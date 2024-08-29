@@ -30,7 +30,7 @@ get_header();
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- キャンペーン -->
                     <li class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url('/campaign')); ?>">キャンペーン</a>
+                        <a href="<?php echo esc_url(home_url('/campaign_list')); ?>">キャンペーン</a>
                     </li>
                     <li class="common-nav__item">
                         <a href="#">ライセンス取得</a>
@@ -51,7 +51,7 @@ get_header();
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- ダイビング情報 -->
                     <li class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url('/information')); ?>">ダイビング情報</a>
+                        <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">ダイビング情報</a>
                     </li>
                     <li class="common-nav__item">
                         <a href="#">ライセンス講習</a>
