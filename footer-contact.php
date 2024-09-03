@@ -97,10 +97,6 @@
                     <li class="common-nav__item common-nav__item--head">
                         <a href="<?php echo esc_url(home_url("/price")) ?>">料金一覧</a>
                     </li>
-                    <!-- 料金一覧 -->
-                    <li class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url("/price")) ?>">料金一覧</a>
-                    </li>
                     <li class="common-nav__item">
                         <a href="<?php echo esc_url(home_url("/price#price-license-diving-link")) ?>">ライセンス講習</a>
                     </li>

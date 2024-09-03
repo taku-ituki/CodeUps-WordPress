@@ -20,44 +20,79 @@
 <!-- Campaign -->
 <section class="page-campaign page-campaign-layout">
     <div class="page-campaign__inner inner">
-        <!-- カテゴリー -->
         <div class="page-campaign__category category">
             <ul class="category__list">
+                <!-- "ALL" リンク - すべての投稿を表示するためのリンク -->
                 <li
                     class="category__menu <?php if (!isset($_GET['campaign_list_category'])) echo 'category__menu--current'; ?>">
-                    <a href="<?php echo get_post_type_archive_link('campaign_list'); ?>">ALL</a>
+                    <a href="<?php echo esc_url(get_post_type_archive_link('campaign_list')); ?>">ALL</a>
                 </li>
                 <?php
-                $terms = get_terms(array(
-                    'taxonomy' => 'campaign_list_category',
-                    'hide_empty' => false,
-                ));
-                if (!is_wp_error($terms) && !empty($terms)) :
-                    foreach ($terms as $term) : ?>
+        // 'campaign_list_category' タクソノミーのすべてのタームを取得
+        $terms = get_terms(array(
+            'taxonomy' => 'campaign_list_category',
+            'hide_empty' => false,
+        ));
+
+        // タームがエラーでなく、空でない場合
+        if (!is_wp_error($terms) && !empty($terms)) :
+            foreach ($terms as $term) : ?>
+                <!-- 特定のカテゴリーに基づいたリンク -->
                 <li
                     class="category__menu <?php if (isset($_GET['campaign_list_category']) && $_GET['campaign_list_category'] == $term->slug) echo 'category__menu--current'; ?>">
+                    <!-- ここにリンクを貼り付けます -->
                     <a
                         href="<?php echo esc_url(add_query_arg('campaign_list_category', $term->slug, get_post_type_archive_link('campaign_list'))); ?>">
                         <?php echo esc_html($term->name); ?>
                     </a>
                 </li>
                 <?php endforeach;
-                endif; ?>
+        endif; ?>
             </ul>
         </div>
+
+
+        <!-- キャンペーンカードを表示する部分 -->
         <div class="page-campaign__cards campaign-cards">
             <?php
-            if (have_posts()) : 
-                while (have_posts()) : the_post();
-                    $term = get_field('category_green'); // ACFのタクソノミー選択フィールドを取得
-                    // ALLの場合やタームが一致する場合
-                    if (!$term || !isset($_GET['campaign_list_category']) || $_GET['campaign_list_category'] == $term->slug) :
+            // クエリパラメータまたはパーマリンクのクエリを取得
+            $campaign_category = isset($_GET['campaign_list_category']) ? sanitize_text_field($_GET['campaign_list_category']) : get_query_var('campaign_list_category');
+
+            // WP_Query の引数を設定
+            $args = array(
+                'post_type' => 'campaign_list',  // 投稿タイプを 'campaign_list' に設定
+                'posts_per_page' => -1, // すべての投稿を表示
+            );
+
+            // 特定のカテゴリーが指定されている場合、そのカテゴリーにフィルタリング
+            if ($campaign_category) {
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'campaign_list_category', // フィルタリングするタクソノミー
+                        'field'    => 'slug', // スラッグで指定
+                        'terms'    => $campaign_category, // クエリパラメータのカテゴリー
+                    ),
+                );
+            }
+
+            // WP_Query の実行
+            $query = new WP_Query($args);
+
+            // 投稿が存在する場合、表示
+            if ($query->have_posts()) : 
+                while ($query->have_posts()) : $query->the_post();
+                    // Advanced Custom Fields (ACF) のタクソノミーフィールドを取得
+                    $term = get_field('category_green');
+                    
+                    // 投稿の表示条件
+                    if (!$term || !$campaign_category || $campaign_category == $term->slug) :
             ?>
             <div class="page-campaign__card campaign-card">
                 <div class="campaign-card__img">
                     <?php
-                            $image = get_field('campaign_card_thumbnail');
-                            if (!empty($image)) : ?>
+                    // ACF フィールドから画像を取得
+                    $image = get_field('campaign_card_thumbnail');
+                    if (!empty($image)) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php else : ?>
                     <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
@@ -95,7 +130,8 @@
             </div>
             <?php
                     endif;
-                endwhile; 
+                endwhile;
+                wp_reset_postdata(); // クエリのリセット
             else : 
             ?>
             <p>キャンペーンが見つかりませんでした。</p>
@@ -104,6 +140,7 @@
         <!-- ページナビ -->
         <div class="page-campaign__pagenavi wp-pagenavi">
             <?php
+            // ページナビゲーションを表示
             if (function_exists('wp_pagenavi')) {
                 wp_pagenavi();
             }
@@ -111,4 +148,6 @@
         </div>
     </div>
 </section>
+
+
 <?php get_footer(); ?>

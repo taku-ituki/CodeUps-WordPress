@@ -465,15 +465,16 @@ document.addEventListener('DOMContentLoaded', function () {
   }, false);
 });
 document.addEventListener('DOMContentLoaded', function () {
-  // フォームの送信が失敗したときにエラーメッセージを表示
   document.addEventListener('wpcf7invalid', function (event) {
     var form = event.target; // フォーム全体を取得
-    form.classList.add('has-validation-errors'); // エラー時のクラスをフォームに追加
+    if (form) {
+      form.classList.add('has-validation-errors'); // エラー時のクラスをフォームに追加
+    }
   }, false);
-
-  // フォームの送信が成功したときにエラーメッセージをリセット
   document.addEventListener('wpcf7mailsent', function (event) {
     var form = event.target; // フォーム全体を取得
-    form.classList.remove('has-validation-errors'); // 成功時にエラークラスを削除
+    if (form) {
+      form.classList.remove('has-validation-errors'); // 成功時にエラークラスを削除
+    }
   }, false);
 });

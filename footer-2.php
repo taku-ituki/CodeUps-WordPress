@@ -34,24 +34,23 @@
                     </li>
                     <!-- 動的リンク生成 -->
                     <?php
-                    $taxonomy = 'campaign_list_category';
-                    $term_slugs = array(
-                        'license' => 'ライセンス取得',
-                        'experience' => '貸切体験ダイビング',
-                        'fun-diving' => 'ナイトダイビング'
-                    );
+                      $taxonomy = 'campaign_list_category';
+                      $term_slugs = array(
+                                  'license' => 'ライセンス取得',
+                                  'experience' => '貸切体験ダイビング',
+                                  'fun-diving' => 'ナイトダイビング'
+                                   );
 
-                    foreach ($term_slugs as $slug => $name) {
-                        $term = get_term_by('slug', $slug, $taxonomy);
-                        if ($term && !is_wp_error($term)) {
-                            $term_link = get_term_link($term);
-                            if (!is_wp_error($term_link)) {
-                                echo '<li class="common-nav__item">';
-                                echo '<a href="' . esc_url($term_link) . '">' . esc_html($name) . '</a>';
-                                echo '</li>';
-                            }
-                        }
-                    }
+                      foreach ($term_slugs as $slug => $name) {
+                      $term = get_term_by('slug', $slug, $taxonomy);
+                      if ($term && !is_wp_error($term)) {
+                      // クエリパラメーター形式でURLを生成
+                      $term_link = add_query_arg('campaign_list_category', $slug, get_post_type_archive_link('campaign_list'));
+                      echo '<li class="common-nav__item">';
+                      echo '<a href="' . esc_url($term_link) . '">' . esc_html($name) . '</a>';
+                      echo '</li>';
+                       }
+                     }
                     ?>
 
                     <!-- 私たちについて -->
@@ -60,6 +59,13 @@
                             <a href="<?php echo esc_url(home_url("/about")) ?>">私たちについて</a>
                         </div>
                     </li>
+                </ul>
+                <!-- 私たちについて -->
+                <li class="common-nav__items common-nav__items--us">
+                    <div class="common-nav__item common-nav__item--head">
+                        <a href="<?php echo esc_url(home_url("/about")) ?>">私たちについて</a>
+                    </div>
+                </li>
                 </ul>
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- ダイビング情報 -->
@@ -90,10 +96,6 @@
                     <!-- お客様の声 -->
                     <li class="common-nav__item common-nav__item--head">
                         <a href="<?php echo esc_url(home_url("/voice_list")) ?>">お客様の声</a>
-                    </li>
-                    <!-- 料金一覧 -->
-                    <li class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url("/price")) ?>">料金一覧</a>
                     </li>
                     <!-- 料金一覧 -->
                     <li class="common-nav__item common-nav__item--head">

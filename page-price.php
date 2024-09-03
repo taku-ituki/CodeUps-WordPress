@@ -37,16 +37,23 @@
                     $title_class = '';
                     if (strpos($post_title, 'ライセンス講習') !== false) {
                         $title_class = 'page-price__title--license';
+                        $id = 'price-license-diving-link'; // 固定IDを設定
                     } elseif (strpos($post_title, '体験ダイビング') !== false) {
                         $title_class = 'page-price__title--experience';
+                        $id = 'price-experience-diving-link'; // 固定IDを設定
                     } elseif (strpos($post_title, 'ファンダイビング') !== false) {
                         $title_class = 'page-price__title--fun';
+                        $id = 'price-fun-diving-link'; // 固定IDを設定
                     } elseif (strpos($post_title, 'スペシャルダイビング') !== false) {
                         $title_class = 'page-price__title--special';
+                        $id = 'price-special-diving-link'; // 固定IDを設定
+                    } else {
+                        // スラッグをデフォルトのIDとして使用
+                        $id = 'price-' . esc_attr($post_slug) . '-link';
                     }
             ?>
             <!-- 動的に生成されたIDを使用 -->
-            <li class="page-price__list" id="price-<?php echo esc_attr($post_slug); ?>-link">
+            <li class="page-price__list" id="<?php echo esc_attr($id); ?>">
                 <!-- 動的にクラスを追加 -->
                 <h2 class="page-price__title <?php echo esc_attr($title_class); ?>"><?php the_title(); ?></h2>
                 <div class="page-price__items">

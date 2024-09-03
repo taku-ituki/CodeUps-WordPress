@@ -2668,6 +2668,14 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	z-index: -1;
 }
 
+.page-price .page-price__list:before {
+	content: "";
+	display: block;
+	height: 5rem; /* 固定ヘッダーの高さに合わせて調整 */
+	margin-top: -5rem; /* heightと同じ分のネガティブマージン */
+	visibility: hidden;
+}
+
 .page-price__list:not(:first-child) {
 	margin-top: 2.5rem;
 }
@@ -4377,6 +4385,14 @@ footer {
 	max-width: 18.75rem;
 	top: -6.5%;
 	width: 100%;
+}
+
+.page-price .page-price__list:before {
+	content: "";
+	display: block;
+	height: 5.625rem; /* 固定ヘッダーの高さに合わせて調整 */
+	margin-top: -5.625rem; /* heightと同じ分のネガティブマージン */
+	visibility: hidden;
 }
 
 .page-price__list {
