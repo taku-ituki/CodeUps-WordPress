@@ -192,3 +192,41 @@ add_filter( 'wpcf7_form_tag', 'dynamic_field_values', 30, 2);
 
 //wordpressのバージョン隠す（攻撃のリスク軽減）
 remove_action('wp_head','wp_generator');
+
+
+// Contact Form 7 のメニュー位置を変更してダッシュボードのすぐ下に表示する
+function move_contactform7_menu() {
+    // Contact Form 7 の既存メニューを削除
+    remove_menu_page('wpcf7');
+
+    // 新しい位置に Contact Form 7 のメニューを追加
+    add_menu_page(
+        'Contact Form 7',             // メニューのタイトル
+        'お問い合わせ',                // 管理画面に表示される名前
+        'manage_options',             // 権限レベル
+        'wpcf7',                      // メニューのスラッグ
+        'wpcf7',                      // 表示するページの関数
+        'dashicons-email-alt',         // アイコン
+        12                             // メニューの位置 (ダッシュボード直後に表示)
+    );
+}
+add_action('admin_menu', 'move_contactform7_menu', 999);
+
+
+// メディアメニューの位置を変更する
+function move_media_menu() {
+    // 既存のメディアメニューを削除
+    remove_menu_page('upload.php');
+
+    // 新しい位置にメディアメニューを追加
+    add_menu_page(
+        'メディア',                 // メニューのタイトル
+        'メディア',                 // 管理画面に表示される名前
+        'upload_files',             // 権限レベル
+        'upload.php',               // メニューのスラッグ
+        '',                         // 表示するページの関数（デフォルトは空）
+        'dashicons-admin-media',    // アイコン
+        30                          // メニューの位置
+    );
+}
+add_action('admin_menu', 'move_media_menu', 999);

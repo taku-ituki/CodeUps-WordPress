@@ -52,20 +52,12 @@
                        }
                      }
                     ?>
-
                     <!-- 私たちについて -->
                     <li class="common-nav__items common-nav__items--us">
                         <div class="common-nav__item common-nav__item--head">
                             <a href="<?php echo esc_url(home_url("/about")) ?>">私たちについて</a>
                         </div>
                     </li>
-                </ul>
-                <!-- 私たちについて -->
-                <li class="common-nav__items common-nav__items--us">
-                    <div class="common-nav__item common-nav__item--head">
-                        <a href="<?php echo esc_url(home_url("/about")) ?>">私たちについて</a>
-                    </div>
-                </li>
                 </ul>
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- ダイビング情報 -->
@@ -109,6 +101,9 @@
                     </li>
                     <li class="common-nav__item">
                         <a href="<?php echo esc_url(home_url("/price#price-fun-diving-link")) ?>">ファンダイビング</a>
+                    </li>
+                    <li class="common-nav__item">
+                        <a href="<?php echo esc_url(home_url("/price#price-special-diving-link")) ?>">スペシャル<br>ダイビング</a>
                     </li>
                 </ul>
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">

@@ -103,6 +103,9 @@
                     <li class="common-nav__item">
                         <a href="<?php echo esc_url(home_url("/price#price-fun-diving-link")) ?>">ファンダイビング</a>
                     </li>
+                    <li class="common-nav__item">
+                        <a href="<?php echo esc_url(home_url("/price#price-special-diving-link")) ?>">スペシャル<br>ダイビング</a>
+                    </li>
                 </ul>
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- よくある質問 -->

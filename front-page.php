@@ -145,8 +145,10 @@
                     <p class="about__text-en">Dive into<br />the Ocean</p>
                     <div class="about__text-ja">
                         <p class="about__text">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+                            <?php
+  // 直接出力する場合
+  echo SCF::get('aboutus-text',get_the_ID());
+?>
                         </p>
                         <!-- common　ボタン -->
                         <div class="about__btn-wrap">

@@ -33,22 +33,6 @@
   }
 }
 
-// /* 指定されたリンク先を画面中央に持ってくる */
-.page-price .page-price__list:before {
-  content: "";
-  display: block;
-  height: rem(80); /* 固定ヘッダーの高さに合わせて調整 */
-  margin-top: rem(-80); /* heightと同じ分のネガティブマージン */
-  visibility: hidden;
-  @include mq(md){
-  content: "";
-  display: block ;
-  height: rem(90); /* 固定ヘッダーの高さに合わせて調整 */
-  margin-top: rem(-90); /* heightと同じ分のネガティブマージン */
-  visibility: hidden ;
-  }
-}
-
 .page-price__list {
   @include mq(md) {
     display: flex;

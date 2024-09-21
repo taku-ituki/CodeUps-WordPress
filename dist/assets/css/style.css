@@ -150,12 +150,7 @@ a {
 	position: relative;
 }
 
-.about-layout {
-	margin-top: 4.375rem;
-	position: relative;
-}
-
-.about-layout::before {
+.about-layout-page::before {
 	background: url("./../images/common/about-us-fish-bg.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
 	display: block;
@@ -170,6 +165,11 @@ a {
 
 .about-layout-page-layout .about__body::after {
 	display: none;
+}
+
+.about-layout {
+	margin-top: 4.375rem;
+	position: relative;
 }
 
 .blog-detail-layout {
@@ -372,7 +372,7 @@ a {
 }
 
 .about__btn-wrap {
-	margin-top: 0.9375rem;
+	margin-top: 2.5rem;
 	text-align: center;
 }
 
@@ -2668,14 +2668,6 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	z-index: -1;
 }
 
-.page-price .page-price__list:before {
-	content: "";
-	display: block;
-	height: 5rem; /* 固定ヘッダーの高さに合わせて調整 */
-	margin-top: -5rem; /* heightと同じ分のネガティブマージン */
-	visibility: hidden;
-}
-
 .page-price__list:not(:first-child) {
 	margin-top: 2.5rem;
 }
@@ -3400,16 +3392,16 @@ html {
 	margin-top: 9.0625rem;
 }
 
-.about-layout {
-	margin-top: 7.8125rem;
-}
-
-.about-layout::before {
+.about-layout-page::before {
 	height: 8.625rem;
 	left: 7%;
 	max-width: 18.75rem;
 	top: -3.3%;
 	z-index: -1;
+}
+
+.about-layout {
+	margin-top: 7.8125rem;
 }
 
 .blog-detail-layout {
@@ -3577,10 +3569,6 @@ html {
 	position: absolute;
 	top: 88%;
 	width: 100%;
-}
-
-.about__btn-wrap {
-	margin-top: 2.5rem;
 }
 
 .about-layout-page .about__img-left {
@@ -4385,14 +4373,6 @@ footer {
 	max-width: 18.75rem;
 	top: -6.5%;
 	width: 100%;
-}
-
-.page-price .page-price__list:before {
-	content: "";
-	display: block;
-	height: 5.625rem; /* 固定ヘッダーの高さに合わせて調整 */
-	margin-top: -5.625rem; /* heightと同じ分のネガティブマージン */
-	visibility: hidden;
 }
 
 .page-price__list {

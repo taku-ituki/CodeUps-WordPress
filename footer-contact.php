@@ -1,5 +1,4 @@
 </main>
-</main>
 <!-- footer -->
 <footer class="footer footer-layout">
     <div class="footer__inner inner">
@@ -33,27 +32,25 @@
                     <li class="common-nav__item common-nav__item--head">
                         <a href="<?php echo esc_url(home_url("/campaign_list")) ?>">キャンペーン</a>
                     </li>
-
                     <!-- 動的リンク生成 -->
                     <?php
-                    $taxonomy = 'campaign_list_category';
-                    $term_slugs = array(
-                        'license' => 'ライセンス取得',
-                        'experience' => '貸切体験ダイビング',
-                        'fun-diving' => 'ナイトダイビング'
-                    );
+                      $taxonomy = 'campaign_list_category';
+                      $term_slugs = array(
+                                  'license' => 'ライセンス取得',
+                                  'experience' => '貸切体験ダイビング',
+                                  'fun-diving' => 'ナイトダイビング'
+                                   );
 
-                    foreach ($term_slugs as $slug => $name) {
-                        $term = get_term_by('slug', $slug, $taxonomy);
-                        if ($term && !is_wp_error($term)) {
-                            $term_link = get_term_link($term);
-                            if (!is_wp_error($term_link)) {
-                                echo '<li class="common-nav__item">';
-                                echo '<a href="' . esc_url($term_link) . '">' . esc_html($name) . '</a>';
-                                echo '</li>';
-                            }
-                        }
-                    }
+                      foreach ($term_slugs as $slug => $name) {
+                      $term = get_term_by('slug', $slug, $taxonomy);
+                      if ($term && !is_wp_error($term)) {
+                      // クエリパラメーター形式でURLを生成
+                      $term_link = add_query_arg('campaign_list_category', $slug, get_post_type_archive_link('campaign_list'));
+                      echo '<li class="common-nav__item">';
+                      echo '<a href="' . esc_url($term_link) . '">' . esc_html($name) . '</a>';
+                      echo '</li>';
+                       }
+                     }
                     ?>
 
                     <!-- 私たちについて -->
@@ -63,6 +60,7 @@
                         </div>
                     </li>
                 </ul>
+
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- ダイビング情報 -->
                     <li class="common-nav__item common-nav__item--head">
@@ -106,6 +104,9 @@
                     <li class="common-nav__item">
                         <a href="<?php echo esc_url(home_url("/price#price-fun-diving-link")) ?>">ファンダイビング</a>
                     </li>
+                    <li class="common-nav__item">
+                        <a href="<?php echo esc_url(home_url("/price#price-special-diving-link")) ?>">スペシャル<br>ダイビング</a>
+                    </li>
                 </ul>
                 <ul class="common-nav__flex-list common-nav__flex-list--footer">
                     <!-- よくある質問 -->
@@ -140,23 +141,6 @@
 <div class="page-top-btn page-top-btn-layout js-page-top-btn">
     <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-btn.png" alt="top-btn" />
 </div>
-
-<script>
-document.addEventListener('wpcf7mailsent', function(event) {
-    location = '/contact/thanks/';
-}, false);
-
-document.addEventListener('wpcf7invalid', function(event) {
-    // エラーメッセージを一旦非表示にする
-    document.querySelector('.page-contact__error-text').style.display = 'none';
-
-    // バリデーションエラーがある場合はメッセージを表示する
-    if (event.detail && event.detail.apiResponse && event.detail.apiResponse.invalidFields.length > 0) {
-        document.querySelector('.page-contact__error-text').style.display = 'block';
-    }
-}, false);
-</script>
-
 </body>
 
 </html>

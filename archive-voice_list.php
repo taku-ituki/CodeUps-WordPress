@@ -24,19 +24,24 @@
         <!-- カテゴリーリスト -->
         <div class="page-voice__category category">
             <ul class="category__list">
+                <!-- "ALL" リンク - すべての投稿を表示するためのリンク -->
                 <li
                     class="category__menu <?php if (!isset($_GET['voice_list_category'])) echo 'category__menu--current'; ?>">
-                    <a href="<?php echo get_post_type_archive_link('voice_list'); ?>">ALL</a>
+                    <a href="<?php echo esc_url(get_post_type_archive_link('voice_list')); ?>">ALL</a>
                 </li>
                 <?php
+                // 'voice_list_category' タクソノミーのすべてのタームを取得
                 $terms = get_terms(array(
                     'taxonomy' => 'voice_list_category',
                     'hide_empty' => false,
                 ));
+
+                // タームがエラーでなく、空でない場合
                 if (!is_wp_error($terms) && !empty($terms)) :
                     foreach ($terms as $term) : ?>
+                <!-- 特定のカテゴリーに基づいたリンク -->
                 <li
-                    class="category__menu <?php if (isset($_GET['voice_list_category']) && $_GET['voice_category_list'] == $term->slug) echo 'category__menu--current'; ?>">
+                    class="category__menu <?php if (isset($_GET['voice_list_category']) && $_GET['voice_list_category'] == $term->slug) echo 'category__menu--current'; ?>">
                     <a
                         href="<?php echo esc_url(add_query_arg('voice_list_category', $term->slug, get_post_type_archive_link('voice_list'))); ?>">
                         <?php echo esc_html($term->name); ?>

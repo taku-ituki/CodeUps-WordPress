@@ -26,39 +26,33 @@
             <!-- ライセンス講習 -->
             <div class="info-content__card js-info-content-card active">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title">ライセンス講習</h2>
+                    <h2 class="info-content__card-title"><?php the_field('license_title'); ?></h2>
                     <div class="info-content__card-text">
-                        泳げない人も、ちょっと水が苦手な人も、ダイビングを「安全に」楽しんでいただけるよう、スタッフがサポートいたします！
-                        スキューバダイビングを楽しむためには最低限の知識とスキルが要求されます。知識やスキルと言ってもそんなに難しい事ではなく、安全に楽しむ事を目的としたものです。プロダイバーの指導のもと知識とスキルを習得しCカードを取得して、ダイバーになろう！
+                        <?php the_field('license_text'); ?>
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-license.jpg"
-                        alt="diving-img" />
+                    <img src="<?php echo esc_url(get_field('license_img')); ?>" alt="diving-img" />
                 </div>
             </div>
             <!-- ファンダイビング -->
             <div class="info-content__card js-info-content-card info-content__card--fun">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title">ファンダイビング</h2>
-                    <div class="info-content__card-text">ブランクダイバー、ライセンスを取り立ての方も安心！
-                        沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</div>
+                    <h2 class="info-content__card-title"><?php the_field('fun_title'); ?></h2>
+                    <div class="info-content__card-text"><?php the_field('fun_text'); ?></div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-fundiving.jpg"
-                        alt="diving-img" />
+                    <img src="<?php the_field('fun_img'); ?>" alt="diving-img" />
                 </div>
             </div>
             <!-- 体験ダイビング -->
             <div class="info-content__card js-info-content-card info-content__card--experience">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title">体験ダイビング</h2>
-                    <div class="info-content__card-text">ブランクダイバー、ライセンスを取り立ての方も安心！
-                        沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</div>
+                    <h2 class="info-content__card-title"><?php the_field('experience_title'); ?></h2>
+                    <div class="info-content__card-text"><?php the_field('experience_text'); ?></div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/info-experience.jpg"
-                        alt="diving-img" />
+                    <img src="<?php the_field('experience_img'); ?>" alt="diving-img" />
                 </div>
             </div>
         </div>

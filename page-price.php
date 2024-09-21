@@ -52,7 +52,6 @@
                         $id = 'price-' . esc_attr($post_slug) . '-link';
                     }
             ?>
-            <!-- 動的に生成されたIDを使用 -->
             <li class="page-price__list" id="<?php echo esc_attr($id); ?>">
                 <!-- 動的にクラスを追加 -->
                 <h2 class="page-price__title <?php echo esc_attr($title_class); ?>"><?php the_title(); ?></h2>
@@ -95,6 +94,7 @@
         </ul>
     </div>
 </section>
+
 
 
 <?php get_footer(); ?>
