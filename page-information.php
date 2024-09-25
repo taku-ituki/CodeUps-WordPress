@@ -22,40 +22,71 @@
             <li class="info-content__tab js-info-content-tab info-content__tab--fun">ファン<br />ダイビング</li>
             <li class="info-content__tab js-info-content-tab info-content__tab--experience">体験<br />ダイビング</li>
         </ul>
+        <?php
+// カスタム投稿タイプ "custom_post_type" のクエリを設定
+$args = array(
+    'post_type' => 'information_tab',
+    'posts_per_page' => -1, // 全ての投稿を取得
+);
+
+$custom_query = new WP_Query($args);
+
+if ($custom_query->have_posts()) :
+    while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+
         <div class="info-content__cards">
             <!-- ライセンス講習 -->
-            <div class="info-content__card js-info-content-card active">
+            <div class="info-content__card js-info-content-card" id="license-link">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title"><?php the_field('license_title'); ?></h2>
+                    <h2 class="info-content__card-title">
+                        <?php the_field('license_title'); // ライセンス講習のタイトルを表示 ?>
+                    </h2>
                     <div class="info-content__card-text">
-                        <?php the_field('license_text'); ?>
+                        <?php the_field('license_text'); // ライセンス講習のテキストを表示 ?>
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php echo esc_url(get_field('license_img')); ?>" alt="diving-img" />
+                    <img src="<?php the_field('license_img'); ?>" alt="diving-img" />
                 </div>
             </div>
+
             <!-- ファンダイビング -->
             <div class="info-content__card js-info-content-card info-content__card--fun">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title"><?php the_field('fun_title'); ?></h2>
-                    <div class="info-content__card-text"><?php the_field('fun_text'); ?></div>
+                    <h2 class="info-content__card-title">
+                        <?php the_field('fun_title'); // ファンダイビングのタイトルを表示 ?>
+                    </h2>
+                    <div class="info-content__card-text">
+                        <?php the_field('fun_text'); // ファンダイビングのテキストを表示 ?>
+                    </div>
                 </div>
                 <div class="info-content__card-img">
                     <img src="<?php the_field('fun_img'); ?>" alt="diving-img" />
                 </div>
             </div>
+
             <!-- 体験ダイビング -->
             <div class="info-content__card js-info-content-card info-content__card--experience">
                 <div class="info-content__card-text-block">
-                    <h2 class="info-content__card-title"><?php the_field('experience_title'); ?></h2>
-                    <div class="info-content__card-text"><?php the_field('experience_text'); ?></div>
+                    <h2 class="info-content__card-title">
+                        <?php the_field('experience_title'); // 体験ダイビングのタイトルを表示 ?>
+                    </h2>
+                    <div class="info-content__card-text">
+                        <?php the_field('experience_text'); // 体験ダイビングのテキストを表示 ?>
+                    </div>
                 </div>
                 <div class="info-content__card-img">
                     <img src="<?php the_field('experience_img'); ?>" alt="diving-img" />
                 </div>
             </div>
         </div>
+        <?php endwhile;
+    wp_reset_postdata(); // クエリをリセットする
+else :
+    echo '投稿が見つかりませんでした';
+endif;
+?>
+
     </div>
 </section>
 <?php get_footer(); ?>

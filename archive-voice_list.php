@@ -32,7 +32,7 @@
                 <?php
                 // 'voice_list_category' タクソノミーのすべてのタームを取得
                 $terms = get_terms(array(
-                    'taxonomy' => 'voice_list_category',
+                    'taxonomy' => 'voice_list_category', // CPT UIで作成したタクソノミー
                     'hide_empty' => false,
                 ));
 
@@ -57,9 +57,10 @@
             <?php
             if (have_posts()) :
                 while (have_posts()) : the_post();
-                    $term = get_field('voice_card_category'); // ACFのタクソノミー選択フィールドを取得
-                    // ALLの場合やタームが一致する場合
-                    if (!$term || !isset($_GET['voice_list_category']) || $_GET['voice_list_category'] == $term->slug) :
+                    // タクソノミー（'voice_list_category'）に関連付けられたタームを取得
+                    $terms = get_the_terms(get_the_ID(), 'voice_list_category');
+                    if ($terms && !is_wp_error($terms)) :
+                        $term = array_shift($terms); // 最初のタームを取得
             ?>
             <div class="voice-card">
                 <div class="voice-card__top">
@@ -67,6 +68,7 @@
                         <div class="voice-card__sub">
                             <div class="voice-card__age"><?php the_field('voice_card__age'); ?></div>
                             <div class="voice-card__sub-title"><?php echo esc_html($term->name); ?></div>
+                            <!-- ターム名を表示 -->
                         </div>
                         <h2 class="voice-card__main-title voice-card__main-title--page">
                             <?php the_field('voice_title'); ?>
@@ -88,7 +90,7 @@
                 </p>
             </div>
             <?php
-                    endif;
+                    endif; // タームが存在する場合のチェック終了
                 endwhile;
             else :
             ?>
@@ -102,4 +104,5 @@
         </div>
     </div>
 </section>
+
 <?php get_footer(); ?>

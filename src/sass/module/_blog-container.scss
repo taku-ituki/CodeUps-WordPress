@@ -13,7 +13,6 @@
   /*絶対配置で線の位置を決める*/
   display: block;
   position: absolute;
-  z-index: 1;
   width: 100%;
   top: 6.9%;
   left: calc(50% - (min(48.062vw, rem(620))));
@@ -358,4 +357,19 @@ padding-top: rem(0);
 //wordpress管理画面のCSS
 .wp-block-image.size-full{
   margin-top:rem(40);
+}
+
+
+//記事なしのメッセージ
+.blog-container__empty-message{
+  font-size: rem(32);
+  margin-top: rem(100);
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//記事画像の余白（Blog記事詳細）
+.wp-block-image img{
+  margin-top: rem(40);
 }

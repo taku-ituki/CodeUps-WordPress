@@ -258,3 +258,26 @@ if (overlay) {
 } else {
   console.warn('Overlay element not found.');
 }
+
+
+ // FAQアコーディオン
+ $(".js-faq-accordion-title").on("click", function () {
+  var findElm = $(this).next(".js-faq-accordion-box");
+  $(findElm).slideToggle();
+
+  if ($(this).hasClass("close")) {
+    $(this).removeClass("close");
+  } else {
+    $(this).addClass("close");
+  }
+});
+
+$(window).on("load", function () {
+  $(".js-faq-accordion-area li:first-of-type").addClass("open");
+  $(".open").each(function (index, element) {
+    var Title = $(element).children(".js-faq-accordion-title");
+    $(Title).addClass("close");
+    var Box = $(element).children(".js-faq-accordion-box");
+    $(Box).slideDown(500);
+  });
+});

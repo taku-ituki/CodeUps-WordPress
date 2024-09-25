@@ -146,9 +146,39 @@
                     <div class="about__text-ja">
                         <p class="about__text">
                             <?php
-  // 直接出力する場合
-  echo SCF::get('aboutus-text',get_the_ID());
-?>
+                        // カスタム投稿タイプ 'aboutus_block' の投稿を取得
+                        $args = array(
+                            'post_type' => 'aboutus_block',
+                            'posts_per_page' => 1
+                        );
+                        $custom_query = new WP_Query($args);
+
+                        if ($custom_query->have_posts()) : 
+                            while ($custom_query->have_posts()) : 
+                                $custom_query->the_post();
+
+                                // 'aboutus-text' カスタムフィールドを取得
+                                $aboutus_text = SCF::get('aboutus-text', get_the_ID());
+
+                                // 配列の場合は各要素を処理
+                                if (is_array($aboutus_text)) {
+                                    foreach ($aboutus_text as $text) {
+                                        if (!empty($text)) {
+                                            // テキストを表示
+                                            echo nl2br(esc_html($text)) . '<br>';
+                                        }
+                                    }
+                                } else {
+                                    // 配列でない場合はそのまま表示
+                                    if (!empty($aboutus_text)) {
+                                        echo nl2br(esc_html($aboutus_text));
+                                    }
+                                }
+
+                            endwhile; 
+                        endif; 
+                        wp_reset_postdata();
+                        ?>
                         </p>
                         <!-- common　ボタン -->
                         <div class="about__btn-wrap">
@@ -198,63 +228,62 @@
                 <p class="section-title__ja section-title__ja--blog">ブログ</p>
             </div>
             <div class="blog__cards blog-cards">
+                <?php
+            // 最新の3記事を取得するクエリ
+            $args = array(
+                'post_type' => 'post', // 投稿タイプを指定（通常のブログ投稿）
+                'posts_per_page' => 3, // 取得する記事数を3に設定
+                'orderby' => 'date', // 日付で並び替え
+                'order' => 'DESC' // 降順（新しい順）
+            );
+            $the_query = new WP_Query($args); // WP_Query オブジェクトの生成
+
+            if ($the_query->have_posts()) : // 記事があるかチェック
+                while ($the_query->have_posts()) : $the_query->the_post(); // ループ開始
+            ?>
                 <div class="blog-cards__card blog-card">
-                    <a href="blog-detail.html">
+                    <a href="<?php the_permalink(); ?>">
+                        <!-- 各記事のリンク -->
                         <div class="blog-card__img">
-                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-coral.jpg"
-                                alt="blog-card-coral" />
+                            <!-- アイキャッチ画像を取得 -->
+                            <?php if (has_post_thumbnail()) : ?>
+                            <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>" />
+                            <?php else : ?>
+                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/no-image.jpg"
+                                alt="No Image" />
+                            <?php endif; ?>
                         </div>
                         <div class="blog-card__title-block">
-                            <time class="blog-card__date" datetime="2023-11-17">2023.11/17</time>
-                            <div class="blog-card__title">ライセンス講習</div>
+                            <!-- 投稿日時を取得 -->
+                            <time class="blog-card__date" datetime="<?php the_time('Y-m-d'); ?>">
+                                <?php the_time('Y.m/d'); ?>
+                            </time>
+                            <!-- 記事タイトルを取得 -->
+                            <div class="blog-card__title"><?php the_title(); ?></div>
                         </div>
+                        <!-- 記事の抜粋を取得 -->
                         <p class="blog-card__text">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
+                            <?php the_excerpt(); ?>
                         </p>
                     </a>
                 </div>
-                <div class="blog-cards__card blog-card">
-                    <a href="blog-detail.html">
-                        <div class="blog-card__img">
-                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-turtle.jpg"
-                                alt="blog-card-coral" />
-                        </div>
-                        <div class="blog-card__title-block">
-                            <time class="blog-card__date" datetime="2023-11-17">2023.11/17</time>
-                            <div class="blog-card__title">ウミガメと泳ぐ</div>
-                        </div>
-                        <p class="blog-card__text">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
-                        </p>
-                    </a>
-                </div>
-                <div class="blog-cards__card blog-card">
-                    <a href="blog-detail.html">
-                        <div class="blog-card__img">
-                            <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/blog-card-clownfish.jpg"
-                                alt="blog-card-coral" />
-                        </div>
-                        <div class="blog-card__title-block">
-                            <time class="blog-card__date" datetime="2023-11-17">2023.11/17</time>
-                            <div class="blog-card__title">カクレクマノミ</div>
-                        </div>
-                        <p class="blog-card__text">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキスト
-                        </p>
-                    </a>
-                </div>
+                <?php
+                endwhile;
+                wp_reset_postdata(); // クエリをリセット
+            else :
+            ?>
+                <p>投稿がありません。</p>
+                <?php endif; ?>
             </div>
             <!-- common　ボタン -->
             <div class="blog__btn-wrap">
-                <a class="common-btn" href="<?php echo esc_url(home_url("/blog")) ?>">
+                <a class="common-btn" href="<?php echo esc_url(home_url("/blog")); ?>">
                     <span>view more</span>
                 </a>
             </div>
         </div>
     </section>
+
     <!-- Voice -->
     <section class="voice voice-layout">
         <div class="voice__inner inner">
@@ -264,53 +293,60 @@
                 <p class="section-title__ja">お客様の声</p>
             </div>
             <div class="voice__cards voice-cards">
-                <div class="voice-cards__card voice-card">
-                    <a href="#">
-                        <div class="voice-card__top">
-                            <div class="voice-card__headline">
-                                <div class="voice-card__sub">
-                                    <div class="voice-card__age">20代(女性)</div>
-                                    <div class="voice-card__sub-title">ライセンス講習</div>
-                                </div>
-                                <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
-                            </div>
-                            <div class="voice-card__img js-color">
-                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-woman.jpg"
-                                    alt="top-voice-women" />
-                            </div>
-                        </div>
-                        <p class="voice-card__bottom">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。
-                        </p>
-                    </a>
-                </div>
 
+                <?php
+            // WP_Queryを使って最新の「voice_list」投稿を取得
+            $args = array(
+                'post_type' => 'voice_list', // カスタム投稿タイプ
+                'posts_per_page' => 2,       // 表示する投稿数
+                'orderby' => 'date',         // 日付順でソート
+                'order' => 'DESC'            // 新しい順に並べる
+            );
+            $voice_query = new WP_Query($args);
+
+            // 投稿がある場合
+            if ($voice_query->have_posts()) :
+                while ($voice_query->have_posts()) : $voice_query->the_post();
+                    // ACFフィールドの値を取得
+                    $age = get_field('voice_card__age'); // 年齢と性別
+                    $title = get_field('voice_title'); // 投稿のタイトル
+                    $image = get_field('voice_card_thumbnail'); // サムネイル画像
+                    $text = get_field('voice_card_text'); // 投稿のテキスト
+            ?>
                 <div class="voice-cards__card voice-card">
-                    <a href="#">
+                    <a href="<?php the_permalink(); ?>">
                         <div class="voice-card__top">
                             <div class="voice-card__headline">
                                 <div class="voice-card__sub">
-                                    <div class="voice-card__age">20代(女性)</div>
+                                    <div class="voice-card__age"><?php echo esc_html($age); ?></div>
                                     <div class="voice-card__sub-title">ライセンス講習</div>
                                 </div>
-                                <div class="voice-card__main-title">ここにタイトルが入ります。ここにタイトル</div>
+                                <div class="voice-card__main-title"><?php echo esc_html($title); ?></div>
                             </div>
                             <div class="voice-card__img js-color">
-                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/top-voice-men.jpg"
-                                    alt="top-voice-men" />
+                                <?php if ($image) : ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <?php else : ?>
+                                <img src="<?php echo get_theme_file_uri(); ?>/dist/assets/images/common/default-voice.jpg"
+                                    alt="default-voice" />
+                                <?php endif; ?>
                             </div>
                         </div>
                         <p class="voice-card__bottom">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-                            ここにテキストが入ります。ここにテキストが入ります。
+                            <?php echo nl2br(esc_html($text)); ?>
                         </p>
                     </a>
                 </div>
+                <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+            ?>
+                <p>投稿がありません。</p>
+                <?php endif; ?>
             </div>
-            <!-- common　ボタン -->
+            <!-- common ボタン -->
             <div class="voice__btn-wrap">
                 <a class="common-btn" href="<?php echo esc_url(home_url("/voice_list")) ?>">
                     <span>view more</span>
@@ -318,6 +354,7 @@
             </div>
         </div>
     </section>
+
     <!-- price -->
     <section class="price price-layout">
         <div class="price__inner inner">

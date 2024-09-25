@@ -27,10 +27,10 @@
                 <time datetime="<?php the_time('Y.m.d'); ?>"><?php the_time('Y.m.d'); ?></time>
                 <h1><?php the_title(); ?></h1>
                 <!-- 投稿のサムネイル画像を表示 -->
-                <div>
-                    <div>
-                        <div>
-                            <img src="<?php echo the_post_thumbnail_url('full'); ?>"
+                <div class="blog-container__cards blog-container__cards--detail">
+                    <div class="blog-container__card blog-container__card--detail">
+                        <div class="blog-container_img">
+                            <img src=" <?php echo the_post_thumbnail_url('full'); ?>"
                                 alt="<?php the_title(); ?>のアイキャッチ画像" />
                         </div>
                         <!-- 投稿の内容を表示 -->
@@ -39,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- ページナビ -->
                 <div class="blog-container__pagenavi blog-container__pagenavi--detail wp-pagenavi">
                     <a class="page previouspostslink" rel="prev" href="#"></a>

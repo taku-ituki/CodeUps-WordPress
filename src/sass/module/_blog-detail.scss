@@ -55,6 +55,10 @@
   }
 }
 
+.blog-container__card.blog-container__card--detail .blog-container__img{
+  margin-top: 40px;
+}
+
 .blog-container__img {
   aspect-ratio: 345/231;
 }
@@ -118,4 +122,3 @@
 .blog-container__pagenavi.blog-container__pagenavi--detail .nextpostslink {
   margin-left:rem(82);
 }
-

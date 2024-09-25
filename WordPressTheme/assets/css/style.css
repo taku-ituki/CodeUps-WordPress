@@ -489,7 +489,6 @@ a {
 	position: absolute;
 	top: 6.9%;
 	width: 100%;
-	z-index: 1;
 }
 
 .blog-container.blog-container__side::before {
@@ -783,6 +782,18 @@ a {
 	margin-top: 2.5rem;
 }
 
+.blog-container__empty-message {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6.25rem;
+}
+
+.wp-block-image img {
+	margin-top: 2.5rem;
+}
+
 .blog-detail::before {
 	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
@@ -814,6 +825,10 @@ a {
 
 .blog-container__card.blog-container__card--detail {
 	margin-top: 1.625rem;
+}
+
+.blog-container__card.blog-container__card--detail .blog-container__img {
+	margin-top: 40px;
 }
 
 .blog-container__img {
@@ -3357,6 +3372,19 @@ textarea { /* フォーカスした際の青い枠線を消す */
 
 .blog-container__pagenavi.wp-pagenavi {
 	margin-top: 5rem;
+}
+
+.wp-pagenavi a.previouspostslink,
+.wp-pagenavi a.nextpostslink {
+	display: inline-block;
+}
+
+.wp-pagenavi span.extend {
+	display: none;
+}
+
+.wp-pagenavi span.pages {
+	display: none;
 }
 
 .wrap-404 {

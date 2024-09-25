@@ -17,7 +17,6 @@
     </div>
 </div>
 
-<!-- Blog -->
 <section class="blog-container page-blog-layout">
     <div class="blog-container_inner inner">
         <!-- 左右セクションを合体して一つのブロック化 -->
@@ -26,6 +25,7 @@
             <div class="blog-container__main">
                 <div class="blog-container__cards blog-cards  blog-cards--blog-page">
                     <?php if (have_posts()) : ?>
+                    <!-- 記事がある場合のループ処理 -->
                     <?php while (have_posts()) : the_post(); ?>
                     <div class="blog-container__card blog-card">
                         <a href="<?php the_permalink(); ?>">
@@ -38,8 +38,9 @@
                                 <?php endif; ?>
                             </div>
                             <div class="blog-card__title-block">
-                                <time class="blog-card__date"
-                                    datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>
+                                <time class="blog-card__date" datetime="<?php the_time('Y-m-d'); ?>">
+                                    <?php the_time('Y.m.d'); ?>
+                                </time>
                                 <p class="blog-card__title"><?php the_title(); ?></p>
                             </div>
                             <p class="blog-card__text">
@@ -47,7 +48,11 @@
                             </p>
                         </a>
                     </div>
-                    <?php endwhile; endif; ?>
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                    <!-- 記事がない場合のメッセージ表示 -->
+                    <p class="blog-container__empty-message">🐠。。公開準備中。。🐠</p>
+                    <?php endif; ?>
                 </div>
                 <!-- ページナビ -->
                 <div class="blog-container__pagenavi wp-pagenavi">
@@ -57,5 +62,7 @@
             <!-- サイドバー -->
             <?php get_sidebar(); ?>
         </div>
+    </div>
 </section>
+
 <?php get_footer(); ?>
