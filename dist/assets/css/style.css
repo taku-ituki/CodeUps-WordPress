@@ -479,6 +479,10 @@ a {
 	margin-right: auto;
 }
 
+.blog-cards__card.blog-card {
+	margin-top: 2.5rem;
+}
+
 .blog-container::before {
 	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
@@ -2346,7 +2350,7 @@ footer {
 	content: ""; /*絶対配置で線の位置を決める*/
 	display: block;
 	height: 3.4375rem;
-	left: calc(50% - min(46vw, 38.75rem)); /*線の形状*/
+	left: calc(50% - min(44vw, 38.75rem)); /*線の形状*/
 	max-width: 7.5rem;
 	position: absolute;
 	top: -2%;
@@ -3652,6 +3656,10 @@ html {
 	margin-right: 0rem;
 }
 
+.blog-cards__card.blog-card {
+	margin-top: 0;
+}
+
 .blog-container {
 	position: relative;
 }
@@ -4318,8 +4326,9 @@ footer {
 
 .page-contact::before {
 	height: 8.625rem;
+	left: calc(50% - min(37.2vw, 38.75rem));
 	max-width: 18.75rem;
-	top: -6.2%;
+	top: -5.3%;
 	width: 100%;
 }
 

@@ -20,8 +20,10 @@
             <?php
             // FAQのカスタム投稿タイプを取得するクエリ
             $args = array(
-                'post_type' => ' faq_list',
-                'posts_per_page' => -1, // 全てのFAQを取得
+                'post_type' => 'faq_list',  // スペースを削除
+                'orderby' => 'menu_order',  // 順番を「menu_order」に従わせる
+                'order' => 'ASC',           // 昇順で並べ替える
+                'posts_per_page' => -1,     // 全てのFAQを取得
             );
             $faq_query = new WP_Query($args);
 
@@ -38,7 +40,7 @@
                     </h2>
                     <div class="faq__accordion-box js-faq-accordion-box">
                         <p class="faq__accordion-box-text">
-                            <?php  echo esc_html($answer); ?>
+                            <?php echo wp_kses_post($answer); // HTMLを許容 ?>
                         </p>
                     </div>
                 </div>
@@ -49,9 +51,10 @@
             <?php endif; ?>
             <?php
             // ループの終了
-            wp_reset_postdata();
+            wp_reset_postdata();  // 正しい位置に移動
             ?>
         </ul>
     </div>
 </section>
+
 <?php get_footer(); ?>
