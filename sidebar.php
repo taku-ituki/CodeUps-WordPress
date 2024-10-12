@@ -139,7 +139,7 @@
             endwhile;
         else :
         ?>
-                 <p>キャンペーンが見つかりませんでした。</p>
+                 <p>🐠。。公開準備中。。🐠</p>
                  <?php
         endif;
         wp_reset_postdata();
@@ -158,77 +158,56 @@
              <!-- accordion -->
              <div class="blog-container__accordion">
                  <div class="blog-container__accordion-container">
+                     <?php
+                // 年と月を取得してグループ化
+                $years = [];
+                $archives = wp_get_archives(array(
+                    'type'            => 'monthly',
+                    'limit'           => '',
+                    'format'          => 'custom',
+                    'before'          => '<div class="archive-months__item archive-month"><a href="#">',
+                    'after'           => '</a></div>',
+                    'show_post_count' => false,
+                    'echo'            => 0,
+                ));
+                
+                // 年ごとにアーカイブをグループ化
+                preg_match_all('/<div class="archive-months__item archive-month"><a href="#">(.*?)<\/a><\/div>/', $archives, $matches);
+                foreach ($matches[1] as $archive) :
+                    preg_match('/(\d{4})年(\d{1,2})月/', $archive, $date);
+                    $years[$date[1]][] = $date[2];
+                endforeach;
+            ?>
+                     <?php foreach ($years as $year => $months): ?>
                      <div class="blog-container__accordion-item js-accordion-item">
-                         <h3 class="blog-container__accordion-title js-accordion-title">2023</h3>
+                         <h3 class="blog-container__accordion-title js-accordion-title"><?php echo esc_html($year); ?>
+                         </h3>
                          <div class="blog-container__accordion-content js-blog-container__accordion-content">
                              <div class="blog-container__accordion-container-month">
+                                 <?php foreach ($months as $month): ?>
+                                 <?php
+                                $month_padded = str_pad($month, 2, '0', STR_PAD_LEFT);
+                                $url = get_month_link($year, $month_padded);
+                            ?>
                                  <div class="blog-container__accordion-item-month">
                                      <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         3月
+                                         <a href="<?php echo esc_url($url); ?>"><?php echo esc_html($month); ?>月</a>
                                      </h3>
                                      <div class="blog-container__accordion-content-month">
                                          <p class="blog-container__accordion-text">コンテンツが入ります。</p>
                                      </div>
                                  </div>
-                                 <div class="blog-container__accordion-item-month">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         2月
-                                     </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">
-                                             コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。</p>
-                                     </div>
-                                 </div>
-                                 <div class="blog-container__accordion-item-moth">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         1月
-                                     </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">
-                                             コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。</p>
-                                     </div>
-                                 </div>
+                                 <?php endforeach; ?>
                              </div>
                          </div>
                      </div>
-                     <div class="blog-container__accordion-item-month">
-                         <h3 class="blog-container__accordion-title js-accordion-title">2022</h3>
-                         <div class="blog-container__accordion-content">
-                             <div class="blog-container__accordion-container-month">
-                                 <div class="blog-container__accordion-item-month">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         3月
-                                     </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">コンテンツが入ります。</p>
-                                     </div>
-                                 </div>
-                                 <div class="blog-container__accordion-item-month">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         2月
-                                     </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">
-                                             コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。</p>
-                                     </div>
-                                 </div>
-                                 <div class="blog-container__accordion-item-moth">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
-                                         1月
-                                     </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">
-                                             コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。コンテンツが入ります。</p>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+                     <?php endforeach; ?>
                  </div>
                  <!-- /.accordion-container -->
              </div>
              <!-- .accordion -->
          </div>
+
      </div>
      <!-- 左右セクション閉じタグ↓ -->
  </div>

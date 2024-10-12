@@ -710,6 +710,10 @@ a {
 	padding: 0 1.25rem;
 }
 
+.blog-container__accordion-content.open {
+	display: block;
+}
+
 .blog-container__accordion-text {
 	font-size: 0.8125rem;
 	line-height: 1.5;
@@ -968,11 +972,6 @@ a {
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
-}
-
-.campaign-card:hover {
-	opacity: 0.7;
-	transition: 0.3s;
 }
 
 .campaign-card__img {
@@ -2121,6 +2120,10 @@ footer {
 	transition: 0.3s;
 }
 
+.info-content__tab.info-content__tab--fun::before {
+	left: 5%;
+}
+
 .info-content__tab:hover:after {
 	opacity: 0.5;
 	transition: 0.3s;
@@ -2148,9 +2151,8 @@ footer {
 	animation-duration: 2s;
 	animation-name: fadein;
 	border: 0.0625rem solid #408f95;
-	display: none;
-	display: block;
-	padding: 1.0625rem 1.5rem 1.5rem 1.5rem;
+	display: none; /* すべてのコンテンツを初期状態で非表示 */
+	padding: 1.0625rem 1.5rem 1.5rem 1.5rem; /* PC版では display: flex に変更 */
 }
 
 .info-content__card-text-block {
@@ -3860,7 +3862,7 @@ html {
 .swiper-button-next.campaign__swiper-button-next {
 	height: 5rem;
 	position: absolute;
-	top: 4.5%;
+	top: 5%;
 	width: 5rem;
 }
 
@@ -4071,7 +4073,7 @@ ul.common-nav__flex-list.common-nav__flex-list--footer {
 }
 
 .faq__accordion-title-text {
-	max-width: none;
+	max-width: 90%;
 }
 
 footer {
@@ -4255,7 +4257,7 @@ footer {
 .info-content__card {
 	align-items: center;
 	border: 0.125rem solid #408f95;
-	display: flex;
+	display: flex; /* PCサイズで表示をflexに */
 	gap: 3rem;
 	padding-top: 0.9375rem;
 }

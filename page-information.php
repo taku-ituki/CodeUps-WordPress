@@ -18,22 +18,12 @@
 <section class="info-content info-content-layout">
     <div class="info-content__inner inner">
         <ul class="info-content__tab-area">
-            <li class="info-content__tab js-info-content-tab active">ライセンス<br />講習</li>
-            <li class="info-content__tab js-info-content-tab info-content__tab--fun">ファン<br />ダイビング</li>
-            <li class="info-content__tab js-info-content-tab info-content__tab--experience">体験<br />ダイビング</li>
+            <!-- 各タブに data-id 属性を正しく追加 -->
+            <li class="info-content__tab js-info-content-tab" data-id="license-link">ライセンス<br />講習</li>
+            <li class="info-content__tab js-info-content-tab info-content__tab--fun" data-id="fun-link">ファン<br />ダイビング
+            </li>
+            <li class="info-content__tab js-info-content-tab" data-id="experience-link">体験<br />ダイビング</li>
         </ul>
-        <?php
-// カスタム投稿タイプ "custom_post_type" のクエリを設定
-$args = array(
-    'post_type' => 'information_tab',
-    'posts_per_page' => -1, // 全ての投稿を取得
-);
-
-$custom_query = new WP_Query($args);
-
-if ($custom_query->have_posts()) :
-    while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
-
         <div class="info-content__cards">
             <!-- ライセンス講習 -->
             <div class="info-content__card js-info-content-card" id="license-link">
@@ -46,12 +36,12 @@ if ($custom_query->have_posts()) :
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php the_field('license_img'); ?>" alt="diving-img" />
+                    <img src="<?php the_field('license_img'); ?>" alt="ライセンス講習の画像" />
                 </div>
             </div>
 
             <!-- ファンダイビング -->
-            <div class="info-content__card js-info-content-card info-content__card--fun">
+            <div class="info-content__card js-info-content-card" id="fun-link">
                 <div class="info-content__card-text-block">
                     <h2 class="info-content__card-title">
                         <?php the_field('fun_title'); // ファンダイビングのタイトルを表示 ?>
@@ -61,12 +51,12 @@ if ($custom_query->have_posts()) :
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php the_field('fun_img'); ?>" alt="diving-img" />
+                    <img src="<?php the_field('fun_img'); ?>" alt="ファンダイビングの画像" />
                 </div>
             </div>
 
             <!-- 体験ダイビング -->
-            <div class="info-content__card js-info-content-card info-content__card--experience">
+            <div class="info-content__card js-info-content-card" id="experience-link">
                 <div class="info-content__card-text-block">
                     <h2 class="info-content__card-title">
                         <?php the_field('experience_title'); // 体験ダイビングのタイトルを表示 ?>
@@ -76,17 +66,10 @@ if ($custom_query->have_posts()) :
                     </div>
                 </div>
                 <div class="info-content__card-img">
-                    <img src="<?php the_field('experience_img'); ?>" alt="diving-img" />
+                    <img src="<?php the_field('experience_img'); ?>" alt="体験ダイビングの画像" />
                 </div>
             </div>
         </div>
-        <?php endwhile;
-    wp_reset_postdata(); // クエリをリセットする
-else :
-    echo '投稿が見つかりませんでした';
-endif;
-?>
-
     </div>
 </section>
 <?php get_footer(); ?>

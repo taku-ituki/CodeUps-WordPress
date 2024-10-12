@@ -103,16 +103,16 @@
                  <ul class="common-nav__flex-list common-nav__flex-list--footer">
                      <!-- ダイビング情報 -->
                      <li class="common-nav__item common-nav__item--head">
-                         <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">ダイビング情報</a>
+                         <a href="<?php echo esc_url(home_url("/information")) ?>">ダイビング情報</a>
                      </li>
                      <li class="common-nav__item">
-                         <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">ライセンス講習</a>
+                         <a href="<?php echo esc_url(home_url("//information?tab=license-link")) ?>">ライセンス講習</a>
                      </li>
                      <li class="common-nav__item">
-                         <a href="<?php echo esc_url(home_url("/information?tab=3")) ?>">体験ダイビング</a>
+                         <a href="<?php echo esc_url(home_url("/information?tab=experience-link")) ?>">体験ダイビング</a>
                      </li>
                      <li class="common-nav__item">
-                         <a href="<?php echo esc_url(home_url("/information?tab=2")) ?>">ファンダイビング</a>
+                         <a href="<?php echo esc_url(home_url("//information?tab=fun-link")) ?>">ファンダイビング</a>
                      </li>
                      <!--ブログ -->
                      <li class="common-nav__items common-nav__items--blog">

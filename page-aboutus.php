@@ -99,7 +99,8 @@
                 $modal_index = 1;
                 foreach ($gallery_images as $fields) :
                     $img_url = wp_get_attachment_url($fields['gallery-image']);
-                    $alt_text = esc_attr($fields['gallery-image-alt']);
+                    // altテキストが存在するか確認し、存在しなければ空文字を使用
+                    $alt_text = isset($fields['gallery-image-alt']) ? esc_attr($fields['gallery-image-alt']) : '';
             ?>
             <li class="gallery__item js-modal-open" data-target="modal<?php echo $modal_index; ?>">
                 <img src="<?php echo $img_url; ?>" alt="<?php echo $alt_text; ?>" />
@@ -112,10 +113,13 @@
         </ul>
         <!-- モーダルを開くと表示される画像 -->
         <?php
+        // モーダル部分
         $modal_index = 1;
-        foreach ($gallery_images as $fields) :
-            $img_url = wp_get_attachment_url($fields['gallery-image']);
-            $alt_text = esc_attr($fields['gallery-image-alt']);
+        if (!empty($gallery_images)) :
+            foreach ($gallery_images as $fields) :
+                $img_url = wp_get_attachment_url($fields['gallery-image']);
+                // altテキストが存在するか確認し、存在しなければ空文字を使用
+                $alt_text = isset($fields['gallery-image-alt']) ? esc_attr($fields['gallery-image-alt']) : '';
         ?>
         <div id="modal<?php echo $modal_index; ?>" class="galley__modal js-modal">
             <div class="galley__modal-bg js-modal-close"></div>
@@ -124,10 +128,12 @@
             </div>
         </div>
         <?php
-            $modal_index++;
-        endforeach;
+                $modal_index++;
+            endforeach;
+        endif;
         ?>
         <?php endwhile; endif; wp_reset_postdata(); ?>
     </div>
 </section>
+
 <?php get_footer(); ?>

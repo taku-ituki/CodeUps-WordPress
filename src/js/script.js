@@ -138,6 +138,7 @@ jQuery(function ($) {
     }
   });
 
+  /////About Usページ/////
   // ギャラリーモーダル
   var scrollPosition;
   $(".js-modal-open").each(function () {
@@ -170,28 +171,39 @@ jQuery(function ($) {
     return false;
   });
 
-  // タブ切り替え処理
-  $(".js-info-content-tab").click(function () {
-    var index = $(this).index();
-    $(".js-info-content-card").hide();
-    $(".js-info-content-card").eq(index).show();
+  $(document).ready(function () {
+    // クエリパラメータから "tab" の値を取得
+    var params = new URLSearchParams(window.location.search);
+    var defaultTab = 'license-link'; // デフォルトタブ（ライセンス講習）のID
+    var selectedTab = params.get("tab") || defaultTab; // クエリパラメータがない場合、デフォルトタブを使用
+    
+    // すべてのタブとコンテンツを非表示にしてリセット
     $(".js-info-content-tab").removeClass("active");
-    $(this).addClass("active");
-  });
-
-  // URLパラメータでタブを自動選択
-  var urlParams = new URLSearchParams(window.location.search);
-  var selectedTab = urlParams.get("tab");
-
-  if (selectedTab && !isNaN(selectedTab)) {
-    selectedTab = parseInt(selectedTab, 10);
-    $(".js-info-content-tab").eq(selectedTab - 1).addClass("active");
     $(".js-info-content-card").hide();
-    $(".js-info-content-card").eq(selectedTab - 1).show();
-  }
+  
+    // URLパラメータ、またはデフォルトタブに基づき、該当のタブとコンテンツを表示
+    $(".js-info-content-tab[data-id='" + selectedTab + "']").addClass("active");
+    $("#" + selectedTab).show();
+  
+    // タブクリック時の動作
+    $(".js-info-content-tab").click(function () {
+      // クリックされたタブのIDを取得
+      var tabId = $(this).data("id");
+  
+      // すべてのタブとコンテンツを非表示にしてリセット
+      $(".js-info-content-tab").removeClass("active");
+      $(".js-info-content-card").hide();
+  
+      // クリックされたタブをアクティブにし、対応するコンテンツを表示
+      $(this).addClass("active");
+      $("#" + tabId).show();
+    });
 });
 
-// priceページリンク設定
+  
+});
+
+/////priceページリンク設定/////
 // ページ内のスムーススクロール
 jQuery(function () {
   jQuery('a[href*="#"]').click(function (e) {
@@ -260,7 +272,7 @@ if (overlay) {
 }
 
 
- // FAQアコーディオン
+ /////FAQアコーディオン/////
  $(".js-faq-accordion-title").on("click", function () {
   var findElm = $(this).next(".js-faq-accordion-box");
   $(findElm).slideToggle();
@@ -284,7 +296,21 @@ $(window).on("load", function () {
 
 
 
+////// Blogページのアコーディオン/////
+$(".js-accordion-title").on("click", function () {
+  $(".js-accordion-title").not(this).removeClass("open");
+  $(".js-accordion-title").not(this).next().slideUp(300);
+  $(this).toggleClass("open");
+  $(this).next().slideToggle(300);
+});
+$(".js-accordion-title-month").on("click", function () {
+  $(this).next().slideToggle(300);
+  $(this).toggleClass("open", 300);
+});
 
+
+
+/////お問い合わせフォーム関連/////
 // エラーメッセージをエラー時のみ表示させる（「※必須項目が入力されていません。入力してください。」の部分）
 document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('wpcf7invalid', function(event) {
@@ -295,7 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }, false);
 });
-
 
 
 //contactform7エラーメッセージ

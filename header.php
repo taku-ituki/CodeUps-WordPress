@@ -5,8 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <title>CodeUps</title>
-    <link rel="icon" href="#" />
     <?php wp_head(); ?>
 </head>
 
@@ -15,12 +13,23 @@
     <!-- header -->
     <header class="header header-layout js-header">
         <div class="header__inner">
+            <?php if ( is_front_page() ) : ?>
+            <!-- トップページでは h1 タグを使用 -->
             <h1 class="header__logo">
                 <a href="<?php echo esc_url(home_url("/")) ?>">
-                    <img src="<?php echo esc_url( get_theme_file_uri("/dist/assets/images/common/CodeUps.svg")); ?>"
+                    <img src="<?php echo esc_url( get_theme_file_uri('/dist/assets/images/common/CodeUps.svg') ); ?>"
                         alt="CodeUps" />
                 </a>
             </h1>
+            <?php else : ?>
+            <!-- トップページ以外では div タグを使用 -->
+            <div class="header__logo">
+                <a href="<?php echo esc_url(home_url("/")) ?>">
+                    <img src="<?php echo esc_url( get_theme_file_uri('/dist/assets/images/common/CodeUps.svg') ); ?>"
+                        alt="CodeUps" />
+                </a>
+            </div>
+            <?php endif; ?>
             <!-- PCナビゲーション -->
             <nav class="header__nav">
                 <ul class="header__nav-items">
@@ -35,7 +44,7 @@
                         </a>
                     </li>
                     <li class="header__nav-item">
-                        <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">
+                        <a href="<?php echo esc_url(home_url("/information")) ?>">
                             <div class="header__nav-text">information<span>ダイビング情報</span></div>
                         </a>
                     </li>
@@ -103,16 +112,17 @@
                         <ul class="common-nav__flex-list">
                             <!-- ダイビング情報 -->
                             <li class="common-nav__item common-nav__item--head">
-                                <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">ダイビング情報</a>
+                                <a href="<?php echo esc_url(home_url("/information")) ?>">ダイビング情報</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="<?php echo esc_url(home_url("/information?tab=1")) ?>">ライセンス講習</a>
+                                <a href="<?php echo esc_url(home_url("/information?tab=license-link")) ?>">ライセンス講習</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="<?php echo esc_url(home_url("/information?tab=3")) ?>">体験ダイビング</a>
+                                <a
+                                    href="<?php echo esc_url(home_url("/information?tab=experience-link")) ?>">体験ダイビング</a>
                             </li>
                             <li class="common-nav__item">
-                                <a href="<?php echo esc_url(home_url("/information?tab=2")) ?>">ファンダイビング</a>
+                                <a href="<?php echo esc_url(home_url("/information?tab=fun-link")) ?>">ファンダイビング</a>
                             </li>
                         </ul>
                     </div>
@@ -168,3 +178,6 @@
             <div class="header__overlay  js-header-overlay"></div>
         </div>
     </header>
+</body>
+
+</html>

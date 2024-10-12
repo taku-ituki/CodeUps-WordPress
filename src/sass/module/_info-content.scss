@@ -75,6 +75,10 @@
   }
 }
 
+.info-content__tab.info-content__tab--fun::before{
+  left: 5%;
+}
+
 
 //クジラホバー
 .info-content__tab:hover::before {
@@ -126,18 +130,19 @@
 }
 
 .info-content__card {
-  display: none;
+  display: none; /* すべてのコンテンツを初期状態で非表示 */
   padding: rem(17) rem(24) rem(24) rem(24);
   border: rem(1) solid $green;
-  display: block;
   animation-name: fadein;
   animation-duration: 2s;
+
+  /* PC版では display: flex に変更 */
   @include mq(md) {
+    display: flex; /* PCサイズで表示をflexに */
     align-items: center;
     gap: rem(48);
     border: rem(2) solid $green;
     padding-top: rem(15);
-    display: flex;
   }
 }
 

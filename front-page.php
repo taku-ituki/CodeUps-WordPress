@@ -107,7 +107,7 @@
                     <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
                     <?php else : ?>
-                    <p>キャンペーンが見つかりませんでした。</p>
+                    <p>🐠。。公開準備中。。🐠</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -115,7 +115,6 @@
             <div class="campaign__swiper-button-prev swiper-button-prev"></div>
             <div class="campaign__swiper-button-next swiper-button-next"></div>
             <!-- common ボタン -->
-
             <div class="campaign__btn-wrap">
                 <a class="common-btn" href="<?php echo esc_url(home_url("/campaign_list")) ?>">
                     <span>view more</span>
@@ -272,7 +271,7 @@
                 wp_reset_postdata(); // クエリをリセット
             else :
             ?>
-                <p>投稿がありません。</p>
+                <p>🐠。。公開準備中。。🐠</p>
                 <?php endif; ?>
             </div>
             <!-- common　ボタン -->
@@ -343,7 +342,7 @@
                 wp_reset_postdata();
             else :
             ?>
-                <p>投稿がありません。</p>
+                <p>🐠。。公開準備中。。🐠</p>
                 <?php endif; ?>
             </div>
             <!-- common ボタン -->

@@ -230,15 +230,3 @@ function move_media_menu() {
     );
 }
 add_action('admin_menu', 'move_media_menu', 999);
-
-
-
-//１ページ目でも「前へ」リンクを表示する
-function custom_wp_pagenavi($html) {
-    // 現在のページが1ページ目の場合でも「前へ」リンクを表示
-    if (is_paged() === false) {
-        $html = '<a class="previouspostslink" href="#">＜</a>' . $html;
-    }
-    return $html;
-}
-add_filter('wp_pagenavi', 'custom_wp_pagenavi');

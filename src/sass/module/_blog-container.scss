@@ -283,12 +283,18 @@ padding-top: rem(0);
   font-weight: normal;
   padding: rem(10) rem(15);
 }
+
 .blog-container__accordion-content {
   display: none;
   margin-top: rem(-10);
   padding: 0 rem(20);
   line-height: 1;
 }
+
+.blog-container__accordion-content.open {
+  display: block; // オープン状態のスタイル
+}
+
 .blog-container__accordion-text {
   font-size: rem(13);
   line-height: 1.5;
@@ -327,6 +333,7 @@ padding-top: rem(0);
   display: none;
   padding: rem(10) rem(20);
 }
+
 
 .blog-container__accordion-month {
   margin-top: rem-(10);
