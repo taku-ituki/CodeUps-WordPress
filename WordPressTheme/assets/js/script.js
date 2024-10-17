@@ -85,18 +85,6 @@ jQuery(function ($) {
     }
   });
 
-  // DOM読み込み後にSwiperのスライド数を確認してナビゲーションボタンを制御
-document.addEventListener('DOMContentLoaded', function() {
-  var slideElements = document.querySelectorAll('.js-campaign-swiper .swiper-slide'); // スライドを取得
-  var totalSlides = slideElements.length; // スライド数をカウント
-
-  // スライドが存在しない場合（つまり記事がない場合）
-  if (totalSlides === 0) {
-      document.querySelector('.swiper-button-prev').style.display = 'none';
-      document.querySelector('.swiper-button-next').style.display = 'none';
-  }
-});
-
   // 画像アニメーション
   var box = $(".js-color"),
     speed = 700;
