@@ -339,3 +339,46 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+//リンク切れチェックコード（コンソール）
+// HTMLドキュメント内のすべての<a>タグを取得
+var links = document.getElementsByTagName('a');
+
+// それぞれのhref属性の状態に応じてカウントするための変数を定義
+var countNoHref = 0;       // href属性が存在しないタグの数
+var countEmptyHref = 0;    // hrefが空のタグの数
+var countInvalidHref = 0;  // hrefが無効（#だけ、または#から始まる）のタグの数
+var countDotHref = 0;      // hrefがドットで始まるタグの数
+
+// すべての<a>タグに対してループ処理
+for (var i = 0; i < links.length; i++) {
+    // 各<a>タグのhref属性の値を取得
+    var hrefValue = links[i].getAttribute('href');
+
+    // href属性が存在しない場合、黄色でボーダーをつける
+    if (hrefValue === null) {
+        links[i].style.border = '2px solid yellow';
+        countNoHref++; // 該当の<a>タグの数をカウント
+    }
+    // hrefが空の場合、青色でボーダーをつける
+    else if (hrefValue == '') {
+        links[i].style.border = '2px solid blue';
+        countEmptyHref++; // 該当の<a>タグの数をカウント
+    }
+    // hrefが#だけ、または#から始まる場合、赤色でボーダーをつける
+    else if (hrefValue == '#' || hrefValue.startsWith('#')) {
+        links[i].style.border = '2px solid red';
+        countInvalidHref++; // 該当の<a>タグの数をカウント
+    }
+    // hrefがドットで始まる場合、緑色でボーダーをつける
+    else if (hrefValue.startsWith('.')) {
+        links[i].style.border = '2px solid green';
+        countDotHref++; // 該当の<a>タグの数をカウント
+    }
+}
+
+// 各状態の<a>タグの数をアラートで表示
+alert("href属性が存在しないaタグの数: " + countNoHref + 
+      "\nhrefが空のaタグの数: " + countEmptyHref + 
+      "\nhrefが無効（#だけ、または#から始まる）なaタグの数: " + countInvalidHref +
+      "\nhrefがドットで始まるaタグの数: " + countDotHref);

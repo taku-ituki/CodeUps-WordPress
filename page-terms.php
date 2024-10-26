@@ -16,54 +16,21 @@
         <?php get_template_part('parts/breadcrumbs') ?>
     </div>
 </div>
-<section class="page-page-common page-page-common-layout">
-    <div class="page-page-common__inner inner">
-        <h2 class="page-page-common__title">利用規約</h2>
-        <dl class="page-page-common__items">
-            <div class="page-page-common__item">
-                <dt class="page-page-common__term">以下は、Webサイトで使用する一般的な利用規約の例です。</dt>
-                <dd class="page-page-common__description page-page-common__description-page-page-common">
-                    <ol class="page-page-common__description-numbers">
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_top'))); ?>
-                        </li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_intro'))); ?></li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_prohibited'))); ?></li>
-                    </ol>
-                </dd>
-                <dd class="page-page-common__description">
-                    <p class="page-page-common__description-text">
-                        <?php echo nl2br(esc_html(get_field('terms_prohibited_text'))); ?>
-                    </p>
-                </dd>
-            </div>
-            <div class="page-page-common__item">
-                <div class="page-page-common__description">
-                    <ul class="page-page-common__description-numbers">
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_intellectual_property'))); ?>
-                        </li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_use_disclaimer'))); ?>
-                        </li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_privacy'))); ?>
-                        </li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_other'))); ?>
-                        </li>
-                        <li class="page-page-common__description-number ">
-                            <?php echo nl2br(esc_html(get_field('terms_change'))); ?>
-                        </li>
-                    </ul>
-                </div>
+<section class="page-common page-common-layout">
+    <div class="page-common__inner inner">
+        <?php if (have_posts()) : ?>
+        <?php while (have_posts()) : the_post(); ?>
+        <!-- ページのタイトル -->
+        <h2 class="page-common__title"><?php the_title(); ?></h2>
+        <!-- ブロックエディタからの本文内容 -->
+        <dl class="page-common__items">
+            <div class="page-common__item">
+                <?php the_content(); ?>
+                <!-- ブロックエディタの内容をここに反映 -->
             </div>
         </dl>
-
-        <div class="page-page-common__description-end">
-            以上が、当社の利用規約の概要です。お客様のサービス利用にあたっては、本規約をお読みいただき、同意いただける場合のみサービスをご利用ください。</div>
+        <?php endwhile; ?>
+        <?php endif; ?>
     </div>
 </section>
 <?php get_footer(); ?>

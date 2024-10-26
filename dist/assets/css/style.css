@@ -267,7 +267,7 @@ a {
 	margin-top: 3rem;
 }
 
-.page-page-common-layout {
+.page-common-layout {
 	margin-top: 2.875rem;
 }
 
@@ -469,8 +469,12 @@ a {
 }
 
 .blog-card__text {
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5; /* 表示させる行数 */
 	border-top: 0.0625rem solid #408f95;
+	display: -webkit-box;
 	font-family: "Noto Sans JP", "sans-serif";
+	overflow: hidden;
 	padding-top: 0.9375rem;
 }
 
@@ -2314,6 +2318,7 @@ footer {
 .page-common__items {
 	font-size: 1rem;
 	line-height: 2;
+	list-style-type: decimal;
 	margin-top: 2.5rem;
 }
 
@@ -2765,13 +2770,13 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	width: 28.8%;
 }
 
-.page-page-common {
+.page-common {
 	font-family: "Noto Sans JP", "sans-serif";
 	position: relative;
 	text-align: left;
 }
 
-.page-page-common::before {
+.page-common::before {
 	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
 	display: block;
@@ -2784,48 +2789,48 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	z-index: -1;
 }
 
-.page-page-common__title {
+.page-common__title {
 	font-size: 1.5rem;
 	font-weight: normal;
 }
 
-.page-page-common__items {
+.page-common__items {
 	font-size: 1rem;
 	line-height: 2;
 	margin-top: 2.5rem;
 }
 
-.page-page-common__item:nth-child(2) {
+.page-common__item:nth-child(2) {
 	margin-top: 2.0625rem;
 }
 
-.page-page-common__term {
+.page-common__term {
 	margin-top: 1.9375rem;
 }
 
-.page-page-common__description.page-page-common__description-page-page-common {
+.page-common__description.page-common__description-page-common {
 	margin-top: 1.9375rem;
 }
 
-.page-page-common__description-margin {
+.page-common__description-margin {
 	margin-top: 2rem;
 }
 
-.page-page-common__description-numbers {
+.page-common__description-numbers {
 	counter-reset: number;
 }
 
-.page-page-common__description-number {
+.page-common__description-number {
 	padding-left: 1.5rem;
 	text-indent: -1.0625rem;
 }
 
-.page-page-common__description-number::before {
+.page-common__description-number::before {
 	content: counter(number) ".";
 	counter-increment: number;
 }
 
-.page-page-common__description-end {
+.page-common__description-end {
 	line-height: 2;
 	margin-top: 2.0625rem;
 	text-indent: 0.085em;
@@ -3231,9 +3236,13 @@ textarea { /* フォーカスした際の青い枠線を消す */
 }
 
 .voice-card__bottom {
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 7; /* 表示させる行数 */
 	color: #000;
+	display: -webkit-box;
 	line-height: 1.5;
 	margin-top: 0.9375rem;
+	overflow: hidden;
 }
 
 .voice-card__sub-title {
@@ -3519,7 +3528,7 @@ html {
 	margin-top: 9.0625rem;
 }
 
-.page-page-common-layout {
+.page-common-layout {
 	margin-top: 9.0625rem;
 }
 
@@ -4477,23 +4486,23 @@ footer {
 	width: 32%;
 }
 
-.page-page-common::before {
+.page-common::before {
 	height: 8.625rem;
 	left: calc(50% - min(43vw, 38.75rem));
 	max-width: 18.75rem;
 	top: -7%;
 }
 
-.inner.page-page-common__inner {
+.inner.page-common__inner {
 	max-width: 52.5rem;
 	width: 100%;
 }
 
-.page-page-common__title {
+.page-common__title {
 	font-size: 2rem;
 }
 
-.page-page-common__description-number br {
+.page-common__description-number br {
 	display: none;
 }
 

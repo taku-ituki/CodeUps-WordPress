@@ -1,18 +1,18 @@
  <!-- サイドメニュー -->
- <div class="blog-container__side blog-container">
+ <aside class="blog-container__side blog-container">
      <div class="blog-container__inner inner">
          <div class="blog-container__article">
              <h2 class="blog-container__title blog-container__title--article">人気記事</h2>
              <div class="blog-container__article-cards">
                  <?php
-        $popular_args = array(
+         $popular_args = array(
             'post_type'       => 'post',              // 投稿タイプを指定
             'meta_key'        => 'post_views_count',  // 閲覧数を指定
             'orderby'         => 'meta_value_num',    // ソートの基準を閲覧数に
             'order'           => 'DESC',              // 降順（閲覧数が多い順）でソート
             'post_status'     => 'publish',           // 投稿ステータスは公開済み
             'posts_per_page'  => 3,                   // 投稿表示件数は3件
-        );
+         );
         $popular_query = new WP_Query($popular_args);
         if ($popular_query->have_posts()) :
             while ($popular_query->have_posts()) : $popular_query->the_post(); ?>
@@ -177,7 +177,7 @@
                     preg_match('/(\d{4})年(\d{1,2})月/', $archive, $date);
                     $years[$date[1]][] = $date[2];
                 endforeach;
-            ?>
+                ?>
                      <?php foreach ($years as $year => $months): ?>
                      <div class="blog-container__accordion-item js-accordion-item">
                          <h3 class="blog-container__accordion-title js-accordion-title"><?php echo esc_html($year); ?>
@@ -190,12 +190,10 @@
                                 $url = get_month_link($year, $month_padded);
                             ?>
                                  <div class="blog-container__accordion-item-month">
-                                     <h3 class="blog-container__accordion-title-month js-accordion-title-month">
+                                     <h3 class="blog-container__accordion-title-month">
                                          <a href="<?php echo esc_url($url); ?>"><?php echo esc_html($month); ?>月</a>
                                      </h3>
-                                     <div class="blog-container__accordion-content-month">
-                                         <p class="blog-container__accordion-text">コンテンツが入ります。</p>
-                                     </div>
+
                                  </div>
                                  <?php endforeach; ?>
                              </div>
@@ -207,7 +205,6 @@
              </div>
              <!-- .accordion -->
          </div>
-
      </div>
      <!-- 左右セクション閉じタグ↓ -->
- </div>
+ </aside>

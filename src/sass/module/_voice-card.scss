@@ -89,6 +89,12 @@
   color: #000;
   margin-top: rem(15);
   line-height: 1.5;
+
+  //文字数表示制限
+  overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7; /* 表示させる行数 */
   @include mq(md) {
     margin-top: rem(40);
   }

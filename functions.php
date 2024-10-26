@@ -33,6 +33,24 @@ function my_setup() {
 }
 add_action('after_setup_theme', 'my_setup');
 
+//////////キャンペーンページ//////////
+
+//campaignページ 記事の表示件数設定
+function set_campaign_list_posts_per_page( $query ) {
+    // WordPressの管理画面じゃなくて、サイトの画面のときだけ動かすよ
+    if ( ! is_admin() && $query->is_main_query() && is_post_type_archive('campaign_list') ) {
+        $query->set( 'posts_per_page', 4 );  // 1ページに4件表示するようにする
+    }
+}
+// 上で作ったルールを、WordPressに使ってもらうように登録
+add_action( 'pre_get_posts', 'set_campaign_list_posts_per_page' );
+
+
+
+
+
+////////// お問い合わせページ//////////
+
 // 自動挿入される<p>タグを無効化
 add_action('init', function() {
     remove_filter('the_content', 'wpautop');
@@ -67,6 +85,9 @@ function custom_wpcf7_form_elements($content) {
 }
 add_filter('wpcf7_form_elements', 'custom_wpcf7_form_elements');
 
+
+
+////////// ブログ //////////
 /* 「投稿」名称変更 */
 function change_post_menu_label() {
     global $menu;
@@ -193,6 +214,19 @@ add_filter( 'wpcf7_form_tag', 'dynamic_field_values', 30, 2);
 //wordpressのバージョン隠す（攻撃のリスク軽減）
 remove_action('wp_head','wp_generator');
 
+
+////////// お客様の声//////////
+// 'voice_list' カスタム投稿タイプの一覧表示件数を6件に変更
+function set_voice_list_posts_per_page($query) {
+    // 管理画面ではなく、メインクエリかつアーカイブページでのみ適用
+    if (!is_admin() && $query->is_main_query() && is_post_type_archive('voice_list')) {
+        $query->set('posts_per_page', 6); // 表示件数を6件に設定
+    }
+}
+add_action('pre_get_posts', 'set_voice_list_posts_per_page');
+
+
+////////// 管理画面 //////////
 
 // Contact Form 7 のメニュー位置を変更してダッシュボードのすぐ下に表示する
 function move_contactform7_menu() {

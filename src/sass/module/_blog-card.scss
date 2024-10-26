@@ -57,4 +57,9 @@
   font-family: $second-font-family;
   padding-top: rem(15);
   border-top: rem(1) solid $green;
+
+  overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* 表示させる行数 */
 }

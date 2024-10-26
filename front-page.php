@@ -211,7 +211,7 @@
                     </p>
                     <!-- common　ボタン -->
                     <div class="page-campaign__btn-wrap">
-                        <a class="common-btn" href="<?php echo esc_url(home_url("/information?tab=1")) ?>">
+                        <a class="common-btn" href=<?php echo esc_url(home_url("/information")) ?>">
                             <span>view more</span>
                         </a>
                     </div>
@@ -220,7 +220,7 @@
         </div>
     </section>
     <!-- ブログ -->
-    <section class="blog blog-layout">
+    <section class=" blog blog-layout">
         <div class="blog__inner inner">
             <div class="blog__title section-title">
                 <h2 class="section-title__en section-title__en--blog">blog</h2>
@@ -262,7 +262,7 @@
                         </div>
                         <!-- 記事の抜粋を取得 -->
                         <p class="blog-card__text">
-                            <?php the_excerpt(); ?>
+                            <?php echo get_the_excerpt(); ?>
                         </p>
                     </a>
                 </div>

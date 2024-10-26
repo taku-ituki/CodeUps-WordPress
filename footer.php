@@ -50,13 +50,14 @@
              </div>
              <div class="footer__sns">
                  <div class="footer__facebook">
-                     <a href="#">
-                         <img src="<?php echo esc_url( get_theme_file_uri("/dist")); ?>/assets/images/common/FacebookLogo.svg"
+                     <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                         <img src="
+                         <?php echo esc_url( get_theme_file_uri("/dist")); ?>/assets/images/common/FacebookLogo.svg"
                              alt="Facebook" />
                      </a>
                  </div>
                  <div class="footer__instagram">
-                     <a href="#">
+                     <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                          <img src="<?php echo esc_url( get_theme_file_uri("/dist")); ?>/assets/images/common/InstagramLogo.svg"
                              alt="Instagram" />
                      </a>
