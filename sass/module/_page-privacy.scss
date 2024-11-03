@@ -1,0 +1,42 @@
+@use "global" as *;
+
+.page-privacy {
+  font-family: $second-font-family;
+  text-align: left;
+}
+
+.page-privacy__inner.inner {
+  @include mq(md) {
+    max-width: rem(800);
+    width: 100%;
+  }
+}
+
+.page-privacy__title {
+  font-size: rem(24);
+}
+
+.page-privacy__items {
+  margin-top: rem(40);
+  font-size: rem(16);
+  line-height: 2;
+}
+
+.page-privacy__item:nth-child(2) {
+  margin-top: rem(40);
+}
+
+.page-privacy__description-numbers {
+  counter-reset: number;
+}
+
+.page-privacy__description-number {
+  margin-left:rem(20);
+}
+
+.page-privacy__description-text {
+  text-indent: rem(-5);
+}
+
+
+

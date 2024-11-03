@@ -16,18 +16,17 @@
         <?php get_template_part('parts/breadcrumbs') ?>
     </div>
 </div>
-<section class="page-common page-common-layout">
-    <div class="page-common__inner inner">
+
+<section class="page-terms page-terms-layout">
+    <div class="page-terms__inner inner">
         <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
         <!-- ページのタイトル -->
-        <h2 class="page-common__title"><?php the_title(); ?></h2>
+        <h2 class="page-terms__title"><?php the_title(); ?></h2>
         <!-- ブロックエディタからの本文内容 -->
-        <dl class="page-common__items">
-            <div class="page-common__item">
-                <?php the_content(); ?>
-                <!-- ブロックエディタの内容をここに反映 -->
-            </div>
+        <dl class="page-terms__items">
+            <?php the_content(); ?>
+            <!-- ブロックエディタの内容をここに反映 -->
         </dl>
         <?php endwhile; ?>
         <?php endif; ?>

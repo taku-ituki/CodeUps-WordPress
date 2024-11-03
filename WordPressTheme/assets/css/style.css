@@ -267,7 +267,11 @@ a {
 	margin-top: 3rem;
 }
 
-.page-common-layout {
+.page-privacy-layout {
+	margin-top: 2.875rem;
+}
+
+.page-terms-layout {
 	margin-top: 2.875rem;
 }
 
@@ -2306,48 +2310,6 @@ footer {
 	margin-top: 5rem;
 }
 
-.page-common {
-	font-family: "Noto Sans JP", "sans-serif";
-	text-align: left;
-}
-
-.page-common__title {
-	font-size: 1.5rem;
-}
-
-.page-common__items {
-	font-size: 1rem;
-	line-height: 2;
-	list-style-type: decimal;
-	margin-top: 2.5rem;
-}
-
-.page-common__item:nth-child(2) {
-	margin-top: 2.5rem;
-}
-
-.page-common__description-numbers {
-	counter-reset: number;
-}
-
-.page-common__description-number {
-	padding-left: 1.25rem;
-	text-indent: -1.25rem;
-}
-
-.page-common__description-number::before {
-	content: counter(number) ".";
-	counter-increment: number;
-}
-
-.page-common__description-text {
-	text-indent: -0.3125rem;
-}
-
-.sitemap .common-nav__item.common-nav__item--head span {
-	display: inline-block;
-}
-
 .page-contact {
 	position: relative;
 }
@@ -2770,13 +2732,13 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	width: 28.8%;
 }
 
-.page-common {
+.page-privacy {
 	font-family: "Noto Sans JP", "sans-serif";
 	position: relative;
 	text-align: left;
 }
 
-.page-common::before {
+.page-privacy::before {
 	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
 	display: block;
@@ -2789,48 +2751,100 @@ textarea { /* フォーカスした際の青い枠線を消す */
 	z-index: -1;
 }
 
-.page-common__title {
+.page-privacy__title {
 	font-size: 1.5rem;
 	font-weight: normal;
 }
 
-.page-common__items {
+.page-privacy__items {
 	font-size: 1rem;
 	line-height: 2;
 	margin-top: 2.5rem;
 }
 
-.page-common__item:nth-child(2) {
+.page-privacy__item:nth-child(2) {
 	margin-top: 2.0625rem;
 }
 
-.page-common__term {
+.page-privacy__term {
 	margin-top: 1.9375rem;
 }
 
-.page-common__description.page-common__description-page-common {
-	margin-top: 1.9375rem;
-}
-
-.page-common__description-margin {
+.page-privacy__description-margin {
 	margin-top: 2rem;
 }
 
-.page-common__description-numbers {
+.page-privacy__description-numbers {
 	counter-reset: number;
 }
 
-.page-common__description-number {
-	padding-left: 1.5rem;
-	text-indent: -1.0625rem;
+.page-privacy__description-number {
+	list-style-type: decimal;
+	margin-left: 1.25rem;
 }
 
-.page-common__description-number::before {
-	content: counter(number) ".";
-	counter-increment: number;
+.page-privacy__description-text {
+	line-height: 2;
+	margin-top: 2.0625rem;
+	text-indent: 0.085em;
 }
 
-.page-common__description-end {
+.page-terms {
+	font-family: "Noto Sans JP", "sans-serif";
+	position: relative;
+	text-align: left;
+}
+
+.page-terms::before {
+	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
+	content: ""; /*絶対配置で線の位置を決める*/
+	display: block;
+	height: 3.4375rem;
+	left: calc(50% - min(46vw, 38.75rem)); /*線の形状*/
+	max-width: 7.5rem;
+	position: absolute;
+	top: -1.2%;
+	width: 100%;
+	z-index: -1;
+}
+
+.page-terms__title {
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+.page-terms__items {
+	font-size: 1rem;
+	line-height: 2;
+	margin-top: 2.5rem;
+}
+
+.page-terms__item:nth-child(2) {
+	margin-top: 2.0625rem;
+}
+
+.page-terms__term {
+	margin-top: 1.9375rem;
+}
+
+.page-terms__description-margin {
+	margin-top: 2rem;
+}
+
+.page-terms__description-numbers {
+	counter-reset: number;
+}
+
+.page-terms__description-number {
+	list-style-type: decimal;
+	margin-left: 0.625rem;
+}
+
+.page-terms__description-number:first-of-type {
+	margin-top: 1.9375rem;
+}
+
+.page-terms__description-text {
 	line-height: 2;
 	margin-top: 2.0625rem;
 	text-indent: 0.085em;
@@ -3528,7 +3542,11 @@ html {
 	margin-top: 9.0625rem;
 }
 
-.page-common-layout {
+.page-privacy-layout {
+	margin-top: 9.0625rem;
+}
+
+.page-terms-layout {
 	margin-top: 9.0625rem;
 }
 
@@ -4330,11 +4348,6 @@ footer {
 	margin-top: 0rem;
 }
 
-.page-common__inner.inner {
-	max-width: 50rem;
-	width: 100%;
-}
-
 .page-contact::before {
 	height: 8.625rem;
 	left: calc(50% - min(37.2vw, 38.75rem));
@@ -4486,23 +4499,47 @@ footer {
 	width: 32%;
 }
 
-.page-common::before {
+.page-privacy::before {
 	height: 8.625rem;
 	left: calc(50% - min(43vw, 38.75rem));
 	max-width: 18.75rem;
 	top: -7%;
 }
 
-.inner.page-common__inner {
+.inner.page-privacy__inner {
 	max-width: 52.5rem;
 	width: 100%;
 }
 
-.page-common__title {
+.page-privacy__title {
 	font-size: 2rem;
 }
 
-.page-common__description-number br {
+.page-privacy__description-number br {
+	display: none;
+}
+
+.page-terms::before {
+	height: 8.625rem;
+	left: calc(50% - min(43vw, 38.75rem));
+	max-width: 18.75rem;
+	top: -7%;
+}
+
+.inner.page-terms__inner {
+	max-width: 52.5rem;
+	width: 100%;
+}
+
+.page-terms__title {
+	font-size: 2rem;
+}
+
+.page-terms__description-number {
+	margin-left: 1.25rem;
+}
+
+.page-terms__description-number br {
 	display: none;
 }
 

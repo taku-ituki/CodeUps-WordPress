@@ -1,13 +1,13 @@
 @use "global" as *;
 
-.page-terms {
+.page-privacy {
   font-family: $second-font-family;
   text-align: left;
   position: relative;
 }
 
 // 画像配置
-.page-terms::before {
+.page-privacy::before {
   content: "";
   background: url("./../images/common/top-voice-fish.png") center center / cover no-repeat;
   /*絶対配置で線の位置を決める*/
@@ -28,14 +28,14 @@
   }
 }
 
-.inner.page-terms__inner {
+.inner.page-privacy__inner {
   @include mq(md) {
     max-width: rem(840);
     width: 100%;
   }
 }
 
-.page-terms__title {
+.page-privacy__title {
   font-weight: normal;
   font-size: rem(24);
   @include mq(md) {
@@ -43,49 +43,42 @@
   }
 }
 
-.page-terms__items {
+.page-privacy__items {
   margin-top: rem(40);
   font-size: rem(16);
   line-height: 2;
 }
 
-.page-terms__item:nth-child(2) {
+.page-privacy__item:nth-child(2) {
   margin-top: rem(33);
 }
 
-.page-terms__term {
+.page-privacy__term {
   margin-top: rem(31);
 }
 
 
-.page-terms__description-margin {
+.page-privacy__description-margin {
   margin-top: rem(32);
 }
 
-.page-terms__description-numbers {
+.page-privacy__description-numbers {
   counter-reset: number;
 }
 
-.page-terms__description-number {
-  margin-left:rem(10);
+.page-privacy__description-number {
+  margin-left:rem(20);
   list-style-type: decimal;
-  @include mq(md){
-    margin-left:rem(20);
-  }
 }
 
-.page-terms__description-number:first-of-type {
-  margin-top:rem(31);
-}
-
-.page-terms__description-number br {
+.page-privacy__description-number br {
   @include mq(md) {
     display: none;
   }
 }
 
 
-.page-terms__description-text {
+.page-privacy__description-text {
   text-indent: 0.085em;
   margin-top: rem(33);
   line-height: 2;

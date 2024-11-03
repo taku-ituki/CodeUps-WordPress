@@ -263,4 +263,25 @@ function move_media_menu() {
         30                          // メニューの位置
     );
 }
-add_action('admin_menu', 'move_media_menu', 999);
+ //利用規約とプライバシーポリシーページ  クラス名を管理画面へ反映
+function add_custom_classes_by_page($content) {
+    if (is_page('terms')) { // 利用規約ページの場合（スラッグが 'terms'）
+        // 利用規約ページ用のクラスを適用
+        $content = str_replace('<ul>', '<ul class="page-terms__description-numbers">', $content);
+        $content = str_replace('<ol>', '<ol class="page-terms__description-numbers">', $content);
+        $content = str_replace('<li>', '<li class="page-terms__description-number">', $content);
+        $content = str_replace('<p>', '<p class="page-terms__description-text">', $content);
+        $content = str_replace('<h3>', '<h3 class="page-terms__term">', $content);
+        $content = str_replace('<dd>', '<dd class="page-terms__description">', $content);
+    } elseif (is_page('privacy')) { // プライバシーポリシーページの場合（スラッグが 'privacy-policy'）
+        // プライバシーポリシー用のクラスを適用
+        $content = str_replace('<ul>', '<ul class="page-privacy__description-numbers">', $content);
+        $content = str_replace('<ol>', '<ol class="page-privacy__description-numbers">', $content);
+        $content = str_replace('<li>', '<li class="page-privacy__description-number">', $content);
+        $content = str_replace('<p>', '<p class="page-privacy__description-text">', $content);
+        $content = str_replace('<h3>', '<h3 class="page-privacy__term">', $content);
+        $content = str_replace('<dd>', '<dd class="page-privacy__description">', $content);
+    }
+    return $content;
+}
+add_filter('the_content', 'add_custom_classes_by_page');
