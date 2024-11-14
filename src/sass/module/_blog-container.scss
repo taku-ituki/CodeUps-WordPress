@@ -19,11 +19,13 @@
   /*線の形状*/
   max-width: rem(120);
   height: rem(55);
+  z-index: 1;
   @include mq(md) {
-    top: -2.6%;
+    top: -2.4%;
     /*線の形状*/
     max-width: rem(300);
     height: rem(138);
+    z-index:-1;
   }
 }
 

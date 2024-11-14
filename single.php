@@ -41,8 +41,13 @@
                 </div>
                 <!-- ページナビ -->
                 <div class="blog-container__pagenavi blog-container__pagenavi--detail wp-pagenavi">
-                    <a class="page previouspostslink" rel="prev" href="#"></a>
-                    <a class="page nextpostslink" rel="next" href="#"></a>
+                    <?php if (get_previous_post()): // 前の記事が存在するか確認 ?>
+                    <?php previous_post_link('« %link', '前の記事へ'); // 前の記事リンクを表示 ?>
+                    <?php endif; ?>
+
+                    <?php if (get_next_post()): // 次の記事が存在するか確認 ?>
+                    <?php next_post_link('%link »', '次の記事へ'); // 次の記事リンクを表示 ?>
+                    <?php endif; ?>
                 </div>
                 <?php endwhile; endif; ?>
             </div> <!-- サイドバー -->

@@ -501,6 +501,7 @@ a {
 	position: absolute;
 	top: 6.9%;
 	width: 100%;
+	z-index: 1;
 }
 
 .blog-container.blog-container__side::before {
@@ -3696,7 +3697,8 @@ html {
 .blog-container::before {
 	height: 8.625rem; /*線の形状*/
 	max-width: 18.75rem;
-	top: -2.6%;
+	top: -2.4%;
+	z-index: -1;
 }
 
 .blog-container {
