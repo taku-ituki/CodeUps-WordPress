@@ -41,12 +41,11 @@
                 </div>
                 <!-- ページナビ -->
                 <div class="blog-container__pagenavi blog-container__pagenavi--detail wp-pagenavi">
-                    <?php if (get_previous_post()): // 前の記事が存在するか確認 ?>
-                    <?php previous_post_link('« %link', '前の記事へ'); // 前の記事リンクを表示 ?>
+                    <?php if (get_previous_post(false)): // 同じカテゴリーの制限を解除 ?>
+                    <?php previous_post_link('« %link', '前の記事へ', false); ?>
                     <?php endif; ?>
-
-                    <?php if (get_next_post()): // 次の記事が存在するか確認 ?>
-                    <?php next_post_link('%link »', '次の記事へ'); // 次の記事リンクを表示 ?>
+                    <?php if (get_next_post(false)): // 同じカテゴリーの制限を解除 ?>
+                    <?php next_post_link('%link »', '次の記事へ', false); ?>
                     <?php endif; ?>
                 </div>
                 <?php endwhile; endif; ?>
