@@ -39,22 +39,20 @@
                         </div>
                     </div>
                 </div>
+                <?php endwhile; endif; ?>
                 <!-- ページナビ -->
-                <div class="blog-container__pagenavi blog-container__pagenavi--detail wp-pagenavi">
-                    <?php if (get_previous_post(false)): // 同じカテゴリーの制限を解除 ?>
-                    <?php previous_post_link('« %link', '前の記事へ', false); ?>
+                <div class="blog-container__pagenavi blog-container__pagenavi--detail">
+                    <?php if (get_previous_post()):?>
+                    <?php previous_post_link('%link', '<'); ?>
                     <?php endif; ?>
-                    <?php if (get_next_post(false)): // 同じカテゴリーの制限を解除 ?>
-                    <?php next_post_link('%link »', '次の記事へ', false); ?>
+                    <?php if (get_next_post()):?>
+                    <?php next_post_link('%link', '>'); ?>
                     <?php endif; ?>
                 </div>
-                <?php endwhile; endif; ?>
-            </div> <!-- サイドバー -->
+            </div>
+            <!-- サイドバー -->
             <?php get_sidebar(); ?>
         </div>
     </div>
 </section>
-
-<?php get_footer(); ?>
-<!-- 閲覧数をカウント（人気記事） -->
-<?php if (!is_user_logged_in() && !is_bot()) { setPostViews(get_the_ID()); } ?>
+<?php get_footer(); 

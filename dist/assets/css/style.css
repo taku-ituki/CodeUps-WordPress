@@ -811,6 +811,99 @@ a {
 	margin-top: 2.5rem;
 }
 
+.blog-container__pagenavi {
+	display: flex;
+	justify-content: center;
+}
+
+.blog-container__pagenavi img {
+	height: 2.375rem;
+	width: 2.375rem;
+}
+
+.blog-container__pagenavi .previouspostslink {
+	border: 0.0625rem solid #408f95;
+	display: inline-block;
+	padding: 1.125rem 1.125rem;
+	position: relative;
+	transition: 0.3s;
+}
+
+.blog-container__pagenavi .previouspostslink::before {
+	border-right: solid 0.0625rem #408f95;
+	border-top: solid 0.0625rem #408f95;
+	content: "";
+	height: 0.625rem;
+	left: 0.9375rem;
+	position: absolute;
+	top: 0.8125rem;
+	transform: rotate(-135deg);
+	width: 0.625rem;
+}
+
+.blog-container__pagenavi .nextpostslink {
+	border: 0.0625rem solid #408f95;
+	display: inline-block;
+	margin-left: 1rem;
+	padding: 1.125rem 1.125rem;
+	position: relative;
+	transition: 0.3s;
+}
+
+.blog-container__pagenavi .nextpostslink::before {
+	border-right: solid 0.0625rem #408f95;
+	border-top: solid 0.0625rem #408f95;
+	content: "";
+	height: 0.625rem;
+	left: 0.625rem;
+	position: absolute;
+	top: 0.75rem;
+	transform: rotate(45deg);
+	width: 0.625rem;
+}
+
+.blog-container__pagenavi .nextpostslink:hover {
+	background-color: #408f95;
+	transition: 0.3s;
+}
+
+.blog-container__pagenavi .nextpostslink:hover::before {
+	border-color: #fff;
+	transition: inherit;
+}
+
+.blog-container__pagenavi .previouspostslink:hover {
+	background-color: #408f95;
+	transition: 0.3s;
+}
+
+.blog-container__pagenavi .previouspostslink:hover::before {
+	border-color: #fff;
+	transition: inherit;
+}
+
+.blog-container__pagenavi .arrow {
+	border-left: 5px solid transparent; /* 左側の矢印を作成 */
+	border-right: 5px solid transparent; /* 右側の矢印を作成 */
+	border-top: 5px solid #408f95; /* 上側の矢印を作成 */
+	height: 0;
+	width: 0;
+}
+
+.blog-container__pagenavi .previouspostslink .arrow {
+	left: 10px; /* 矢印の位置 */
+	position: absolute;
+	top: 50%; /* 矢印の位置 */
+	transform: translateY(-50%); /* 矢印の位置を中央揃えにする */
+}
+
+.blog-container__pagenavi .nextpostslink .arrow {
+	position: absolute;
+	right: 10px; /* 矢印の位置 */
+	top: 50%; /* 矢印の位置 */
+	transform: translateY(-50%); /* 矢印の位置を中央揃えにする */
+}
+
 .blog-detail::before {
 	background: url("./../images/common/top-voice-fish.png") center center/cover no-repeat;
 	content: ""; /*絶対配置で線の位置を決める*/
@@ -3740,6 +3833,10 @@ html {
 .blog-container__accordion {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.blog-container__pagenavi .nextpostslink {
+	margin-left: 2.5rem;
 }
 
 .blog-detail::before {
